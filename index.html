@@ -112,6 +112,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(100px);background:var(--deep);color:white;padding:.75rem 1.5rem;border-radius:30px;font-size:.75rem;transition:transform .3s;z-index:200;white-space:nowrap;}
 .toast.show{transform:translateX(-50%) translateY(0);}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.days-tabs{display:flex;padding:1.25rem 1.5rem;gap:.75rem;}.days-tab{display:block;background:transparent;color:var(--deep);font-family:'Jost',sans-serif;font-size:.72rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;padding:.85rem 1.5rem;border:1px solid var(--blush);cursor:pointer;border-radius:2px;transition:all .3s ease;flex:1;}.days-tab.active{background:linear-gradient(135deg,var(--rose),var(--deep));color:white;border-color:transparent;box-shadow:0 8px 25px rgba(122,74,58,.25);}.days-tab:hover:not(.active){transform:translateY(-1px);box-shadow:0 4px 15px rgba(122,74,58,.15);}
 ::-webkit-scrollbar{width:3px;}::-webkit-scrollbar-thumb{background:var(--blush);border-radius:2px;}
 </style>
 </head>
@@ -154,9 +155,34 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
       <span id="progress-pct">0%</span>
     </div>
   </div>
-  <div class="days-section">
-    <div class="days-section-title">Selecciona tu día de hoy</div>
-    <div class="days-grid" id="days-grid"></div>
+  <div style="display:flex;flex-direction:column;gap:.6rem;padding:1.5rem 1.5rem 0;">
+    <button class="btn-primary" id="tab-btn-devocional" onclick="switchTab('devocional',this)" style="margin-bottom:0;">Mi Devocional ✦</button>
+    <button class="btn-primary" id="tab-btn-bonos" onclick="switchTab('bonos',this)" style="margin-bottom:0;background:linear-gradient(135deg,var(--gold),#8A6030);opacity:.7;">Mis Bonos</button>
+  </div>
+
+  <div id="tab-devocional">
+    <div class="days-section">
+      <div class="days-section-title">Selecciona tu día de hoy</div>
+      <div class="days-grid" id="days-grid"></div>
+    </div>
+  </div>
+
+  <div id="tab-bonos" style="display:none;">
+    <div class="bonos-section">
+      <div class="bonos-section-title">Tus recursos especiales</div>
+      <button class="btn-primary" onclick="showBono('pdf1')" style="text-align:left;padding:.9rem 1.25rem;display:flex;justify-content:space-between;align-items:center;margin-bottom:.6rem;">
+        <span>Mujeres que Inspiran</span><span style="opacity:.5;font-size:.85rem;">›</span>
+      </button>
+      <button class="btn-primary" onclick="showBono('pdf2')" style="text-align:left;padding:.9rem 1.25rem;display:flex;justify-content:space-between;align-items:center;margin-bottom:.6rem;">
+        <span>Oraciones para Momentos Difíciles</span><span style="opacity:.5;font-size:.85rem;">›</span>
+      </button>
+      <button class="btn-primary" onclick="showBono('fondos')" style="text-align:left;padding:.9rem 1.25rem;display:flex;justify-content:space-between;align-items:center;margin-bottom:.6rem;background:linear-gradient(135deg,var(--gold),#8A6030);">
+        <span>Fondos de Pantalla</span><span style="opacity:.5;font-size:.85rem;">›</span>
+      </button>
+      <button class="btn-primary" onclick="showBono('noche')" style="text-align:left;padding:.9rem 1.25rem;display:flex;justify-content:space-between;align-items:center;margin-bottom:.6rem;background:linear-gradient(135deg,var(--sage),#4A6A4A);">
+        <span>Audios para la Noche</span><span style="opacity:.5;font-size:.85rem;">›</span>
+      </button>
+    </div>
   </div>
 </div>
 
@@ -167,6 +193,26 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
     <div id="dev-done-indicator" style="display:none" class="dev-done-check">✓</div>
   </div>
   <div class="dev-content" id="dev-content"></div>
+</div>
+
+
+<div id="screen-bono" class="screen">
+  <div class="bono-nav">
+    <button class="back-btn" onclick="showDays(); switchTab('bonos', document.getElementById('tab-btn-bonos'))">← Volver</button>
+    <div class="bono-nav-title" id="bono-nav-title">Bonos</div>
+  </div>
+  <div class="bono-content" id="bono-content"></div>
+</div>
+
+<div class="lightbox" id="lightbox" style="display:none;">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <div class="lightbox-img-wrap">
+    <img id="lightbox-img" src="" alt="Fondo de pantalla">
+  </div>
+  <div class="lightbox-footer">
+    <div class="lightbox-caption" id="lightbox-caption">Fondo de pantalla</div>
+    <a id="lightbox-download" class="lightbox-download" download>Guardar imagen</a>
+  </div>
 </div>
 
 <div class="confetti" id="confetti"></div>
@@ -562,21 +608,16 @@ const dias = [
 
 ]; // ← No borres este corchete
 
-// ================================================================
-//  ✦ AUDIOS — rutas relativas (mismo repo en GitHub Pages)
-//  Los archivos MP3 deben estar en la raíz del repo con estos nombres.
-//  Cuando subas un audio nuevo, cambia el null por "DIA-XX.mp3"
-// ================================================================
 const audios = {
-  1:  "DIA-1.mp3",
-  2:  "DIA-2.mp3",
-  3:  "DIA-3.mp3",
-  4:  "DIA-4.mp3",
-  5:  "DIA-5.mp3",
-  6:  "DIA-6.mp3",
-  7:  "DIA-7.mp3",
-  8:  "DIA-8.mp3",
-  9:  "DIA-9.mp3",
+  1:  "1BA8vWuTDXFZ-cPJsBp0Deeng6CYfUSC2",
+  2:  "17Mf7Y6Ry73X4D8sNhyDTQ2APXKU6pmEp",
+  3:  "1cI1xs5I0SxNbxK-9ki5BYiQut8yhHxAR",
+  4:  "1ZdbmlzWUa0xtzc2xpjwuRdVShK7fwedJ",
+  5:  "1lSHG7nQeraeJ8NxIKwp9WEjVDV0pF6ic",
+  6:  "1_HX3Gpa9zmTgCXMiBu3aOoqStZpkbRB1",
+  7:  "1gqTWgDQ4h1avC0QIleptxnAo0hB_yDuI",
+  8:  "1pFgmp8iRt8kG5lJ5YwWYII4PoZnShRWv",
+  9:  "1UNBIe9FfuRM054GBXtM1N04diJ1guncP",
   10: null,
   11: null,
   12: null,
@@ -612,6 +653,177 @@ let currentDay=1,isPlaying=false,playInterval,waveProgress=0;
 
 function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0);}
 function showDays(){updateDaysScreen();showScreen('screen-days');}
+
+// ── TABS ──
+function switchTab(tab, btn) {
+  // Reset both buttons to muted style
+  const btnDev = document.getElementById('tab-btn-devocional');
+  const btnBon = document.getElementById('tab-btn-bonos');
+  btnDev.style.opacity = tab === 'devocional' ? '1' : '.55';
+  btnBon.style.opacity = tab === 'bonos' ? '1' : '.55';
+  document.getElementById('tab-devocional').style.display = tab === 'devocional' ? 'block' : 'none';
+  document.getElementById('tab-bonos').style.display = tab === 'bonos' ? 'block' : 'none';
+}
+
+// ── BONOS DATA ──
+const bonosData = {
+  pdf1: {
+    titulo: '🌸 Mujeres que Inspiran',
+    url: 'https://saraaranda-crypto.github.io/Contigo/Mujeres%20que%20inspiran.pdf'
+  },
+  pdf2: {
+    titulo: '🙏 Oraciones para Momentos Difíciles',
+    url: 'https://saraaranda-crypto.github.io/Contigo/Oraciones%20para%20momentos%20dificiles.pdf'
+  },
+  fondos: {
+    titulo: '🖼️ Fondos de Pantalla',
+    total: 15,
+    base: 'https://saraaranda-crypto.github.io/Contigo/Fondo'
+  },
+  noche: {
+    titulo: '🌙 Audios para la Noche',
+    audios: [
+      { num: 1,  titulo: 'Descanso en Sus manos' },
+      { num: 2,  titulo: 'Paz en la oscuridad' },
+      { num: 3,  titulo: 'Gratitud al cerrar el día' },
+      { num: 4,  titulo: 'No estás sola esta noche' },
+      { num: 5,  titulo: 'Soltar el día' },
+      { num: 6,  titulo: 'Refugio en Su amor' },
+      { num: 7,  titulo: 'Silencio y fe' },
+      { num: 8,  titulo: 'Confiar y descansar' },
+      { num: 9,  titulo: 'Su presencia en la noche' },
+      { num: 10, titulo: 'Entregar las cargas' },
+      { num: 11, titulo: 'Paz que sobrepasa todo' },
+      { num: 12, titulo: 'Dios vela por ti' },
+      { num: 13, titulo: 'Descanso sin miedo' },
+      { num: 14, titulo: 'En Sus manos segura' },
+      { num: 15, titulo: 'Buenas noches, alma mía' }
+    ]
+  }
+};
+
+let nocheAudio = null;
+let nochePlayingIdx = null;
+
+// ── SHOW BONO ──
+function showBono(type) {
+  const data = bonosData[type];
+  document.getElementById('bono-nav-title').textContent = data.titulo;
+  const container = document.getElementById('bono-content');
+
+  if (type === 'pdf1' || type === 'pdf2') {
+    window.open(data.url, '_blank');
+    showDays();
+    switchTab('bonos', document.getElementById('tab-btn-bonos'));
+    return;
+  }
+
+  else if (type === 'fondos') {
+    const baseUrl = 'https://saraaranda-crypto.github.io/Contigo/Fondo';
+    let grid = '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;">';
+    for (let i = 1; i <= 15; i++) {
+      const url = baseUrl + i + '.png';
+      grid += '<div style="position:relative;aspect-ratio:9/16;overflow:hidden;border-radius:6px;cursor:pointer;background:var(--warm);" onclick="openLightbox(\'' + url + '\',' + i + ')">'
+            + '<img src="' + url + '" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy" onerror="this.parentElement.style.opacity=\'0.3\'">'
+            + '</div>';
+    }
+    grid += '</div>';
+    container.innerHTML = '<p style="font-size:.72rem;color:var(--sage);margin-bottom:1rem;line-height:1.6;font-style:italic;">Toca una imagen para verla completa y descargarla.</p>' + grid;
+  }
+
+  else if (type === 'noche') {
+    let list = '<div class="noche-list">';
+    data.audios.forEach((a, idx) => {
+      const url = `https://saraaranda-crypto.github.io/Contigo/DIA-${a.num}-descansar%20en%20Dios.mp3`;
+      list += `
+        <div class="noche-item" id="noche-item-${idx}">
+          <div class="noche-info">
+            <div class="noche-title">${a.titulo}</div>
+            <div class="noche-sub">Audio ${a.num} de 15</div>
+            <div class="noche-progress"><div class="noche-progress-fill" id="noche-prog-${idx}"></div></div>
+          </div>
+          <button class="noche-play" id="noche-btn-${idx}" onclick="toggleNoche(${idx}, '${url}')">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </button>
+        </div>`;
+    });
+    list += '</div>';
+    container.innerHTML = `
+      <div class="noche-intro">
+        Estos audios están creados para acompañarte al cerrar el día. Ponlos mientras te preparas para dormir y deja que las palabras aquieten tu mente y tu corazón.
+      </div>` + list;
+  }
+
+  if (nocheAudio) { nocheAudio.pause(); nocheAudio = null; nochePlayingIdx = null; }
+  showScreen('screen-bono');
+}
+
+// ── NOCHE PLAYER ──
+function toggleNoche(idx, url) {
+  const btn = document.getElementById('noche-btn-' + idx);
+  const item = document.getElementById('noche-item-' + idx);
+  const prog = document.getElementById('noche-prog-' + idx);
+
+  // Si hay otro audio reproduciéndose, detenerlo
+  if (nocheAudio && nochePlayingIdx !== idx) {
+    nocheAudio.pause();
+    const oldBtn = document.getElementById('noche-btn-' + nochePlayingIdx);
+    const oldItem = document.getElementById('noche-item-' + nochePlayingIdx);
+    if (oldBtn) oldBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
+    if (oldItem) oldItem.classList.remove('playing');
+    nocheAudio = null;
+  }
+
+  // Si es el mismo, pause/play
+  if (nochePlayingIdx === idx && nocheAudio) {
+    if (nocheAudio.paused) {
+      nocheAudio.play();
+      btn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
+      item.classList.add('playing');
+    } else {
+      nocheAudio.pause();
+      btn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
+      item.classList.remove('playing');
+    }
+    return;
+  }
+
+  // Nuevo audio
+  nocheAudio = new Audio(url);
+  nochePlayingIdx = idx;
+  nocheAudio.play().catch(() => showToast('Audio próximamente disponible 🌙'));
+  btn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
+  item.classList.add('playing');
+
+  nocheAudio.ontimeupdate = () => {
+    if (nocheAudio.duration) {
+      prog.style.width = (nocheAudio.currentTime / nocheAudio.duration * 100) + '%';
+    }
+  };
+
+  nocheAudio.onended = () => {
+    btn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
+    item.classList.remove('playing');
+    prog.style.width = '0%';
+    nocheAudio = null;
+    nochePlayingIdx = null;
+  };
+}
+
+// ── LIGHTBOX ──
+function openLightbox(url, num) {
+  const lb = document.getElementById('lightbox');
+  document.getElementById('lightbox-img').src = url;
+  document.getElementById('lightbox-download').href = url;
+  document.getElementById('lightbox-download').download = 'Fondo' + num + '.png';
+  const cap = document.getElementById('lightbox-caption');
+  if (cap) cap.textContent = 'Fondo ' + num + ' de 15';
+  lb.classList.add('show');
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('show');
+}
+
 
 function updateDaysScreen(){
   const state=getState();
@@ -657,17 +869,17 @@ function showDevotional(dayNum){
     ${audios[dayNum] ? `
     <div class="audio-player">
       <div class="audio-top"><span class="audio-label-badge">Audio del día</span><span class="audio-title-text">${data.titulo}</span></div>
-      <audio id="audio-el" src="${audios[dayNum]}" preload="none" style="display:none"></audio>
       <div class="audio-waveform" id="waveform"></div>
       <div class="audio-controls">
         <button class="play-btn" onclick="togglePlay()"><svg id="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
         <div class="audio-time" id="audio-time">0:00</div>
-        <div style="margin-left:auto;font-size:.6rem;color:rgba(255,255,255,.4);" id="audio-duration">--:--</div>
+        <div class="audio-duration" style="margin-left:auto;font-size:.6rem;color:rgba(255,255,255,.4);" id="audio-duration">--:--</div>
       </div>
+      <iframe id="drive-iframe" src="https://drive.google.com/file/d/${audios[dayNum]}/preview" style="display:none" allow="autoplay"></iframe>
     </div>` : `
     <div class="audio-player">
       <div class="audio-top"><span class="audio-label-badge">Audio del día</span><span class="audio-title-text">${data.titulo}</span></div>
-      <div style="text-align:center;padding:.75rem 0;font-size:.75rem;color:rgba(255,255,255,.35);font-style:italic;">🎵 Audio próximamente…</div>
+      <div style="text-align:center;padding:.5rem 0;font-size:.75rem;color:rgba(255,255,255,.35);font-style:italic;">🎵 Audio próximamente…</div>
     </div>`}
     <div class="dev-verse"><p>${data.versiculo}</p><cite>— ${data.referencia}</cite></div>
     <div class="dev-reflexion-label">Reflexión</div>
@@ -698,49 +910,43 @@ function showDevotional(dayNum){
 
 function buildWaveform(){const wf=document.getElementById('waveform');if(!wf)return;wf.innerHTML='';for(let i=0;i<40;i++){const b=document.createElement('div');b.className='wave-bar';b.style.height=(15+Math.random()*85)+'%';b.id='bar-'+i;wf.appendChild(b);}}
 
-function togglePlay() {
-  const audio = document.getElementById('audio-el');
-  const icon  = document.getElementById('play-icon');
-  if (!audio || !icon) return;
+function togglePlay(){
+  const iframe = document.getElementById('drive-iframe');
+  const icon = document.getElementById('play-icon');
+  if (!iframe || !icon) return;
 
   if (isPlaying) {
-    audio.pause();
+    // Para el audio: recarga el iframe sin autoplay
+    iframe.src = iframe.src.replace('&autoplay=1','');
     isPlaying = false;
     icon.innerHTML = '<path d="M8 5v14l11-7z"/>';
+    clearInterval(playInterval);
   } else {
-    audio.play().catch(() => {
-      showToast('No se pudo cargar el audio 🎵');
-    });
+    // Muestra el iframe y activa autoplay
+    iframe.style.display = 'block';
+    iframe.style.width = '1px';
+    iframe.style.height = '1px';
+    iframe.style.opacity = '0';
+    iframe.style.position = 'absolute';
+    const baseId = audios[currentDay];
+    iframe.src = `https://drive.google.com/file/d/${baseId}/preview&autoplay=1`;
     isPlaying = true;
     icon.innerHTML = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
 
-    audio.onloadedmetadata = () => {
-      const m = Math.floor(audio.duration / 60);
-      const s = Math.floor(audio.duration % 60);
-      const d = document.getElementById('audio-duration');
-      if (d) d.textContent = m + ':' + s.toString().padStart(2, '0');
-    };
-
-    audio.ontimeupdate = () => {
-      const pct = audio.duration ? (audio.currentTime / audio.duration) * 100 : 0;
-      const filled = Math.floor(pct * 0.4);
-      for (let i = 0; i < 40; i++) {
-        const b = document.getElementById('bar-' + i);
-        if (b) b.className = 'wave-bar' + (i < filled ? ' played' : '');
-      }
-      const m = Math.floor(audio.currentTime / 60);
-      const s = Math.floor(audio.currentTime % 60);
+    // Animación de la onda mientras reproduce
+    let secs = 0;
+    playInterval = setInterval(() => {
+      secs++;
+      const m = Math.floor(secs / 60);
+      const s = secs % 60;
       const t = document.getElementById('audio-time');
-      if (t) t.textContent = m + ':' + s.toString().padStart(2, '0');
-    };
-
-    audio.onended = () => {
-      isPlaying = false;
-      icon.innerHTML = '<path d="M8 5v14l11-7z"/>';
-    };
+      if (t) t.textContent = `${m}:${s.toString().padStart(2,'0')}`;
+      // Anima la onda aleatoriamente
+      const bar = document.getElementById('bar-' + (secs % 40));
+      if (bar) bar.classList.add('played');
+    }, 1000);
   }
 }
-
 
 function saveJournal(){
   const state=getState();
