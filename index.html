@@ -4,6 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mi Diario Devocional</title>
+<meta name="theme-color" content="#FE7AC6">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Mi Diario">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Nunito:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -667,6 +675,37 @@ body {
   font-weight: 600;
 }
 
+.dev-ejercicio {
+  border: 1.5px dashed var(--teal);
+  border-radius: 16px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1rem;
+}
+.dev-ejercicio-label, .dev-frase-label {
+  font-size: .62rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: .5rem;
+}
+.dev-ejercicio-label { color: var(--teal); }
+.dev-ejercicio p { font-size: .87rem; line-height: 1.75; color: #4a4a4a; }
+.dev-frase {
+  background: var(--pink);
+  border-radius: 16px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+.dev-frase-label { color: #c0507a; }
+.dev-frase p {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  color: var(--dark);
+}
+
 .dev-reflexion-label {
   font-size: .65rem;
   font-weight: 700;
@@ -1126,7 +1165,7 @@ body {
 }
 
 /* ══════════════════════════════════════
-   PANTALLA DÍA 30 — CELEBRACIÓN FINAL
+   PANTALLA DÍA 40 — CELEBRACIÓN FINAL
 ══════════════════════════════════════ */
 #screen-day30 {
   background: var(--white);
@@ -1598,6 +1637,205 @@ body {
 .canvas-modal-actions .btn-close    { background: rgba(255,255,255,.12); color: white; }
 
 @keyframes spin { to { transform: rotate(360deg); } }
+
+/* ══════════════════════════════════════
+   MEJORAS v2
+══════════════════════════════════════ */
+
+/* Botón continuar */
+.continuar-btn {
+  display: flex; flex-direction: column; align-items: flex-start; gap: .2rem;
+  width: 100%; border: none; cursor: pointer; text-align: left;
+  background: linear-gradient(135deg, var(--teal), #5f9790);
+  color: #fff; border-radius: 22px; padding: 1.1rem 1.35rem;
+  margin-bottom: 1.5rem; box-shadow: 0 6px 22px rgba(128,176,170,.35);
+  font-family: 'Nunito', sans-serif; transition: transform .2s;
+}
+.continuar-btn:hover { transform: translateY(-2px); }
+.continuar-eyebrow { font-size: .6rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; opacity: .8; }
+.continuar-title { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-style: italic; line-height: 1.3; }
+.continuar-sub { font-size: .72rem; opacity: .85; }
+
+.menu-links-row { display: flex; justify-content: center; gap: 1.25rem; }
+
+.days-actions { display: flex; gap: .5rem; padding: 0 1.5rem 1rem; flex-wrap: wrap; }
+.chip-btn {
+  border: 1.5px solid var(--mint); background: var(--white); color: var(--teal);
+  border-radius: 50px; padding: .45rem 1rem; font-family: 'Nunito', sans-serif;
+  font-size: .7rem; font-weight: 700; cursor: pointer;
+}
+.chip-btn.fill { background: var(--fuchsia); border-color: var(--fuchsia); color: #fff; }
+.streak-badge { cursor: pointer; }
+
+/* Pill bloqueada hasta mañana */
+.day-pill.manana::after {
+  content: '🌙'; position: absolute; top: -4px; right: -2px; font-size: .7rem;
+}
+
+/* Barra de navegación del devocional */
+.dev-nav-right { display: flex; align-items: center; gap: .5rem; }
+.aa-btn {
+  width: 32px; height: 32px; border-radius: 50%; border: 1.5px solid var(--mint);
+  background: var(--white); color: var(--teal); font-family: 'Playfair Display', serif;
+  font-size: .8rem; cursor: pointer;
+}
+
+/* Favoritos */
+.dev-verse { position: relative; }
+.fav-btn {
+  position: absolute; top: .6rem; right: .6rem; width: 30px; height: 30px;
+  border-radius: 50%; border: none; background: rgba(255,255,255,.7);
+  color: var(--fuchsia); font-size: 1rem; cursor: pointer; line-height: 1;
+}
+.fav-mini {
+  border: none; background: none; color: var(--fuchsia); font-size: .95rem;
+  cursor: pointer; padding: 0 .25rem; vertical-align: middle;
+}
+.dev-verse p { padding-right: 1.6rem; }
+
+/* Audio mejorado */
+.skip-btn {
+  background: rgba(255,255,255,.18); border: none; color: #fff; border-radius: 50px;
+  font-family: 'Nunito', sans-serif; font-size: .62rem; font-weight: 700;
+  padding: .35rem .55rem; cursor: pointer; flex-shrink: 0;
+}
+.speed-btn { margin-left: auto; }
+.audio-waveform { cursor: pointer; }
+
+/* Autoguardado */
+.autosave-ind { margin-left: auto; font-size: .6rem; color: var(--teal); font-weight: 600; opacity: .8; }
+
+/* Pantallas nuevas */
+.mis-content { padding: 1.25rem 1.5rem 3rem; max-width: 520px; width: 100%; margin: 0 auto; }
+.stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: .6rem; margin-bottom: 1.25rem; }
+.stat-tile { background: var(--pink); border-radius: 16px; padding: .85rem .5rem; text-align: center; }
+.stat-tile:nth-child(2) { background: var(--mint); }
+.stat-num { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--dark); }
+.stat-lbl { font-size: .58rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--mid); }
+
+.cal-card { border: 1.5px solid var(--mint); border-radius: 20px; padding: 1rem; }
+.cal-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: .75rem; }
+.cal-head button { border: none; background: var(--mint); color: var(--teal); width: 32px; height: 32px; border-radius: 50%; font-size: 1rem; cursor: pointer; }
+.cal-mes { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.05rem; color: var(--dark); text-transform: capitalize; }
+.cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: .3rem; text-align: center; }
+.cal-dow { font-size: .58rem; font-weight: 700; color: var(--light); padding-bottom: .25rem; }
+.cal-day {
+  aspect-ratio: 1; display: flex; align-items: center; justify-content: center;
+  border-radius: 50%; font-size: .72rem; color: var(--mid);
+}
+.cal-day.on { background: var(--fuchsia); color: #fff; font-weight: 700; }
+.cal-day.hoy { box-shadow: inset 0 0 0 1.5px var(--teal); }
+.cal-leyenda { font-size: .68rem; color: var(--mid); margin-top: .85rem; text-align: center; }
+
+.empty-state { text-align: center; color: var(--mid); font-size: .85rem; line-height: 1.7; padding: 2.5rem 1rem; }
+.empty-state .big { font-size: 2rem; display: block; margin-bottom: .5rem; }
+
+.fav-card { background: var(--pink); border-radius: 18px; padding: 1.1rem 1.25rem; margin-bottom: .85rem; position: relative; }
+.fav-card p { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1rem; line-height: 1.65; color: var(--dark); padding-right: 1.5rem; }
+.fav-card cite { display: block; font-style: normal; font-size: .68rem; font-weight: 700; color: #c0507a; margin-top: .4rem; }
+.fav-card .fav-dia { font-size: .65rem; color: var(--teal); font-weight: 700; margin-top: .5rem; cursor: pointer; background: none; border: none; padding: 0; font-family: 'Nunito', sans-serif; }
+.fav-card .fav-btn { top: .5rem; right: .5rem; }
+
+.diario-acciones { display: flex; gap: .5rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
+.diario-dia { border: 1.5px solid var(--mint); border-radius: 18px; padding: 1.1rem 1.25rem; margin-bottom: 1rem; break-inside: avoid; }
+.diario-dia h3 { font-family: 'Playfair Display', serif; font-weight: 400; font-size: 1.1rem; color: var(--dark); margin-bottom: .15rem; }
+.diario-dia .diario-fecha { font-size: .62rem; color: var(--light); margin-bottom: .75rem; }
+.diario-campo { margin-bottom: .75rem; }
+.diario-campo .lbl { font-size: .6rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--teal); margin-bottom: .2rem; }
+.diario-campo .txt { font-family: 'Playfair Display', serif; font-size: .95rem; line-height: 1.65; color: var(--dark); white-space: pre-wrap; }
+
+/* Ajustes */
+.modal-sheet.scroll { max-height: 88vh; overflow-y: auto; text-align: left; }
+.aj-sec { padding: 1rem 0; border-bottom: 1px solid var(--mint); }
+.aj-sec:last-of-type { border-bottom: none; }
+.aj-title { font-size: .62rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: var(--teal); margin-bottom: .6rem; }
+.aj-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: .5rem; }
+.aj-row span { font-size: .85rem; color: var(--dark); }
+.aj-help { font-size: .72rem; color: var(--mid); line-height: 1.6; margin-top: .35rem; }
+.fs-chips { display: flex; gap: .4rem; }
+.fs-chip { border: 1.5px solid var(--mint); background: var(--white); color: var(--dark); border-radius: 12px; min-width: 44px; height: 38px; cursor: pointer; font-family: 'Playfair Display', serif; }
+.fs-chip[data-fs="0"] { font-size: .8rem; } .fs-chip[data-fs="1"] { font-size: 1rem; } .fs-chip[data-fs="2"] { font-size: 1.2rem; }
+.fs-chip.on { background: var(--fuchsia); border-color: var(--fuchsia); color: #fff; }
+.switch { position: relative; width: 46px; height: 26px; flex-shrink: 0; }
+.switch input { opacity: 0; width: 0; height: 0; }
+.switch .sl { position: absolute; inset: 0; background: #d9d9d9; border-radius: 26px; transition: .2s; cursor: pointer; }
+.switch .sl::before { content: ''; position: absolute; width: 20px; height: 20px; left: 3px; top: 3px; background: #fff; border-radius: 50%; transition: .2s; }
+.switch input:checked + .sl { background: var(--fuchsia); }
+.switch input:checked + .sl::before { transform: translateX(20px); }
+.aj-btn { width: 100%; border: none; border-radius: 50px; padding: .75rem 1rem; font-family: 'Nunito', sans-serif; font-size: .75rem; font-weight: 700; cursor: pointer; margin-bottom: .5rem; background: var(--mint); color: #2d7a74; }
+.aj-btn.fill { background: var(--fuchsia); color: #fff; }
+.hora-input { border: 1.5px solid var(--mint); border-radius: 12px; padding: .5rem .75rem; font-family: 'Nunito', sans-serif; font-size: .9rem; background: var(--white); color: var(--dark); }
+
+/* Tamaño de letra */
+body.fs-1 .dev-body, body.fs-1 .dev-ejercicio p { font-size: 1rem; }
+body.fs-1 .dev-verse p, body.fs-1 .dev-verse-extra p, body.fs-1 .journal-textarea { font-size: 1.1rem; }
+body.fs-1 .dev-frase p { font-size: 1.2rem; }
+body.fs-2 .dev-body, body.fs-2 .dev-ejercicio p { font-size: 1.15rem; }
+body.fs-2 .dev-verse p, body.fs-2 .dev-verse-extra p, body.fs-2 .journal-textarea { font-size: 1.25rem; }
+body.fs-2 .dev-frase p { font-size: 1.35rem; }
+body.fs-2 .dev-title { font-size: 2.3rem; }
+
+/* Modo noche */
+body.modo-noche {
+  --white: #1d1a1c; --dark: #f3eaf0; --mid: #cfc4ca; --light: #968b91;
+  --pink: #45283a; --mint: #203b3a; --cream: #45283a;
+  background: #1d1a1c; color: var(--dark);
+}
+body.modo-noche .dev-body, body.modo-noche .dev-ejercicio p { color: #e4dade; }
+body.modo-noche .journal-textarea, body.modo-noche .day30-textarea,
+body.modo-noche .name-input, body.modo-noche .oracion-card { background: #2a2528; color: var(--dark); border-color: #3b3539; }
+body.modo-noche .modal-sheet { background: #262124; }
+body.modo-noche .fav-btn { background: rgba(0,0,0,.25); }
+body.modo-noche .dev-frase-label, body.modo-noche .fav-card cite { color: #ff9fd4; }
+body.modo-noche .aj-btn { color: #bfe6e2; }
+body.modo-noche .day-pill .arc-bg { stroke: #3b3539; }
+body.modo-noche .day-pill.locked .day-num { color: #6f666b; }
+
+/* Impresión (Mi diario completo en PDF) */
+@media print {
+  body, body.modo-noche { --white:#fff; --dark:#3a3a3a; --mid:#6a6a6a; --light:#aaa; --pink:#FDD4E3; --mint:#C8EDED; background:#fff; }
+  .no-print, .toast, .modal-overlay, .celebration, .confetti { display: none !important; }
+  .screen:not(.active) { display: none !important; }
+  .bonos-header { position: static; border: none; }
+  .diario-dia { border-color: #ddd; }
+}
+
+/* ── DIOS ME HABLA HOY ── */
+.palabra-invita {
+  text-align: center; padding: 2rem 1.25rem 1.75rem; margin: .5rem 0 1.5rem;
+  border-radius: 24px; background: linear-gradient(160deg, var(--mint), var(--pink));
+}
+.palabra-paloma { font-size: 2.6rem; margin-bottom: .75rem; animation: flotar 3.5s ease-in-out infinite; }
+@keyframes flotar { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+.palabra-invita-t { font-family: 'Playfair Display', serif; font-size: 1.35rem; line-height: 1.4; color: var(--dark); margin-bottom: .85rem; }
+.palabra-invita-s { font-size: .85rem; line-height: 1.75; color: var(--mid); }
+.palabra-invita-s em { font-family: 'Playfair Display', serif; color: var(--dark); }
+
+.palabra-card {
+  position: relative; overflow: hidden; text-align: center;
+  border-radius: 26px; padding: 2rem 1.5rem 1.6rem; margin-bottom: 1.1rem;
+  background: linear-gradient(155deg, #6fa59e 0%, #80B0AA 40%, #d98fb4 100%);
+  color: #fff; box-shadow: 0 10px 30px rgba(128,176,170,.35);
+}
+.palabra-card::before, .palabra-card::after {
+  content: ''; position: absolute; border-radius: 50%; background: rgba(255,255,255,.1);
+}
+.palabra-card::before { width: 180px; height: 180px; top: -60px; right: -60px; }
+.palabra-card::after  { width: 120px; height: 120px; bottom: -40px; left: -40px; }
+.palabra-card.revelar { animation: revelar .8s cubic-bezier(.2,.8,.2,1) both; }
+@keyframes revelar { from { opacity: 0; transform: translateY(24px) scale(.96); filter: blur(4px); } to { opacity: 1; transform: none; filter: none; } }
+.palabra-top { display: flex; flex-direction: column; align-items: center; gap: .45rem; margin-bottom: 1.25rem; position: relative; z-index: 1; }
+.palabra-para { font-size: .62rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; opacity: .9; }
+.palabra-tema { background: rgba(255,255,255,.22); border-radius: 50px; padding: .25rem .8rem; font-size: .62rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.palabra-texto { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.28rem; line-height: 1.6; position: relative; z-index: 1; text-shadow: 0 1px 8px rgba(0,0,0,.15); }
+.palabra-ref { margin-top: 1rem; font-weight: 700; font-size: .8rem; color: #FDD4E3; position: relative; z-index: 1; }
+.palabra-firma { margin-top: 1.25rem; font-family: 'Playfair Display', serif; font-style: italic; font-size: .72rem; opacity: .7; position: relative; z-index: 1; }
+.palabra-acciones { display: flex; gap: .6rem; justify-content: center; margin-bottom: .75rem; }
+.palabra-acciones .share-verse-btn { flex: 1; }
+.palabra-nota { text-align: center; font-family: 'Playfair Display', serif; font-style: italic; font-size: .85rem; color: var(--mid); line-height: 1.6; margin-top: .75rem; }
+body.fs-1 .palabra-texto { font-size: 1.45rem; }
+body.fs-2 .palabra-texto { font-size: 1.65rem; }
+.menu-pill-btn.palabra-menu { background: linear-gradient(120deg, #FE7AC6, #80B0AA); color: #fff; }
 </style>
 </head>
 <body>
@@ -1615,7 +1853,7 @@ body {
     </div>
     <div class="welcome-eyebrow">Bienvenida</div>
     <h1 class="onboarding-title">¿Cómo te <em>llamas?</em></h1>
-    <div class="onboarding-sub">Quiero llamarte por tu nombre mientras caminamos juntas estos 30 días 💗</div>
+    <div class="onboarding-sub">Quiero llamarte por tu nombre mientras caminamos juntas estos 40 días 💗</div>
     <div class="name-input-wrap">
       <input class="name-input" id="name-input" type="text" placeholder="Escribe tu nombre…" maxlength="30" autocomplete="off"/>
     </div>
@@ -1636,7 +1874,7 @@ body {
         <path d="M40 57C40 57 18 43 18 29C18 22 23.5 17 30 17C34 17 37.5 19.5 40 23C42.5 19.5 46 17 50 17C56.5 17 62 22 62 29C62 43 40 57 40 57Z" fill="#FE7AC6"/>
       </svg>
     </div>
-    <div class="welcome-eyebrow">Devocional · 30 días</div>
+    <div class="welcome-eyebrow">Devocional · 40 días</div>
     <h1 class="welcome-title">Mi <em>Diario</em></h1>
     <div class="welcome-sub">Un encuentro diario con Dios</div>
     <div class="welcome-tagline" id="welcome-greeting">"Aquí estoy Contigo. Siempre."</div>
@@ -1659,8 +1897,14 @@ body {
     <div class="menu-greeting-text">
       <div class="menu-hello" id="menu-hello">Hola</div>
       <div class="menu-welcome-msg" id="menu-welcome-msg">Bienvenida de nuevo</div>
-      <div class="menu-edit-name" onclick="showEditName()">✏️ cambiar nombre</div>
+      <div class="menu-links-row"><div class="menu-edit-name" onclick="showEditName()">✏️ cambiar nombre</div><div class="menu-edit-name" onclick="abrirAjustes()">⚙️ ajustes</div></div>
     </div>
+
+    <button class="continuar-btn" onclick="continuarDia()">
+      <span class="continuar-eyebrow" id="continuar-eyebrow">Tu encuentro de hoy</span>
+      <span class="continuar-title" id="continuar-title">Día 1</span>
+      <span class="continuar-sub" id="continuar-sub">Toca para continuar →</span>
+    </button>
 
     <div class="menu-section-label">Tu camino</div>
 
@@ -1669,6 +1913,13 @@ body {
         <path d="M20 32C20 32 5 22 5 13C5 8.5 8.5 5 13 5C16 5 18.5 7 20 9.5C21.5 7 24 5 27 5C31.5 5 35 8.5 35 13C35 22 20 32 20 32Z" fill="#FE7AC6"/>
       </svg>
       <button class="menu-pill-btn" style="background:#FDD4E3;color:#c0507a;" onclick="showDays()">Mi Devocional</button>
+    </div>
+
+    <div class="menu-btn-row">
+      <svg class="menu-heart" viewBox="0 0 40 40" fill="none">
+        <path d="M20 32C20 32 5 22 5 13C5 8.5 8.5 5 13 5C16 5 18.5 7 20 9.5C21.5 7 24 5 27 5C31.5 5 35 8.5 35 13C35 22 20 32 20 32Z" fill="#FE7AC6"/>
+      </svg>
+      <button class="menu-pill-btn palabra-menu" onclick="showPalabra()">🕊️ Dios me Habla Hoy</button>
     </div>
 
     <div class="menu-btn-row">
@@ -1699,6 +1950,29 @@ body {
       <button class="menu-pill-btn" style="background:#C8EDED;color:#2d7a74;" onclick="showMaterial()">Material para Descargar</button>
     </div>
 
+    <div class="menu-section-label" style="margin-top:1.5rem">Mi espacio</div>
+
+    <div class="menu-btn-row">
+      <svg class="menu-heart" viewBox="0 0 40 40" fill="none">
+        <path d="M20 32C20 32 5 22 5 13C5 8.5 8.5 5 13 5C16 5 18.5 7 20 9.5C21.5 7 24 5 27 5C31.5 5 35 8.5 35 13C35 22 20 32 20 32Z" fill="#FE7AC6"/>
+      </svg>
+      <button class="menu-pill-btn" style="background:#FDD4E3;color:#c0507a;" onclick="showMiDiario()">Mi Diario Completo</button>
+    </div>
+
+    <div class="menu-btn-row">
+      <svg class="menu-heart" viewBox="0 0 40 40" fill="none">
+        <path d="M20 32C20 32 5 22 5 13C5 8.5 8.5 5 13 5C16 5 18.5 7 20 9.5C21.5 7 24 5 27 5C31.5 5 35 8.5 35 13C35 22 20 32 20 32Z" fill="#80B0AA"/>
+      </svg>
+      <button class="menu-pill-btn" style="background:#C8EDED;color:#2d7a74;" onclick="showFavoritos()">Mis Versículos Favoritos</button>
+    </div>
+
+    <div class="menu-btn-row">
+      <svg class="menu-heart" viewBox="0 0 40 40" fill="none">
+        <path d="M20 32C20 32 5 22 5 13C5 8.5 8.5 5 13 5C16 5 18.5 7 20 9.5C21.5 7 24 5 27 5C31.5 5 35 8.5 35 13C35 22 20 32 20 32Z" fill="#FE7AC6"/>
+      </svg>
+      <button class="menu-pill-btn" style="background:#FDD4E3;color:#c0507a;" onclick="showConstancia()">Mi Constancia</button>
+    </div>
+
     <div class="menu-divider"></div>
     <button class="pill-btn pill-btn-outline" onclick="showScreen('screen-welcome')">
       ← Volver al Inicio
@@ -1713,13 +1987,13 @@ body {
   <div class="days-header">
     <div class="days-header-top">
       <div class="days-brand">Mi <em>Diario</em></div>
-      <div class="streak-badge" id="streak-badge">🔥 0 días</div>
+      <div class="streak-badge" id="streak-badge" onclick="showConstancia()">🔥 0 días</div>
     </div>
     <div class="progress-bar-wrap">
       <div class="progress-bar-fill" id="progress-fill" style="width:0%"></div>
     </div>
     <div class="progress-label">
-      <span id="progress-text">0 de 30 completados</span>
+      <span id="progress-text">0 de 40 completados</span>
       <span id="progress-pct">0%</span>
     </div>
   </div>
@@ -1731,6 +2005,11 @@ body {
   </div>
 
   <div class="days-personal-greeting" id="days-personal-greeting"></div>
+  <div class="days-actions">
+    <button class="chip-btn fill" id="days-continuar" onclick="continuarDia()">Continuar →</button>
+    <button class="chip-btn" onclick="showConstancia()">📅 Mi constancia</button>
+    <button class="chip-btn" onclick="showMiDiario()">✍️ Mi diario</button>
+  </div>
 
   <div class="days-section">
     <div class="days-section-title">Selecciona tu día de hoy</div>
@@ -1787,7 +2066,10 @@ body {
   <div class="dev-nav">
     <button class="back-btn" onclick="showDays()">← Días</button>
     <div class="dev-day-label" id="dev-day-label">Día 1</div>
-    <div id="dev-done-indicator" style="display:none" class="dev-done-check">✓</div>
+    <div class="dev-nav-right">
+      <button class="aa-btn" onclick="abrirLectura()" aria-label="Ajustes de lectura">Aa</button>
+      <div id="dev-done-indicator" style="display:none" class="dev-done-check">✓</div>
+    </div>
   </div>
   <div class="dev-content" id="dev-content"></div>
 </div>
@@ -1819,13 +2101,13 @@ body {
 </div>
 
 <!-- ══════════════════════════════════════
-     PANTALLA DÍA 30 — CELEBRACIÓN FINAL
+     PANTALLA DÍA 40 — CELEBRACIÓN FINAL
 ══════════════════════════════════════ -->
 <div id="screen-day30" class="screen">
 
   <div class="day30-hero">
     <span class="day30-emoji">🌸</span>
-    <div class="day30-badge">✦ 30 días completados ✦</div>
+    <div class="day30-badge">✦ 40 días completados ✦</div>
     <h1 class="day30-title">¡Lo <em>lograste!</em></h1>
     <div class="day30-name" id="day30-name"></div>
   </div>
@@ -1836,17 +2118,17 @@ body {
     <div class="day30-carta">
       <div class="day30-carta-title">Una carta para ti</div>
       <p>Llegaste al día 1 con algo en el corazón. Quizás era una pregunta, una herida, un cansancio, o simplemente el deseo de estar más cerca de Él.</p>
-      <p>Y hoy estás aquí. En el día 30.</p>
+      <p>Y hoy estás aquí. En el día 40.</p>
       <p>No llegaste porque fuiste perfecta. Llegaste porque elegiste aparecer, una y otra vez, incluso en los días difíciles. Eso dice mucho de ti.</p>
       <p>Dios estuvo en cada reflexión, en cada palabra que escribiste en tu diario, en cada silencio, en cada lágrima y en cada momento de paz que encontraste en estas páginas.</p>
-      <p>Este camino no termina aquí. Lo que viviste en estos 30 días quedó sembrado en ti. Y las semillas que Dios siembra… siempre dan fruto.</p>
+      <p>Este camino no termina aquí. Lo que viviste en estos 40 días quedó sembrado en ti. Y las semillas que Dios siembra… siempre dan fruto.</p>
       <p>Gracias por confiar en este proyecto. Gracias por quedarte. Sigue caminando con Él. Él nunca te soltará.</p>
     </div>
 
     <!-- Reflexión final -->
     <div class="day30-reflexion-label">Tu reflexión final</div>
     <textarea class="day30-textarea" id="day30-reflexion"
-      placeholder="¿Cómo llegué al día 1? ¿Cómo me voy del día 30? ¿Qué me dijo Dios en estos 30 días?…"></textarea>
+      placeholder="¿Cómo llegué al día 1? ¿Cómo me voy del día 40? ¿Qué me dijo Dios en estos 40 días?…"></textarea>
     <button class="pill-btn pill-btn-teal" onclick="saveDay30Reflexion()" id="day30-save-btn" style="margin-bottom:2rem;">
       <span class="btn-heart">💗</span> Guardar mi reflexión final
     </button>
@@ -1855,9 +2137,9 @@ body {
     <div class="day30-share-section">
       <div class="day30-share-label">Comparte tu logro</div>
       <div class="share-card" id="share-card">
-        <div class="share-card-top">Devocional · 30 días</div>
+        <div class="share-card-top">Devocional · 40 días</div>
         <div class="share-card-name" id="share-card-name"></div>
-        <div class="share-card-text">"30 días eligiendo aparecer.<br>30 encuentros con Dios.<br>Un camino que cambió mi corazón."</div>
+        <div class="share-card-text">"40 días eligiendo aparecer.<br>40 encuentros con Dios.<br>Un camino que cambió mi corazón."</div>
         <div class="share-card-verse">Mi Diario Devocional 💗</div>
       </div>
       <button class="pill-btn pill-btn-fuchsia" onclick="shareDay30()">
@@ -1992,8 +2274,199 @@ body {
       <svg class="menu-heart" viewBox="0 0 40 40" fill="none">
         <path d="M20 32C20 32 5 22 5 13C5 8.5 8.5 5 13 5C16 5 18.5 7 20 9.5C21.5 7 24 5 27 5C31.5 5 35 8.5 35 13C35 22 20 32 20 32Z" fill="#FE7AC6"/>
       </svg>
-      <button class="menu-pill-btn" style="background:#FDD4E3;color:#c0507a;" onclick="showBono('fondos')">Fondos de Pantalla</button>
+      <button class="menu-pill-btn" style="background:#FDD4E3;color:#c0507a;" onclick="showBono('pdf3')">Mi Diario Devocional — PDF</button>
     </div>
+    <div class="menu-btn-row">
+      <svg class="menu-heart" viewBox="0 0 40 40" fill="none">
+        <path d="M20 32C20 32 5 22 5 13C5 8.5 8.5 5 13 5C16 5 18.5 7 20 9.5C21.5 7 24 5 27 5C31.5 5 35 8.5 35 13C35 22 20 32 20 32Z" fill="#80B0AA"/>
+      </svg>
+      <button class="menu-pill-btn" style="background:#C8EDED;color:#2d7a74;" onclick="showBono('fondos')">Fondos de Pantalla</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     PANTALLA: MI CONSTANCIA
+══════════════════════════════════════ -->
+<div id="screen-constancia" class="screen">
+  <div class="bonos-header">
+    <div class="back-to-menu-bar" style="padding:0 0 .75rem 0;">
+      <button class="pill-btn pill-btn-outline" style="width:auto;padding:.5rem 1.25rem;font-size:.7rem;" onclick="showMenu()">← Volver</button>
+    </div>
+    <div class="bonos-title">Mi <em>Constancia</em></div>
+    <div style="font-size:.75rem;color:var(--light);">Cada corazón es un día en que te encontraste con Dios</div>
+  </div>
+  <div class="mis-content">
+    <div class="stats-row" id="stats-row"></div>
+    <div class="cal-card">
+      <div class="cal-head">
+        <button onclick="moverMes(-1)" aria-label="Mes anterior">‹</button>
+        <div class="cal-mes" id="cal-mes"></div>
+        <button onclick="moverMes(1)" aria-label="Mes siguiente">›</button>
+      </div>
+      <div class="cal-grid" id="cal-grid"></div>
+      <div class="cal-leyenda">💗 Días con devocional o diario &nbsp;·&nbsp; ◯ Hoy</div>
+    </div>
+    <button class="pill-btn pill-btn-fuchsia" style="margin-top:1.25rem" onclick="continuarDia()"><span class="btn-heart">💗</span> Continuar mi devocional</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PANTALLA: MIS VERSÍCULOS FAVORITOS
+══════════════════════════════════════ -->
+<div id="screen-favoritos" class="screen">
+  <div class="bonos-header">
+    <div class="back-to-menu-bar" style="padding:0 0 .75rem 0;">
+      <button class="pill-btn pill-btn-outline" style="width:auto;padding:.5rem 1.25rem;font-size:.7rem;" onclick="showMenu()">← Volver</button>
+    </div>
+    <div class="bonos-title">Mis <em>Versículos</em></div>
+    <div style="font-size:.75rem;color:var(--light);">Los versículos que marcaste con ★</div>
+  </div>
+  <div class="mis-content" id="favoritos-list"></div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PANTALLA: MI DIARIO COMPLETO
+══════════════════════════════════════ -->
+<div id="screen-mi-diario" class="screen">
+  <div class="bonos-header">
+    <div class="back-to-menu-bar no-print" style="padding:0 0 .75rem 0;">
+      <button class="pill-btn pill-btn-outline" style="width:auto;padding:.5rem 1.25rem;font-size:.7rem;" onclick="showMenu()">← Volver</button>
+    </div>
+    <div class="bonos-title">Mi <em>Diario Completo</em></div>
+    <div style="font-size:.75rem;color:var(--light);" id="mi-diario-sub">Todo lo que has escrito en este camino</div>
+  </div>
+  <div class="mis-content">
+    <div class="diario-acciones no-print">
+      <button class="chip-btn fill" onclick="imprimirDiario()">📄 Guardar en PDF</button>
+      <button class="chip-btn" onclick="descargarDiarioTxt()">⬇️ Descargar texto</button>
+      <button class="chip-btn" id="btn-carta-final" style="display:none" onclick="showDay30Screen()">💌 Mi carta final</button>
+    </div>
+    <div id="mi-diario-list"></div>
+  </div>
+</div>
+
+<!-- Modal: lectura (desde el devocional) -->
+<div class="modal-overlay" id="modal-lectura" onclick="cerrarModal(event,'modal-lectura')">
+  <div class="modal-sheet scroll">
+    <div class="modal-title" style="text-align:center">Ajustes de lectura</div>
+    <div class="aj-sec">
+      <div class="aj-title">Tamaño de letra</div>
+      <div class="fs-chips">
+        <button class="fs-chip" data-fs="0" onclick="setFs(0)">A</button>
+        <button class="fs-chip" data-fs="1" onclick="setFs(1)">A</button>
+        <button class="fs-chip" data-fs="2" onclick="setFs(2)">A</button>
+      </div>
+    </div>
+    <div class="aj-sec">
+      <div class="aj-row"><span>🌙 Modo noche</span>
+        <label class="switch"><input type="checkbox" class="sw-noche" onchange="setNoche(this.checked)"><span class="sl"></span></label>
+      </div>
+      <div class="aj-help">Colores oscuros para leer de noche sin cansar la vista.</div>
+    </div>
+    <button class="pill-btn pill-btn-outline" style="margin-top:1rem" onclick="cerrarModal(null,'modal-lectura')">Listo</button>
+  </div>
+</div>
+
+<!-- Modal: ajustes generales -->
+<div class="modal-overlay" id="modal-ajustes" onclick="cerrarModal(event,'modal-ajustes')">
+  <div class="modal-sheet scroll">
+    <div class="modal-title" style="text-align:center">Ajustes</div>
+
+    <div class="aj-sec">
+      <div class="aj-title">Lectura</div>
+      <div class="aj-row"><span>Tamaño de letra</span>
+        <div class="fs-chips">
+          <button class="fs-chip" data-fs="0" onclick="setFs(0)">A</button>
+          <button class="fs-chip" data-fs="1" onclick="setFs(1)">A</button>
+          <button class="fs-chip" data-fs="2" onclick="setFs(2)">A</button>
+        </div>
+      </div>
+      <div class="aj-row"><span>🌙 Modo noche</span>
+        <label class="switch"><input type="checkbox" class="sw-noche" onchange="setNoche(this.checked)"><span class="sl"></span></label>
+      </div>
+    </div>
+
+    <div class="aj-sec">
+      <div class="aj-title">Ritmo del devocional</div>
+      <div class="aj-row"><span>Un día nuevo cada día</span>
+        <label class="switch"><input type="checkbox" id="sw-ritmo" onchange="setRitmo(this.checked)"><span class="sl"></span></label>
+      </div>
+      <div class="aj-help">Si lo activas, después de completar un día el siguiente se abre al día siguiente. Así llevas el camino con calma, un encuentro a la vez.</div>
+    </div>
+
+    <div class="aj-sec">
+      <div class="aj-title">Recordatorio diario</div>
+      <div class="aj-row"><span>Hora de mi encuentro</span><input type="time" class="hora-input" id="rec-hora" value="07:00"></div>
+      <button class="aj-btn fill" onclick="descargarRecordatorio()">📅 Agregar recordatorio a mi calendario</button>
+      <div class="aj-help">Se crea un evento diario en el calendario de tu celular que te avisa a la hora que elijas.</div>
+    </div>
+
+    <div class="aj-sec">
+      <div class="aj-title">Instalar la app</div>
+      <button class="aj-btn" onclick="instalarApp()">📲 Agregar a mi pantalla de inicio</button>
+      <div class="aj-help" id="install-help"></div>
+    </div>
+
+    <div class="aj-sec">
+      <div class="aj-title">Copia de seguridad</div>
+      <button class="aj-btn" onclick="descargarCopia()">⬇️ Descargar copia de mi progreso</button>
+      <button class="aj-btn" onclick="document.getElementById('input-copia').click()">⬆️ Restaurar una copia</button>
+      <input type="file" id="input-copia" accept=".json,application/json" style="display:none" onchange="restaurarCopia(this)">
+      <div class="aj-help">Tu progreso y tu diario se guardan solo en este celular. Descarga una copia de vez en cuando; si cambias de celular o borras el navegador, podrás restaurarla aquí.</div>
+    </div>
+
+    <button class="pill-btn pill-btn-outline" style="margin-top:1rem" onclick="cerrarModal(null,'modal-ajustes')">Cerrar</button>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     PANTALLA: DIOS ME HABLA HOY
+══════════════════════════════════════ -->
+<div id="screen-palabra" class="screen">
+  <div class="bonos-header">
+    <div class="back-to-menu-bar" style="padding:0 0 .75rem 0;">
+      <button class="pill-btn pill-btn-outline" style="width:auto;padding:.5rem 1.25rem;font-size:.7rem;" onclick="showMenu()">← Volver</button>
+    </div>
+    <div class="bonos-title">Dios me <em>Habla Hoy</em></div>
+    <div style="font-size:.75rem;color:var(--light);">Una palabra de la Biblia para tu vida</div>
+  </div>
+  <div class="mis-content">
+
+    <div id="palabra-intro">
+      <div class="palabra-invita">
+        <div class="palabra-paloma">🕊️</div>
+        <p class="palabra-invita-t">Hoy voy a dejar que Dios me hable a través de Su Palabra.</p>
+        <p class="palabra-invita-s">Respira profundo. Aquieta tu corazón. Dile a Dios: <em>“Aquí estoy, Señor. Háblame.”</em> Cuando estés lista, toca el botón.</p>
+      </div>
+      <button class="pill-btn pill-btn-fuchsia" id="palabra-recibir" onclick="recibirPalabra()"><span class="btn-heart">💗</span> Recibir mi palabra</button>
+    </div>
+
+    <div id="palabra-revelada" style="display:none">
+      <div class="palabra-card" id="palabra-card">
+        <div class="palabra-top">
+          <svg viewBox="0 0 80 80" width="46" height="46"><circle cx="40" cy="40" r="38" fill="#FDD4E3"/><path d="M40 57C40 57 18 43 18 29C18 22 23.5 17 30 17C34 17 37.5 19.5 40 23C42.5 19.5 46 17 50 17C56.5 17 62 22 62 29C62 43 40 57 40 57Z" fill="#FE7AC6"/></svg>
+          <div class="palabra-para" id="palabra-para">Para ti, hoy</div>
+          <div class="palabra-tema" id="palabra-tema">Paz</div>
+        </div>
+        <p class="palabra-texto" id="palabra-texto"></p>
+        <div class="palabra-ref" id="palabra-ref"></div>
+        <div class="palabra-firma">Mi Diario Devocional ♥</div>
+      </div>
+
+      <div class="palabra-acciones">
+        <button class="share-verse-btn story" onclick="imagenPalabra()">📸 Crear imagen</button>
+        <button class="share-verse-btn post" id="palabra-fav" onclick="favPalabra()">☆ Guardar</button>
+      </div>
+      <div class="palabra-acciones">
+        <button class="chip-btn" onclick="compartirPalabraTexto()">💬 Compartir texto</button>
+        <button class="chip-btn" onclick="otraPalabra()">🔄 Otra palabra</button>
+      </div>
+      <p class="palabra-nota">Lee el versículo despacio, dos o tres veces. ¿Qué palabra o frase toca tu corazón hoy?</p>
+    </div>
+
   </div>
 </div>
 
@@ -2009,7 +2482,7 @@ body {
   <div class="celebration-inner">
     <div style="font-size:2.5rem;margin-bottom:1rem;">🌸</div>
     <div class="celeb-day" id="celeb-day-label">Día 1</div>
-    <h2>¡Día completado!</h2>
+    <h2 id="celeb-title">¡Día completado!</h2>
     <p id="celeb-verse"></p>
     <button class="pill-btn pill-btn-fuchsia" onclick="hideCelebration()" style="max-width:280px;margin:0 auto">
       <span class="btn-heart">💗</span> Seguir caminando
@@ -2022,49 +2495,20 @@ body {
 // ================================================================
 //  ✦ DATOS DE AUDIOS
 // ================================================================
-const audios = {
-  1:  "https://saraaranda-crypto.github.io/Contigo/DIA-1.mp3",
-  2:  "https://saraaranda-crypto.github.io/Contigo/DIA-2.mp3",
-  3:  "https://saraaranda-crypto.github.io/Contigo/DIA-3.mp3",
-  4:  "https://saraaranda-crypto.github.io/Contigo/DIA-4.mp3",
-  5:  "https://saraaranda-crypto.github.io/Contigo/DIA-5.mp3",
-  6:  "https://saraaranda-crypto.github.io/Contigo/DIA-6.mp3",
-  7:  "https://saraaranda-crypto.github.io/Contigo/DIA-7.mp3",
-  8:  "https://saraaranda-crypto.github.io/Contigo/DIA-8.mp3",
-  9:  "https://saraaranda-crypto.github.io/Contigo/DIA-9.mp3",
-  10: "https://saraaranda-crypto.github.io/Contigo/DIA-10.mp3",
-  11: "https://saraaranda-crypto.github.io/Contigo/DIA-11.mp3",
-  12: "https://saraaranda-crypto.github.io/Contigo/DIA-12.mp3",
-  13: "https://saraaranda-crypto.github.io/Contigo/DIA-13.mp3",
-  14: "https://saraaranda-crypto.github.io/Contigo/DIA-14.mp3",
-  15: "https://saraaranda-crypto.github.io/Contigo/DIA-15.mp3",
-  16: "https://saraaranda-crypto.github.io/Contigo/DIA-16.mp3",
-  17: "https://saraaranda-crypto.github.io/Contigo/DIA-17.mp3",
-  18: "https://saraaranda-crypto.github.io/Contigo/DIA-18.mp3",
-  19: "https://saraaranda-crypto.github.io/Contigo/DIA-20.mp3",
-  21: "https://saraaranda-crypto.github.io/Contigo/DIA-21.mp3",
-  22: "https://saraaranda-crypto.github.io/Contigo/DIA-22.mp3",
-  23: "https://saraaranda-crypto.github.io/Contigo/DIA-23.mp3",
-  24: "https://saraaranda-crypto.github.io/Contigo/DIA-24.mp3",
-  25: "https://saraaranda-crypto.github.io/Contigo/DIA-25.mp3",
-  26: "https://saraaranda-crypto.github.io/Contigo/DIA-26.mp3",
-  27: "https://saraaranda-crypto.github.io/Contigo/DIA-27.mp3",
-  28: "https://saraaranda-crypto.github.io/Contigo/DIA-28.mp3",
-  29: "https://saraaranda-crypto.github.io/Contigo/DIA-29.mp3",
-  30: "https://saraaranda-crypto.github.io/Contigo/DIA-30.mp3"
-};
+const audios = {};
+for (let i = 1; i <= 40; i++) {
+  audios[i] = "https://saraaranda-crypto.github.io/Contigo/DIA-" + i + ".mp3";
+}
 
 // ================================================================
-//  ✦ GUÍA: CÓMO AGREGAR LOS DÍAS 6 AL 30
+//  ✦ GUÍA: ESTRUCTURA DE CADA DÍA
 // ================================================================
 //
-//  PASO 1: Busca abajo el comentario "AGREGA LOS DÍAS 6-30 AQUÍ"
+//  Cada día es un bloque como este. versiculo3/referencia3 son opcionales.
 //
-//  PASO 2: Copia este bloque y pégalo ahí (con una coma antes):
 //
-//  ,
 //  {
-//    dia: 6,
+//    dia: 41,
 //    titulo: "El título del día",
 //    proposito: "Frase corta del propósito",
 //    versiculo: '"El versículo principal aquí."',
@@ -2072,7 +2516,9 @@ const audios = {
 //    versiculo2: '"El versículo secundario."',
 //    referencia2: "Libro 3:4",
 //    reflexion: `Primer párrafo.\n\nSegundo párrafo.\n\nTercer párrafo.`,
-//    pregunta: "La pregunta de reflexión para el diario."
+//    pregunta: "La pregunta de reflexión para el diario.",
+//    ejercicio: "Ejercicio espiritual del día.",
+//    frase: "Frase para el día."
 //  }
 //
 // ================================================================
@@ -2089,7 +2535,9 @@ const dias = [
     versiculo2: '"¿No eres tú, Señor, el que va con nosotros?"',
     referencia2: "Éxodo 33:16",
     reflexion: `No siempre necesitamos respuestas, planes ni fuerzas nuevas; solo necesitamos saber que Dios va con nosotros.\n\nEste versículo no describe un camino fácil, sino un camino acompañado. Dios no le promete a Moisés que todo será perfecto; le promete algo más profundo: Su presencia. Y con ella, descanso.\n\nTal vez hoy llegas cansada, confundida, con el corazón lleno de preguntas. Y Dios no te exige que corras hacia Él; solo te dice: "Camina conmigo. Yo iré contigo."\n\nMoisés comprendió: sin la presencia de Dios, ningún avance tiene verdadero sentido. Porque no se trata de llegar lejos, sino de llegar con Él.\n\nHoy no necesitas demostrar nada. Solo dar este pequeño paso: permitir que Dios camine a tu lado.`,
-    pregunta: "¿Cómo te sientes al comenzar este devocional? ¿Qué necesitas soltar hoy para caminar más liviana?"
+    pregunta: "¿Cómo te sientes al comenzar este devocional? ¿Qué necesitas soltar hoy para caminar más liviana?",
+    ejercicio: "Cierra los ojos un momento y respira profundo. Dile a Dios: “Aquí estoy. Quiero caminar contigo.”",
+    frase: "Hoy no camino sola, Dios va conmigo."
   },
 
   // DIA 2
@@ -2102,7 +2550,9 @@ const dias = [
     versiculo2: '"Clama a mí, y yo te responderé, y te enseñaré cosas grandes y ocultas."',
     referencia2: "Jeremías 33:3",
     reflexion: `Mientras caminas con Dios, no necesitas palabras perfectas ni oraciones extensas.\n\nÉl no espera que sepas qué decir, porque ya conoce lo que guardas en tu interior. Escucha tus silencios, tus suspiros, tus lágrimas contenidas. Nada de lo que sientes pasa desapercibido para Él.\n\nDios no solo te escucha cuando hablas, también cuando callas. Antes de que ordenes tus pensamientos, Él ya está presente.\n\nCaminar con Dios es caminar sabiendo que tu voz importa, que tu corazón es escuchado incluso cuando no sabes cómo expresarte.\n\nAquí no tienes que fingir fortaleza. Puedes caminar tal como estás.`,
-    pregunta: "¿Qué llevas en el corazón hoy que sientes que nadie ha escuchado? Cuéntaselo a Dios con tus propias palabras."
+    pregunta: "¿Qué llevas en el corazón hoy que sientes que nadie ha escuchado? Cuéntaselo a Dios con tus propias palabras.",
+    ejercicio: "Coloca una mano en tu pecho. Dile a Dios: “Esto es lo que llevo hoy…” y permite que tu corazón hable.",
+    frase: "Dios me escucha mientras camino con Él."
   },
 
   // DIA 3
@@ -2111,11 +2561,13 @@ const dias = [
     titulo: "Soltar el peso que agobia",
     proposito: "Entregar a Dios las cargas que te atormentan",
     versiculo: '"Vengan a mí todos ustedes que están cansados y agobiados, y yo les daré descanso."',
-    referencia: "Mateo 11:28–29",
+    referencia: "Mateo 11:28",
     versiculo2: '"Echando toda vuestra ansiedad sobre él, porque él tiene cuidado de vosotros."',
     referencia2: "1 Pedro 5:7",
     reflexion: `Hay días en los que el cansancio no se siente en el cuerpo… sino en el alma.\n\nTe cansas de sostener, de resolver, de sonreír cuando por dentro estás agotada. Y muchas veces no es por falta de fe, sino porque has cargado cosas que nunca te correspondieron: culpas, presiones, expectativas, heridas que escondiste para no preocupar a nadie.\n\nDios no te pide que seas fuerte todo el tiempo. Te ofrece un lugar seguro donde no necesitas demostrar nada. Solo venir, soltar y descansar.\n\nEntregar tus cargas no es perder el control, es recuperar la paz. Porque cuando ya no puedes más, Dios no te juzga… te abraza.\n\nHoy puedes caminar más liviana. No estás sola.`,
-    pregunta: "¿Qué carga has estado cargando sola? ¿Qué necesitas entregarle a Dios hoy?"
+    pregunta: "¿Qué carga has estado cargando sola? ¿Qué necesitas entregarle a Dios hoy?",
+    ejercicio: "Imagina que dejas una carga en el suelo. Mientras lo haces, repite: “Te entrego esto, Señor.”",
+    frase: "No tengo que cargar todo en este camino."
   },
 
   // DIA 4
@@ -2123,12 +2575,14 @@ const dias = [
     dia: 4,
     titulo: "Descansar sin detenerse",
     proposito: "Hacer una pausa y tener calma interior",
-    versiculo: '"En verdes pastos me hace descansar; junto a tranquilas aguas me conduce."',
+    versiculo: '"En verdes pastos me hace descansar. Junto a tranquilas aguas me conduce; me infunde nuevas fuerzas."',
     referencia: "Salmos 23:2–3",
-    versiculo2: '"Venid a mí todos los que estáis trabajados y cargados, y yo os haré descansar."',
-    referencia2: "Mateo 11:28",
+    versiculo2: '"Vengan conmigo ustedes solos a un lugar tranquilo y descansen un poco."',
+    referencia2: "Marcos 6:31",
     reflexion: `A veces la vida se siente como una carrera: cumplir, responder, sostener, seguir… y sin darte cuenta, vas caminando con el cuerpo presente, pero con el corazón agotado.\n\nPor eso este versículo es tan hermoso: porque nos recuerda que Dios también guía hacia lugares de calma, no solo hacia metas.\n\nLos "verdes pastos" son un regalo de un Padre que sabe que tu alma necesita descanso.\n\nDescansar no es retroceder, es permitir que Dios repare lo que el camino ha desgastado: tu fe cuando se debilitó, tu ánimo cuando se apagó, tu corazón cuando se cansó de dar tanto.\n\nHoy puedes detenerte sin culpa. Respirar. Soltar la prisa.`,
-    pregunta: "¿Cuándo fue la última vez que descansaste de verdad? ¿Qué te impide soltar la prisa hoy?"
+    pregunta: "¿Cuándo fue la última vez que descansaste de verdad? ¿Qué te impide soltar la prisa hoy?",
+    ejercicio: "Respira profundo tres veces. Con cada exhalación repite: “Aquí descanso contigo.”",
+    frase: "Dios me enseña a descansar en el camino."
   },
 
   // DIA 5
@@ -2141,7 +2595,9 @@ const dias = [
     versiculo2: '"El Dios de toda gracia, que nos llamó a su gloria eterna, él mismo os perfeccione."',
     referencia2: "1 Pedro 5:10",
     reflexion: `Dios no camina contigo para señalarte lo que te falta. Camina contigo porque te ama… y porque se alegra de ti.\n\nA veces vivimos como si Dios estuviera siempre evaluándonos: si fuimos lo suficientemente buenas, si oramos perfecto, si fallamos menos. Pero este versículo rompe esa idea: Su presencia no es carga, es refugio. Su mirada no pesa, no presiona, no compara.\n\nÉl no te ama por tu rendimiento, ni por lo que logras, ni por lo fuerte que pareces. Te ama por quien eres, incluso en esos días donde estás sensible, cansada o en proceso.\n\nNo necesitas demostrar nada para merecer Su amor.\n\nHoy, tal como estás, con tus luchas y tus intentos, eres suficiente para Él.`,
-    pregunta: "¿En qué área de tu vida has sido más dura contigo misma? ¿Cómo te cambiaría saber que Dios se deleita en ti tal como eres?"
+    pregunta: "¿En qué área de tu vida has sido más dura contigo misma? ¿Cómo te cambiaría saber que Dios se deleita en ti tal como eres?",
+    ejercicio: "Imagina a Dios caminando a tu lado. Míralo mirarte con amor. Permanece ahí unos segundos.",
+    frase: "Camino bajo la mirada amorosa de Dios."
   },
   {
     dia: 6,
@@ -2149,10 +2605,12 @@ const dias = [
     proposito: "Silencio y apertura",
     versiculo: '"Quédense quietos y reconozcan que yo soy Dios."',
     referencia: "Salmos 46:10",
-    versiculo2: '"Escucha atentamente, y tu alma vivirá; presta oído, y tendrás días felices."',
-    referencia2: "Proverbios 19:20",
+    versiculo2: '"Presten atención y vengan a mí, escúchenme y vivirán."',
+    referencia2: "Isaías 55:3",
     reflexion: `No todo en la vida necesita prisa ni palabras. Hay momentos que se caminan en silencio, tramos donde el ruido del mundo queda afuera y el corazón puede escucharse a sí mismo.\n\nEn esa quietud, Dios se acerca suavemente. No levanta la voz ni obliga; sino que toca lo profundo del alma, recordándote que no estás sola, que Él sostiene incluso lo que parece invisible.\n\nCuando aprendes a callar, a soltar el frenesí y la urgencia, escuchas lo esencial: Su voz, su guía, su paz.\n\nDios no se impone; se revela con ternura a quien se atreve a detenerse, a quien confía en que el silencio puede ser un lugar de encuentro.\n\nHoy puedes permitirte esa pausa: quedarte quieta, respirar, y sentir que Él es suficiente.`,
-    pregunta: "¿Cuándo fue la última vez que estuviste en silencio total ante Dios? ¿Qué crees que quiere decirte hoy?"
+    pregunta: "¿Cuándo fue la última vez que estuviste en silencio total ante Dios? ¿Qué crees que quiere decirte hoy?",
+    ejercicio: "Permanece en silencio 30 segundos. Si llega un pensamiento, déjalo pasar. Repite suavemente: “Aquí estoy.”",
+    frase: "En el silencio, Dios camina conmigo."
   },
   {
     dia: 7,
@@ -2160,10 +2618,12 @@ const dias = [
     proposito: "Confiar y entregar",
     versiculo: '"El Señor irá delante de ti… No temas ni te desanimes."',
     referencia: "Deuteronomio 31:8",
-    versiculo2: '"No te sobrecojas, ni tengas miedo; porque yo, el Señor tu Dios, estoy contigo en todo lo que emprendas."',
+    versiculo2: '"¡Sé fuerte y valiente! ¡No tengas miedo ni te desanimes! Porque el Señor tu Dios te acompañará dondequiera que vayas."',
     referencia2: "Josué 1:9",
     reflexion: `No conocemos cada giro del camino ni cada sombra que aparecerá… pero sí conocemos a quien camina a nuestro lado. Y eso lo cambia todo.\n\nConfiar no significa no sentir miedo, sino seguir adelante a pesar del miedo, con la certeza de que Dios ya ha preparado el camino: Él va delante abriendo puertas, allanando obstáculos, sosteniendo cada paso.\n\nHoy puedes elegir avanzar, paso a paso, sin prisa, sin angustia, con la seguridad de que Él no te soltará nunca.\n\nY mientras confías, tu corazón encuentra valor y paz.`,
-    pregunta: "¿Qué situación en tu vida necesita que confíes más en Dios? ¿Qué te costaría soltarla completamente?"
+    pregunta: "¿Qué situación en tu vida necesita que confíes más en Dios? ¿Qué te costaría soltarla completamente?",
+    ejercicio: "Piensa en algo que te preocupa del futuro. Díselo a Dios y repite: “Confío en Ti.”",
+    frase: "Dios va delante de mí."
   },
   {
     dia: 8,
@@ -2174,7 +2634,9 @@ const dias = [
     versiculo2: '"Sobre todo, ámense profundamente, porque el amor cubre multitud de pecados."',
     referencia2: "1 Pedro 4:8",
     reflexion: `El camino se vuelve pesado cuando lo recorres con heridas abiertas.\n\nEl rencor no siempre se nota, pero se siente: endurece el corazón, cansa el alma y detiene el avance interior.\n\nDios no te pide que niegues lo que dolió ni que justifiques lo injusto. Te invita a algo más profundo: no seguir caminando atada a lo que te hirió.\n\nEl perdón no cambia la historia, pero sí cambia tu forma de habitarla.\n\nPerdonar es un proceso, y Dios lo sabe. Por eso no te empuja; camina contigo mientras aprendes a soltar, sosteniéndote cuando duele y dándote fuerzas cuando parece imposible.\n\nHoy no se trata de sentir perdón, se trata de dar el primer paso hacia la libertad.`,
-    pregunta: "¿Hay alguien a quien necesites perdonar, aunque duela? ¿Qué te impide dar ese primer paso?"
+    pregunta: "¿Hay alguien a quien necesites perdonar, aunque duela? ¿Qué te impide dar ese primer paso?",
+    ejercicio: "Nombra en tu corazón a esa persona. Dile a Dios: “No puedo sola, ayúdame a perdonar.”",
+    frase: "Perdonar me libera el corazón."
   },
   {
     dia: 9,
@@ -2185,7 +2647,9 @@ const dias = [
     versiculo2: '"Yo, yo soy el que borro tus rebeliones por amor de mí mismo, y no me acordaré de tus pecados."',
     referencia2: "Isaías 43:25",
     reflexion: `A veces no es Dios quien te acusa, eres tú misma quien sigue recordando lo que Él ya perdonó.\n\nCaminas con arrepentimiento, pero también con dureza hacia ti. Te exiges, te juzgas y te castigas por errores que ya fueron entregados. Sin darte cuenta, llevas una culpa que Dios nunca te pidió cargar.\n\nCuando Dios perdona, perdona por completo. No guarda registros ni reproches.\n\nCaminar con Él implica aprender a mirarte con la misma misericordia con la que Él te mira.\n\nHoy Dios te invita a soltar la vergüenza y a seguir caminando desde la gracia, no desde la culpa.`,
-    pregunta: "¿Por qué error del pasado sigues castigándote? ¿Puedes recibir hoy el perdón que Dios ya te dio?"
+    pregunta: "¿Por qué error del pasado sigues castigándote? ¿Puedes recibir hoy el perdón que Dios ya te dio?",
+    ejercicio: "Coloca tu mano en el pecho y repite lentamente: “Me perdono, porque Dios ya me perdonó.”",
+    frase: "No camino con culpa, camino con gracia."
   },
   {
     dia: 10,
@@ -2196,10 +2660,480 @@ const dias = [
     versiculo2: '"Confía en el Señor con todo tu corazón, y no te apoyes en tu propia prudencia; reconócelo en todos tus caminos, y Él enderezará tus sendas."',
     referencia2: "Proverbios 3:5-6",
     reflexion: `A veces cargamos la vida como si todo dependiera de nosotros: decisiones, resultados, caminos.\n\nPero este versículo nos recuerda que no tenemos que hacerlo todo solas. Encomendar nuestro camino a Dios no significa dejar de actuar, sino entregar nuestras preocupaciones, planes y miedos a quien nos conoce completamente.\n\nConfiar en Él es soltar el control y descansar sabiendo que sus manos guían lo que nosotros no podemos prever.\n\nCuando confías de verdad, algo cambia: la ansiedad se suaviza, el corazón se libera y la vida empieza a fluir de manera más ligera.\n\nDios no solo observa desde lejos; Él actúa a tu favor, abriendo caminos, iluminando decisiones y cuidando cada paso.\n\nHoy puedes soltar tu carga, confiar y dar un paso con la certeza de que Él está trabajando por ti.`,
-    pregunta: "¿En qué área de tu vida intentas controlar todo? ¿Qué pasaría si se lo entregaras completamente a Dios?"
-  }
+    pregunta: "¿En qué área de tu vida intentas controlar todo? ¿Qué pasaría si se lo entregaras completamente a Dios?",
+    ejercicio: "Entrega a Dios eso que intentas controlar. Di en voz baja: “Lo dejo en tus manos.”",
+    frase: "No todo depende de mí."
+  },
 
-  // AGREGA LOS DÍAS 11-30 AQUÍ (con una coma al final del día 10 de arriba)
+  // DIA 11
+  {
+    dia: 11,
+    titulo: "Sanar el pasado",
+    proposito: "Aceptación",
+    versiculo: "\"El Señor sana a los de corazón quebrantado y venda sus heridas.\"",
+    referencia: "Salmos 147:3",
+    versiculo2: "\"Me ha enviado a sanar los corazones heridos.\"",
+    referencia2: "Isaías 61:1",
+    reflexion: "Todos llevamos cicatrices que otros no ven: palabras que dolieron, sueños que se rompieron, pérdidas que dejaron vacío. El corazón puede sentirse pesado, frágil, como si nunca pudiera sanar.\n\nPero Dios mira más allá de lo que mostramos. Él no ignora tu dolor ni te pide que lo escondas. Su amor llega donde duele, sana lo que está roto y cubre lo que sangra.\n\nSanar no significa olvidar, ni que todo vuelva a ser como antes. Significa que alguien más sostiene tus pedazos, los repara con ternura y te ayuda a caminar de nuevo sin miedo.\n\nHoy puedes entregar tus heridas y confiar en que Él las está sanando, paso a paso, con paciencia y amor. En Su abrazo, incluso lo quebrado puede florecer.",
+    pregunta: "¿Qué herida del pasado sigue doliéndote hoy? ¿Qué pasaría si le permitieras a Dios tocarla?",
+    ejercicio: "Imagina a Dios tocando esa herida con ternura. Respira profundo y permite ese momento.",
+    frase: "Dios sana mientras caminamos."
+  },
+
+  // DIA 12
+  {
+    dia: 12,
+    titulo: "Dejar ir",
+    proposito: "Desapego",
+    versiculo: "\"Olvidando lo que queda atrás y esforzándome por alcanzar lo que está delante…\"",
+    referencia: "Filipenses 3:13",
+    versiculo2: "\"Olviden las cosas de antaño; ya no vivan en el pasado. ¡Voy a hacer algo nuevo!\"",
+    referencia2: "Isaías 43:18–19",
+    reflexion: "A veces cargamos recuerdos, errores y heridas como si fueran equipaje obligatorio. Pero Dios nos invita a soltar lo que nos detiene y a mirar hacia adelante con esperanza.\n\nOlvidar no significa borrar la historia, sino liberarnos del peso que nos impide avanzar. Es dejar de vivir en la culpa, en la tristeza o en los “qué hubiera pasado…”.\n\nEsforzarse por lo que está delante significa caminar con fe, paso a paso, confiando en que Dios tiene planes nuevos para ti, llenos de crecimiento, alegría y propósito.\n\nHoy puedes mirar hacia adelante, dejando atrás lo que ya no sirve. Tu futuro no depende de tus errores pasados, sino de la fuerza y la guía de Dios en cada nuevo día.",
+    pregunta: "¿Qué recuerdo, error o situación sigues cargando y ya es tiempo de soltar?",
+    ejercicio: "Visualiza que dejas algo atrás. Dile a Dios: “Ya no lo necesito.”",
+    frase: "Suelto y sigo caminando."
+  },
+
+  // DIA 13
+  {
+    dia: 13,
+    titulo: "Entregar el miedo",
+    proposito: "Seguridad",
+    versiculo: "\"Cuando siento miedo, pongo en ti mi confianza.\"",
+    referencia: "Salmos 56:3",
+    versiculo2: "\"Pues Dios no nos ha dado un espíritu de timidez, sino de poder, de amor y de dominio propio.\"",
+    referencia2: "2 Timoteo 1:7",
+    reflexion: "El miedo es natural; todas sentimos miedo en algún momento: frente a lo desconocido, ante decisiones difíciles o cuando el corazón se siente frágil. Pero este versículo nos recuerda que no tenemos que enfrentarlo solas.\n\nPoner nuestra confianza en Dios no significa que el miedo desaparezca de inmediato, sino que nuestro corazón encuentra seguridad en medio de él. Es un acto de valentía: decirle a Dios “Confío en ti, aunque mis emociones me digan lo contrario”.\n\nHoy, cuando el miedo toque tu puerta, puedes responder con confianza: Dios está contigo, sosteniéndote, guiándote y llenando tu alma de paz.\n\nCon Él, incluso los pasos temblorosos se vuelven firmes.",
+    pregunta: "¿Qué miedo está ocupando más espacio en tu corazón? ¿Cómo sería enfrentarlo de la mano de Dios?",
+    ejercicio: "Nombra en voz baja aquello que te da miedo. Entrégaselo a Dios con esta frase: “Confío en Ti, aun con miedo.”",
+    frase: "Camino con fe, no con miedo."
+  },
+
+  // DIA 14
+  {
+    dia: 14,
+    titulo: "Confiar en los tiempos",
+    proposito: "Paciencia",
+    versiculo: "\"Todo tiene su tiempo, y todo lo que se quiere debajo del cielo tiene su hora.\"",
+    referencia: "Eclesiastés 3:1",
+    versiculo2: "\"Bueno es el Señor con quienes en él confían, con todos los que lo buscan. Bueno es esperar calladamente a que el Señor venga a salvarnos.\"",
+    referencia2: "Lamentaciones 3:25–26",
+    reflexion: "A veces lo que más duele no es no recibir, sino esperar. Esperar respuestas, cambios, sanidad o claridad puede desgastar el corazón. Pero Dios no se retrasa. Él actúa con un tiempo que cuida tu proceso.\n\nConfiar en los tiempos de Dios no es resignarse; es creer que Él ve el panorama completo, incluso cuando tú solo ves una parte. Mientras esperas, Dios trabaja en ti, no solo en las circunstancias.\n\nHoy el camino te invita a descansar en esta verdad: lo que es para ti llegará en el momento correcto.",
+    pregunta: "¿Qué estás esperando de Dios en esta etapa? ¿Qué crees que Él está trabajando en ti mientras esperas?",
+    ejercicio: "Respira profundo y repite lentamente: “Confío en tus tiempos, Dios.”",
+    frase: "Dios sabe cuándo."
+  },
+
+  // DIA 15
+  {
+    dia: 15,
+    titulo: "No estoy sola",
+    proposito: "Presencia",
+    versiculo: "\"No temas, porque yo estoy contigo; no desmayes, porque yo soy tu Dios.\"",
+    referencia: "Isaías 41:10",
+    versiculo2: "\"Y les aseguro que estaré con ustedes siempre, hasta el fin del mundo.\"",
+    referencia2: "Mateo 28:20",
+    reflexion: "Hay momentos en los que te sientes sola, incluso rodeada de personas. Pero la presencia de Dios no depende de lo que sientes, sino de lo que Él promete. Y Él promete quedarse.\n\nDios no se va cuando dudas, no se aleja cuando te cansas, no te abandona cuando tropiezas. Camina contigo en cada etapa, incluso en las más silenciosas.\n\nHoy puedes descansar en esta certeza: no estás sola, aunque a veces lo parezca.",
+    pregunta: "¿En qué momentos te has sentido sola últimamente? ¿Cómo cambia saber que Dios estuvo ahí?",
+    ejercicio: "Dile a Dios en silencio: “Gracias por quedarte conmigo.”",
+    frase: "Dios camina a mi lado."
+  },
+
+  // DIA 16
+  {
+    dia: 16,
+    titulo: "Dios, mi refugio",
+    proposito: "Protección",
+    versiculo: "\"Dios es nuestro refugio y fortaleza, nuestro pronto auxilio en las tribulaciones.\"",
+    referencia: "Salmos 46:1",
+    versiculo2: "\"El que habita al abrigo del Altísimo se acoge a la sombra del Todopoderoso.\"",
+    referencia2: "Salmos 91:1",
+    reflexion: "Hay días en los que el mundo pesa más de lo normal. Días en los que necesitas un lugar seguro para descansar el alma. Dios no solo te acompaña, también se convierte en tu refugio.\n\nEn Él no tienes que explicarte ni defenderte. Puedes llegar tal como estás y encontrar descanso. Refugiarte en Dios no es huir, es elegir dónde fortalecerte.\n\nHoy recuerda que siempre hay un lugar al que puedes volver.",
+    pregunta: "¿Qué situación te está pesando hoy y necesitas llevar a tu refugio en Dios?",
+    ejercicio: "Imagina que te refugias en Dios. Permanece ahí unos segundos.",
+    frase: "En Dios estoy a salvo."
+  },
+
+  // DIA 17
+  {
+    dia: 17,
+    titulo: "Agradecer el camino",
+    proposito: "Gratitud",
+    versiculo: "\"Den gracias a Dios en toda situación, porque esta es su voluntad para ustedes en Cristo Jesús.\"",
+    referencia: "1 Tesalonicenses 5:18",
+    versiculo2: "\"Alaba, alma mía, al Señor, y no olvides ninguno de sus beneficios.\"",
+    referencia2: "Salmos 103:2",
+    reflexion: "La gratitud no niega las dificultades, pero transforma la manera en que las atraviesas. Agradecer te ayuda a reconocer que Dios ha estado presente incluso en los momentos difíciles.\n\nCuando agradeces, tu mirada se amplía. Descubres cuidado donde antes solo veías esfuerzo. La gratitud abre el corazón y renueva la esperanza.\n\nHoy, aun en lo sencillo, hay motivos para agradecer.",
+    pregunta: "Escribe tres cosas por las que hoy das gracias, incluso en medio de lo difícil.",
+    ejercicio: "Nombra tres cosas por las que estás agradecida hoy.",
+    frase: "La gratitud abre mis ojos."
+  },
+
+  // DIA 18
+  {
+    dia: 18,
+    titulo: "Escuchar Su voz",
+    proposito: "Discernimiento",
+    versiculo: "\"Mis ovejas oyen mi voz; yo las conozco y ellas me siguen.\"",
+    referencia: "Juan 10:27",
+    versiculo2: "\"Tus oídos percibirán a tus espaldas una voz que te dirá: «Este es el camino; síguelo».\"",
+    referencia2: "Isaías 30:21",
+    reflexion: "Dios nos conoce profundamente, hasta lo que guardamos en silencio. No somos solo una entre muchas: Él nos llama por nuestro nombre y sabe lo que necesitamos.\n\nOír Su voz requiere detenerse, escuchar con el corazón y aprender a distinguirla del ruido del mundo. Cuando lo hacemos, encontramos dirección, consuelo y paz, y podemos seguirlo con confianza, sabiendo que no nos perderemos.\n\nSeguir a Dios no significa caminar sin desafíos, sino caminar de Su mano, segura de que Él guía cada paso y cuida cada herida.\n\nHoy puedes escuchar Su voz, sentirte comprendida y dejar que Él te lleve a lugares de paz y propósito.",
+    pregunta: "¿Cómo sueles reconocer la voz de Dios? ¿Qué ruidos te impiden escucharla hoy?",
+    ejercicio: "Permanece unos momentos en silencio. Dile a Dios: “Estoy escuchando.”",
+    frase: "Reconozco la voz de Dios."
+  },
+
+  // DIA 19
+  {
+    dia: 19,
+    titulo: "Confiar en el futuro",
+    proposito: "Esperanza",
+    versiculo: "\"Porque yo sé muy bien los planes que tengo para ustedes —afirma el Señor—, planes de bienestar y no de calamidad, a fin de darles un futuro y una esperanza.\"",
+    referencia: "Jeremías 29:11",
+    versiculo2: "\"Sabemos que Dios dispone todas las cosas para el bien de quienes lo aman.\"",
+    referencia2: "Romanos 8:28",
+    reflexion: "A veces la vida parece incierta, y el camino se siente lleno de giros inesperados o puertas cerradas. Es fácil preocuparse o intentar controlarlo todo… pero Dios nos recuerda que Él tiene un plan para nosotras: un plan de bienestar, de esperanza y de futuro.\n\nNo siempre entendemos Sus tiempos ni Sus caminos, pero podemos descansar en la certeza de que todo lo que permite tiene un propósito. Confiar en Él nos libera de la ansiedad y nos permite avanzar con paz, sabiendo que nuestra historia está en manos seguras.\n\nHoy puedes soltar la necesidad de tenerlo todo bajo control y caminar con fe, confiando en que los planes de Dios son más grandes y mejores de lo que podemos imaginar.",
+    pregunta: "¿Qué te preocupa del futuro? ¿Qué te dice Dios sobre eso en Su Palabra?",
+    ejercicio: "Entrega a Dios aquello que te preocupa del mañana. Dile: “Mi mañana está en tus manos.”",
+    frase: "Mi futuro está en Dios."
+  },
+
+  // DIA 20
+  {
+    dia: 20,
+    titulo: "Vivir en fe",
+    proposito: "Fortaleza",
+    versiculo: "\"Caminamos por fe, no por vista.\"",
+    referencia: "2 Corintios 5:7",
+    versiculo2: "\"La fe es la garantía de lo que se espera, la certeza de lo que no se ve.\"",
+    referencia2: "Hebreos 11:1",
+    reflexion: "Muchas veces queremos ver certezas antes de dar un paso: pruebas de que todo saldrá bien, señales claras de que estamos en el camino correcto. Pero la fe nos invita a avanzar incluso cuando no vemos el final, confiando en que Dios guía cada paso.\n\nCaminar por fe significa soltar la necesidad de controlar, dejar de depender solo de lo que nuestros ojos ven y confiar en lo que Dios ya ha prometido. Es creer que, aunque el camino sea incierto, no estamos solas: Su presencia nos sostiene, nos protege y nos abre puertas que no alcanzamos a ver.\n\nHoy puedes dar un paso con valor, sabiendo que tu fe es más fuerte que tus miedos y que Dios está contigo en cada tramo del camino.",
+    pregunta: "¿Qué paso de fe sientes que Dios te pide dar, aunque todavía no veas el final?",
+    ejercicio: "Di con convicción: “Hoy elijo creer.”",
+    frase: "Camino por fe."
+  },
+
+  // DIA 21
+  {
+    dia: 21,
+    titulo: "Permanecer",
+    proposito: "Compromiso",
+    versiculo: "\"Permanezcan en mí, y yo permaneceré en ustedes.\"",
+    referencia: "Juan 15:4",
+    versiculo2: "\"Yo soy la vid y ustedes son las ramas. El que permanece en mí, como yo en él, dará mucho fruto.\"",
+    referencia2: "Juan 15:5",
+    reflexion: "Vivir conectadas con Dios es como aferrarse a la raíz de un árbol fuerte: cuando permanecemos en Él, nuestra vida recibe fuerza, dirección y fruto.\n\nNo se trata de hacer más cosas ni de aparentar perfección, sino de estar presentes con Él, dejando que Su amor y Su paz habiten en nuestro corazón.\n\nPermanecer en Dios nos da claridad cuando todo parece confuso, calma cuando todo parece urgente y una certeza silenciosa: que no caminamos solas.\n\nHoy puedes detenerte, abrir tu corazón y decirle: “Señor, permanezco en Ti”. Y mientras permaneces, Él permanece en ti, sosteniéndote, guiándote y llenando tu vida de Su luz.",
+    pregunta: "¿Qué te ayuda a permanecer conectada con Dios? ¿Qué te aleja de Él con más facilidad?",
+    ejercicio: "Respira profundo y quédate en Su presencia unos minutos, sin pedir nada, solo estando con Él.",
+    frase: "Elijo permanecer."
+  },
+
+  // DIA 22
+  {
+    dia: 22,
+    titulo: "Dios en lo cotidiano",
+    proposito: "Integrar la fe",
+    versiculo: "\"Reconócelo en todos tus caminos, y él allanará tus sendas.\"",
+    referencia: "Proverbios 3:6",
+    versiculo2: "\"Cada mañana se renuevan sus bondades; ¡muy grande es su fidelidad!\"",
+    referencia2: "Lamentaciones 3:23",
+    reflexion: "A veces pensamos que Dios solo se manifiesta en momentos grandes: cuando todo se acomoda, cuando llega la respuesta, cuando sentimos algo especial. Pero Dios también habita en lo cotidiano.\n\nEstá en la mañana tranquila, en el cansancio del día, en las tareas repetidas, en los silencios que parecen simples.\n\nReconocer a Dios en lo diario es aprender a caminar con Él sin necesidad de señales extraordinarias. Es descubrir que no necesitas salir de tu vida para encontrarlo, porque Él ya está ahí, caminando contigo.\n\nCuando lo reconoces en lo pequeño, tu rutina se transforma en encuentro y tu vida entera se vuelve un espacio sagrado.\n\nHoy, Dios no te pide más; solo que lo reconozcas donde ya estás.",
+    pregunta: "¿En qué momento sencillo de tu día puedes reconocer la presencia de Dios?",
+    ejercicio: "Elige una tarea sencilla de hoy (cocinar, caminar, trabajar) y hazla consciente de que Dios está contigo. Dile: “Señor, te reconozco aquí.”",
+    frase: "Dios también está en lo simple."
+  },
+
+  // DIA 23
+  {
+    dia: 23,
+    titulo: "Cuando me siento débil",
+    proposito: "Aceptar la fragilidad",
+    versiculo: "\"Mi gracia es suficiente para ti, porque mi poder se perfecciona en la debilidad.\"",
+    referencia: "2 Corintios 12:9",
+    versiculo2: "\"Él fortalece al cansado y acrecienta las fuerzas del débil.\"",
+    referencia2: "Isaías 40:29",
+    reflexion: "Hay días en los que te sientes sin fuerzas, en los que todo pesa más de lo normal y tu ánimo no alcanza para seguir como siempre.\n\nEn esos momentos, tu debilidad no es un error ni una falla. Es un espacio donde Dios se acerca con ternura. Él no espera que seas fuerte todo el tiempo.\n\nCuando ya no puedes sostenerte sola, Dios se convierte en tu apoyo. Cuando te sientes frágil, Su gracia te cubre.\n\nNo tienes que demostrar nada. No tienes que poder con todo. Hoy puedes descansar en esta verdad: Dios te sostiene justo cuando más lo necesitas.",
+    pregunta: "¿En qué área te sientes débil hoy? ¿Cómo sería dejar que Su gracia te sostenga ahí?",
+    ejercicio: "Pon tus manos abiertas sobre tus piernas, como quien recibe. Dile a Dios: “Hoy no puedo con todo. Tu gracia me basta.”",
+    frase: "Dios me sostiene."
+  },
+
+  // DIA 24
+  {
+    dia: 24,
+    titulo: "Confiar aun sin respuestas",
+    proposito: "Fe madura",
+    versiculo: "\"Confíen en el Señor para siempre, porque el Señor es una Roca eterna.\"",
+    referencia: "Isaías 26:4",
+    versiculo2: "\"Porque mis pensamientos no son los de ustedes, ni sus caminos son los míos —afirma el Señor—.\"",
+    referencia2: "Isaías 55:8",
+    reflexion: "No siempre tendrás respuestas claras. Habrá momentos en los que preguntarás y el silencio será la respuesta. Y eso también forma parte del camino con Dios.\n\nConfiar aun sin entender es señal de una fe que ha crecido. Es elegir descansar sin controlar, seguir caminando sin tenerlo todo resuelto.\n\nDios no se ausenta cuando no responde de inmediato. Él sigue presente, guiando incluso en la incertidumbre. A veces no cambia las circunstancias, pero fortalece tu corazón para atravesarlas.\n\nHoy no necesitas comprenderlo todo. Solo necesitas confiar un poco más.",
+    pregunta: "¿Qué pregunta le has hecho a Dios que aún no tiene respuesta? ¿Puedes confiarle también ese silencio?",
+    ejercicio: "Escribe una pregunta que aún no tiene respuesta. Debajo escribe: “Aunque no entienda, confío en Ti.”",
+    frase: "Aunque no entienda, confío."
+  },
+
+  // DIA 25
+  {
+    dia: 25,
+    titulo: "Caminar con propósito",
+    proposito: "Sentido",
+    versiculo: "\"Yo soy el camino, la verdad y la vida.\"",
+    referencia: "Juan 14:6",
+    versiculo2: "\"Porque somos hechura de Dios, creados en Cristo Jesús para buenas obras, las cuales Dios dispuso de antemano.\"",
+    referencia2: "Efesios 2:10",
+    reflexion: "Dios no solo te muestra un destino: camina contigo en cada paso del proceso. Aun cuando no veas con claridad hacia dónde vas, cada paso con Él tiene sentido. Nada de lo que vives es en vano cuando lo caminas de Su mano.\n\nTu historia no es una sucesión de casualidades. Dios está presente, guiando, formando, acompañando. Incluso los pasos lentos y las pausas también cuentan.\n\nHoy puedes caminar con confianza, sabiendo que no estás dando pasos vacíos. Con Dios, cada paso tiene propósito.",
+    pregunta: "¿Qué momento de tu vida no entendiste entonces, pero hoy ves que tuvo sentido?",
+    ejercicio: "Mira hacia atrás y reconoce un paso que, aunque fue difícil, te trajo hasta aquí. Dale gracias a Dios por ese paso.",
+    frase: "Camino con sentido."
+  },
+
+  // DIA 26
+  {
+    dia: 26,
+    titulo: "Elegir la paz",
+    proposito: "Calma",
+    versiculo: "\"Y la paz de Dios, que sobrepasa todo entendimiento, guardará sus corazones y sus pensamientos en Cristo Jesús.\"",
+    referencia: "Filipenses 4:7",
+    versiculo2: "\"La paz les dejo; mi paz les doy. Yo no se la doy a ustedes como la da el mundo. No se angustien ni se acobarden.\"",
+    referencia2: "Juan 14:27",
+    reflexion: "La paz de Dios no depende de que todo esté en orden. Llega incluso cuando afuera hay ruido, prisa o incertidumbre.\n\nElegir la paz es una decisión interior. Es confiar en que Dios cuida tu corazón aun cuando no puedes controlar lo que sucede alrededor.\n\nSu paz no elimina los problemas, pero te guarda por dentro. Te sostiene. Te aquieta.\n\nHoy puedes soltar un poco la carga y permitir que Su paz habite en ti. No tienes que luchar todo el tiempo.",
+    pregunta: "¿Qué te está robando la paz últimamente? ¿Qué decisión puedes tomar hoy para elegirla?",
+    ejercicio: "Cierra los ojos, respira lento cuatro veces y repite: “Tu paz guarda mi corazón.”",
+    frase: "Elijo la paz."
+  },
+
+  // DIA 27
+  {
+    dia: 27,
+    titulo: "Dios no me suelta",
+    proposito: "Seguridad",
+    versiculo: "\"Yo les doy vida eterna, y nunca perecerán, ni nadie podrá arrebatármelas de la mano.\"",
+    referencia: "Juan 10:28",
+    versiculo2: "\"Ni cosa alguna en toda la creación podrá apartarnos del amor que Dios nos ha manifestado en Cristo Jesús nuestro Señor.\"",
+    referencia2: "Romanos 8:39",
+    reflexion: "Hay momentos en los que sientes que todo se mueve, que tus fuerzas no alcanzan y que podrías caer.\n\nPero hay una verdad firme que te sostiene: Dios no te suelta.\n\nNo dependes de tu constancia perfecta ni de hacerlo todo bien. Él te sostiene incluso cuando dudas, cuando te cansas, cuando tropiezas.\n\nSu mano no se afloja. Su amor no se retira. Hoy puedes descansar sabiendo que estás segura en Él.",
+    pregunta: "¿En qué momento sentiste que ibas a caer y Dios te sostuvo?",
+    ejercicio: "Cierra tu mano como si alguien la sostuviera. Quédate así unos segundos y repite: “Tú no me sueltas.”",
+    frase: "Estoy sostenida por Dios."
+  },
+
+  // DIA 28
+  {
+    dia: 28,
+    titulo: "Caminar con amor",
+    proposito: "Amor activo",
+    versiculo: "\"Ámense los unos a los otros. Así como yo los he amado, también ustedes deben amarse los unos a los otros.\"",
+    referencia: "Juan 13:34",
+    versiculo2: "\"El amor es paciente, es bondadoso. El amor no es envidioso ni jactancioso ni orgulloso.\"",
+    referencia2: "1 Corintios 13:4",
+    reflexion: "El amor que recibes de Dios no se queda quieto. Sana, transforma y luego se comparte.\n\nCaminar con amor no siempre es fácil. A veces implica paciencia, perdón, comprensión. Pero cuando amas desde Dios, también tu propio corazón es sanado.\n\nEl amor no es solo un sentimiento: es una forma de caminar, de mirar, de responder.\n\nHoy, deja que el amor de Dios fluya a través de ti. Amar también es parte del camino.",
+    pregunta: "¿A quién te cuesta amar en este momento? ¿Qué gesto de amor podrías tener hoy con esa persona?",
+    ejercicio: "Piensa en una persona a quien puedas mostrarle amor hoy con un gesto concreto: un mensaje, una llamada, una ayuda. Hazlo.",
+    frase: "Camino amando."
+  },
+
+  // DIA 29
+  {
+    dia: 29,
+    titulo: "Confiar hasta el final",
+    proposito: "Perseverancia",
+    versiculo: "\"El que comenzó tan buena obra en ustedes la irá perfeccionando hasta el día de Cristo Jesús.\"",
+    referencia: "Filipenses 1:6",
+    versiculo2: "\"Los que confían en el Señor renovarán sus fuerzas; volarán como las águilas: correrán y no se fatigarán, caminarán y no se cansarán.\"",
+    referencia2: "Isaías 40:31",
+    reflexion: "Dios no abandona lo que comienza. Tu proceso, aunque imperfecto, está en Sus manos.\n\nHabrá días más fáciles y otros más pesados, pero Dios permanece fiel. Él sigue trabajando aun cuando tú no lo notes.\n\nConfiar hasta el final no significa no cansarte; significa no rendirte. Dios sigue contigo, perfeccionando lo que empezó en ti.\n\nHoy puedes seguir adelante con la certeza de que no caminas sola.",
+    pregunta: "¿En qué área de tu vida sientes ganas de rendirte? ¿Qué te recuerda Dios hoy sobre la obra que Él empezó en ti?",
+    ejercicio: "Piensa en algo que empezaste con Dios y en lo que te has sentido cansada. Dile: “Termina en mí lo que Tú empezaste.”",
+    frase: "Dios no abandona su obra."
+  },
+
+  // DIA 30
+  {
+    dia: 30,
+    titulo: "Seguimos caminando juntos",
+    proposito: "Gratitud y continuidad",
+    versiculo: "\"El Señor te bendiga y te guarde; el Señor te mire con agrado y te extienda su amor; el Señor te muestre su favor y te conceda la paz.\"",
+    referencia: "Números 6:24–26",
+    versiculo2: "\"El Señor te cuidará en el hogar y en el camino, desde ahora y para siempre.\"",
+    referencia2: "Salmos 121:8",
+    reflexion: "Este camino no termina aquí. No se cierra, no se apaga, no se queda en estas páginas. Lo que comenzó como pequeños encuentros se ha convertido en una forma de caminar.\n\nHoy no llegas al final: llegas con más conciencia de la presencia de Dios en tu vida. Has aprendido a detenerte, a escuchar, a confiar, a reconocer que Dios ha estado contigo incluso en los días silenciosos.\n\nDios no camina contigo solo cuando oras, ni solo cuando lees, ni solo cuando todo va bien. Camina contigo en lo que sigue, en lo cotidiano, en lo que aún no entiendes.\n\nEsta etapa es también una promesa: no vuelves a caminar sola. Cada paso futuro, cada decisión, cada proceso puede seguir siendo un encuentro con Él.\n\nHoy puedes agradecer no solo por lo vivido, sino por todo lo que vendrá. Dios sigue contigo. Y el camino continúa.",
+    pregunta: "Mirando atrás, ¿qué ha cambiado en ti en estos 30 días? ¿Cómo quieres seguir caminando con Dios de aquí en adelante?",
+    ejercicio: "Di lentamente: “Gracias por caminar conmigo, Dios.”",
+    frase: "Este camino continúa."
+  },
+
+  // DIA 31
+  {
+    dia: 31,
+    titulo: "Aprender a estar contenta",
+    proposito: "Contentamiento",
+    versiculo: "\"Sé vivir humildemente, y sé tener abundancia.\"",
+    referencia: "Filipenses 4:12",
+    versiculo2: "\"Gran ganancia es la piedad acompañada de contentamiento.\"",
+    referencia2: "1 Timoteo 6:6",
+    versiculo3: "\"Sean vuestras costumbres sin avaricia, contentos con lo que tenéis ahora.\"",
+    referencia3: "Hebreos 13:5",
+    reflexion: "A veces pensamos que estaremos bien cuando algo cambie: cuando llegue una respuesta, cuando tengamos más, cuando logremos esa meta o cuando la vida se parezca un poco más a lo que imaginamos.\n\nPero mientras esperamos lo siguiente, podemos dejar de ver lo que ya está delante de nosotras.\n\nPablo aprendió algo profundo: su bienestar no podía depender solamente de las circunstancias.\n\nEl contentamiento no significa dejar de soñar ni conformarte con aquello que puedes mejorar. Significa aprender a decir: “Todavía hay cosas que deseo, pero puedo valorar lo que tengo hoy.”\n\nDios también puede encontrarte en esta etapa, incluso si todavía no es la que imaginabas.\n\nHoy no necesitas esperar a que todo cambie para reconocer lo bueno. Tal vez la vida que hoy parece incompleta también contiene pequeños regalos que merecen ser vistos.",
+    pregunta: "¿Qué cosas de tu vida puedes valorar hoy, aunque todavía no sea la etapa que imaginabas?",
+    ejercicio: "Mira a tu alrededor y reconoce algo que hoy ya es suficiente. Dile a Dios: “Enséñame a disfrutar lo que hoy has puesto en mis manos.”",
+    frase: "Puedo disfrutar el hoy mientras sigo creciendo."
+  },
+
+  // DIA 32
+  {
+    dia: 32,
+    titulo: "Un corazón que sabe aprender",
+    proposito: "Humildad",
+    versiculo: "\"Con humildad, consideren a los demás como superiores a ustedes mismos.\"",
+    referencia: "Filipenses 2:3",
+    versiculo2: "\"Cuando viene la soberbia, viene también la deshonra; mas con los humildes está la sabiduría.\"",
+    referencia2: "Proverbios 11:2",
+    versiculo3: "\"Dios resiste a los soberbios, y da gracia a los humildes.\"",
+    referencia3: "Santiago 4:6",
+    reflexion: "No siempre es fácil reconocer que podemos estar equivocadas. A veces queremos tener la razón, defender nuestra manera de pensar o demostrar que sabemos qué hacer.\n\nPero un corazón humilde no es un corazón débil. Es un corazón que sabe escuchar, aprender y reconocer cuando necesita cambiar.\n\nLa humildad también aparece cuando puedes decir: “No lo sé”, “me equivoqué”, “enséñame” o “perdóname”.\n\nDios puede enseñarte a través de Su Palabra, pero también a través de personas, experiencias y correcciones que no siempre resultan cómodas.\n\nNo necesitas saberlo todo. Todavía estás aprendiendo. Hoy permite que tu corazón permanezca abierto, porque crecer también significa aceptar que siempre habrá algo nuevo que Dios puede enseñarte.",
+    pregunta: "¿En qué situación te ha costado reconocer que estabas equivocada? ¿Qué crees que Dios quiere enseñarte con eso?",
+    ejercicio: "Piensa en algo que te haya costado aceptar. Dile a Dios: “Dame un corazón humilde y dispuesto a aprender.”",
+    frase: "No necesito saberlo todo para seguir creciendo."
+  },
+
+  // DIA 33
+  {
+    dia: 33,
+    titulo: "Dar con alegría",
+    proposito: "Generosidad",
+    versiculo: "\"Dios ama al dador alegre.\"",
+    referencia: "2 Corintios 9:7",
+    versiculo2: "\"Más bienaventurado es dar que recibir.\"",
+    referencia2: "Hechos 20:35",
+    versiculo3: "\"El alma generosa será prosperada.\"",
+    referencia3: "Proverbios 11:25",
+    reflexion: "Dar no siempre significa entregar dinero. También puedes dar tiempo, atención, conocimiento, compañía, ayuda o una palabra que alguien necesita escuchar.\n\nLa generosidad nace cuando dejamos de preguntarnos solamente qué necesitamos nosotras y comenzamos a mirar qué podemos compartir. No necesitas tener mucho para ser generosa.\n\nA veces lo más valioso que puedes ofrecer no cabe en tus manos. Puede ser sentarte a escuchar. Compartir lo que sabes. Ayudar sin esperar algo a cambio.\n\nDios no mira únicamente cuánto das. También mira el corazón con el que lo haces.\n\nHoy recuerda que aquello que tienes puede convertirse en bendición cuando decides compartirlo. Quizá para ti sea algo pequeño. Para otra persona puede significar muchísimo.",
+    pregunta: "¿Qué tienes hoy (tiempo, palabras, ayuda, conocimiento) que podrías compartir con alguien?",
+    ejercicio: "Piensa en algo que puedas compartir hoy. Hazlo sin esperar reconocimiento.",
+    frase: "Lo que tengo también puede bendecir a alguien."
+  },
+
+  // DIA 34
+  {
+    dia: 34,
+    titulo: "Ser la misma aunque nadie mire",
+    proposito: "Integridad",
+    versiculo: "\"El que camina en integridad anda confiado.\"",
+    referencia: "Proverbios 10:9",
+    versiculo2: "\"La integridad de los rectos los encaminará.\"",
+    referencia2: "Proverbios 11:3",
+    versiculo3: "\"El que en integridad camina será salvo.\"",
+    referencia3: "Proverbios 28:18",
+    reflexion: "Hay decisiones que nadie más conoce. Pequeños momentos en los que podrías elegir lo fácil, ocultar algo o actuar diferente porque sabes que nadie está mirando.\n\nAhí también se forma tu carácter.\n\nLa integridad significa procurar que aquello que dices, piensas y haces camine en la misma dirección. No se trata de ser perfecta. Se trata de ser honesta.\n\nDios conoce también esa parte de tu vida que nadie ve. Y no la mira para perseguirte, sino para ayudarte a construir una vida donde no tengas que esconder quién eres.\n\nHoy quizá tengas una pequeña decisión delante de ti. Elige aquello que te permita conservar la paz cuando nadie esté mirando. Porque lo correcto sigue teniendo valor, incluso cuando nadie aplaude.",
+    pregunta: "¿Hay alguna área de tu vida en la que actúas diferente cuando nadie te ve? ¿Qué quieres entregarle a Dios de ella?",
+    ejercicio: "Pregúntate: “¿Soy la misma persona cuando nadie me está mirando?” Entrégale tu respuesta a Dios con sinceridad.",
+    frase: "Elijo hacer lo correcto incluso en lo secreto."
+  },
+
+  // DIA 35
+  {
+    dia: 35,
+    titulo: "Cuidar mis palabras",
+    proposito: "Hablar con sabiduría",
+    versiculo: "\"La respuesta amable calma el enojo.\"",
+    referencia: "Proverbios 15:1",
+    versiculo2: "\"Hay quienes hablan como dando estocadas de espada; mas la lengua de los sabios es medicina.\"",
+    referencia2: "Proverbios 12:18",
+    versiculo3: "\"Ninguna palabra corrompida salga de vuestra boca, sino la que sea buena para la necesaria edificación.\"",
+    referencia3: "Efesios 4:29",
+    reflexion: "Hay palabras que duran apenas unos segundos, pero permanecen durante años en el corazón de alguien.\n\nCuando estamos cansadas, molestas o heridas, podemos responder rápidamente y después desear poder recoger aquello que dijimos. Pero las palabras no siempre regresan.\n\nDios nos invita a aprender a hablar desde un corazón sereno. Eso no significa callar lo que necesitas expresar. Significa aprender a decir la verdad sin convertirla en una herida.\n\nPuedes ser firme sin humillar. Puedes estar en desacuerdo sin destruir. Puedes corregir sin lastimar.\n\nHoy, antes de responder desde el impulso, haz una pequeña pausa. Quizá unos segundos de silencio puedan cambiar por completo una conversación.",
+    pregunta: "¿Hay alguna palabra que dijiste y te gustaría reparar? ¿Cómo quieres hablar a partir de hoy?",
+    ejercicio: "Antes de una conversación importante, pregúntate: “¿Lo que voy a decir construye o destruye?”",
+    frase: "Mis palabras también pueden ser un lugar de cuidado."
+  },
+
+  // DIA 36
+  {
+    dia: 36,
+    titulo: "Aprender a decir no",
+    proposito: "Límites sanos",
+    versiculo: "\"Sea vuestro ‘sí’, sí; y vuestro ‘no’, no.\"",
+    referencia: "Mateo 5:37",
+    versiculo2: "\"Más vale poco con tranquilidad que mucho con fatiga.\"",
+    referencia2: "Eclesiastés 4:6",
+    versiculo3: "\"Cada uno llevará su propia carga.\"",
+    referencia3: "Gálatas 6:5",
+    reflexion: "No todo lo que puedes hacer significa que tienes que hacerlo.\n\nA veces dices “sí” porque tienes miedo de decepcionar, de parecer egoísta o de que alguien se moleste contigo. Y poco a poco terminas agotada.\n\nPoner límites no significa dejar de amar. Significa reconocer que tu tiempo, tus fuerzas y tu corazón también necesitan cuidado.\n\nPuedes ayudar sin hacerte responsable de todo. Puedes amar sin permitir aquello que te hace daño. Puedes decir “no puedo” sin convertirte en una mala persona.\n\nHoy recuerda que un límite expresado con respeto también puede ser una decisión saludable. No necesitas abandonarte para demostrar cuánto amas a los demás.",
+    pregunta: "¿A qué le has dicho “sí” cuando tu corazón quería decir “no”? ¿Qué límite necesitas poner con amor?",
+    ejercicio: "Piensa en algo a lo que necesitas ponerle un límite. Dile a Dios: “Dame amor para hablar y firmeza para cuidar lo que me has confiado.”",
+    frase: "Puedo decir no sin dejar de amar."
+  },
+
+  // DIA 37
+  {
+    dia: 37,
+    titulo: "Dejar de compararme",
+    proposito: "Valorar mi propio proceso",
+    versiculo: "\"Cada uno examine su propia conducta… sin compararse con nadie.\"",
+    referencia: "Gálatas 6:4",
+    versiculo2: "\"Te alabaré; porque formidables, maravillosas son tus obras.\"",
+    referencia2: "Salmos 139:14",
+    versiculo3: "\"Al medirse con su propia medida y compararse unos con otros, no saben lo que hacen.\"",
+    referencia3: "2 Corintios 10:12",
+    reflexion: "Es difícil disfrutar tu camino cuando todo el tiempo estás mirando el de alguien más.\n\nSiempre encontrarás a alguien que parece ir más rápido, tener más, lograr antes o vivir aquello que tú todavía estás esperando. Pero no conoces toda su historia. Y tampoco necesitas vivirla.\n\nDios no creó tu vida como una copia de la de otra persona. Tu proceso tiene tiempos, aprendizajes y oportunidades diferentes.\n\nCompararte puede hacer que aquello que antes agradecías comience a parecer insuficiente.\n\nHoy vuelve a mirar tu propio camino. Quizá todavía te falta mucho por recorrer, pero también hay una versión de ti que ha avanzado muchísimo. No necesitas convertirte en otra persona. Necesitas seguir creciendo desde quien eres.",
+    pregunta: "¿Con quién te comparas con más frecuencia? ¿Qué avances de tu propio camino puedes reconocer hoy?",
+    ejercicio: "Piensa en algo de tu propio proceso que puedas reconocer hoy. Dile a Dios: “Gracias por lo que también estás construyendo en mí.”",
+    frase: "Mi camino no necesita parecerse al de nadie."
+  },
+
+  // DIA 38
+  {
+    dia: 38,
+    titulo: "Hacer el bien sin ser vista",
+    proposito: "Servir con sinceridad",
+    versiculo: "\"Tu Padre, que ve en lo secreto, te recompensará.\"",
+    referencia: "Mateo 6:4",
+    versiculo2: "\"No nos cansemos, pues, de hacer bien.\"",
+    referencia2: "Gálatas 6:9",
+    versiculo3: "\"Cuando des limosna, no sepa tu izquierda lo que hace tu derecha.\"",
+    referencia3: "Mateo 6:3",
+    reflexion: "No todo lo bueno necesita ser visto.\n\nHay gestos que nadie aplaude: ayudar sin contarlo, acompañar sin publicarlo, hacer algo por alguien sin esperar reconocimiento. Y también ahí está Dios.\n\nVivimos en un mundo donde muchas veces parece que lo que no se muestra no existe. Pero Dios mira de otra manera. Él ve aquello que haces en silencio.\n\nVe el mensaje que enviaste, el favor que nadie conoció, el tiempo que regalaste y la ayuda por la que quizá nunca recibiste un “gracias”.\n\nHacer el bien sin necesitar reconocimiento libera el corazón. Porque ya no ayudas para ser vista. Ayudas porque decidiste convertirte en alguien capaz de hacer el bien incluso cuando nadie está mirando.",
+    pregunta: "¿Qué bien puedes hacer hoy en silencio, sin que nadie lo sepa?",
+    ejercicio: "Haz hoy algo bueno por alguien sin contárselo a nadie.",
+    frase: "No necesito ser vista para hacer el bien."
+  },
+
+  // DIA 39
+  {
+    dia: 39,
+    titulo: "Cuidar lo que dejo entrar",
+    proposito: "Cuidar el corazón",
+    versiculo: "\"Sobre toda cosa guardada, guarda tu corazón.\"",
+    referencia: "Proverbios 4:23",
+    versiculo2: "\"Todas las cosas me son lícitas, mas no todas convienen.\"",
+    referencia2: "1 Corintios 6:12",
+    versiculo3: "\"Todo lo que es verdadero, todo lo honesto, todo lo justo, todo lo puro, todo lo amable… en esto pensad.\"",
+    referencia3: "Filipenses 4:8",
+    reflexion: "No todo lo que llega hasta ti necesita quedarse contigo.\n\nCada día recibes palabras, conversaciones, noticias, opiniones e imágenes. Y aunque parezcan pequeñas, todas pueden dejar algo dentro.\n\nPor eso cuidar tu corazón también significa prestar atención a aquello con lo que lo alimentas.\n\nHay conversaciones que te dejan en paz y otras que te llenan de enojo. Hay contenidos que te inspiran y otros que despiertan inseguridad, comparación o angustia.\n\nNo necesitas abrirle la puerta a todo. Puedes elegir qué escuchas, qué observas y dónde permaneces.\n\nHoy presta atención a aquello que ocupa espacio dentro de ti. Tu corazón merece ser cuidado.",
+    pregunta: "¿Qué está entrando a tu corazón últimamente (conversaciones, contenidos, pensamientos) que te quita la paz?",
+    ejercicio: "Identifica algo que últimamente está llenando tu interior de ruido. Pregúntate: “¿Necesito seguir dándole espacio?”",
+    frase: "No todo merece espacio en mi corazón."
+  },
+
+  // DIA 40
+  {
+    dia: 40,
+    titulo: "Recuperar la alegría",
+    proposito: "Alegría",
+    versiculo: "\"Este es el día que hizo el Señor; nos gozaremos y alegraremos en él.\"",
+    referencia: "Salmos 118:24",
+    versiculo2: "\"El corazón alegre hermosea el rostro.\"",
+    referencia2: "Proverbios 15:13",
+    versiculo3: "\"El corazón alegre constituye buen remedio.\"",
+    referencia3: "Proverbios 17:22",
+    reflexion: "A veces estamos tan ocupadas sobreviviendo, resolviendo y cumpliendo que olvidamos disfrutar.\n\nLa alegría no siempre llega en forma de un acontecimiento enorme. Muchas veces se esconde en cosas sencillas: una conversación, una canción, una comida que disfrutas, una risa inesperada, una mañana tranquila.\n\nDisfrutar también es parte de vivir. No tienes que sentir culpa por detenerte a saborear un momento bueno mientras todavía existen asuntos pendientes.\n\nLa vida nunca estará completamente resuelta. Siempre habrá algo que hacer. Pero hoy también está ocurriendo.\n\nY quizá Dios quiere enseñarte a estar presente para no perderte las pequeñas alegrías que ya existen en tu camino.",
+    pregunta: "¿Qué pequeñas alegrías hay hoy en tu camino que no quieres dejar pasar?",
+    ejercicio: "Haz hoy algo sencillo que de verdad disfrutes. Mientras lo haces, permanece presente.",
+    frase: "También me permito disfrutar el camino."
+  }
 
 ];
 
@@ -2207,7 +3141,135 @@ const dias = [
 //  CÓDIGO DE LA APP — no modificar nada de aquí para abajo
 // ================================================================
 
-const TOTAL_DIAS = 30;
+
+// ================================================================
+//  ✦ DIOS ME HABLA HOY — banco de versículos para la vida
+//  Para agregar uno nuevo copia una línea y cambia el id (número único).
+// ================================================================
+const versiculosVida = [
+  { id: 1,   tema: 'Esperanza',  ref: 'Jeremías 29:11',        texto: 'Porque yo sé muy bien los planes que tengo para ustedes —afirma el Señor—, planes de bienestar y no de calamidad, a fin de darles un futuro y una esperanza.' },
+  { id: 2,   tema: 'Fortaleza',  ref: 'Isaías 41:10',          texto: 'Así que no temas, porque yo estoy contigo; no te angusties, porque yo soy tu Dios. Te fortaleceré y te ayudaré; te sostendré con mi diestra victoriosa.' },
+  { id: 3,   tema: 'Paz',        ref: 'Filipenses 4:6–7',      texto: 'No se inquieten por nada; más bien, en toda ocasión, con oración y ruego, presenten sus peticiones a Dios y denle gracias. Y la paz de Dios, que sobrepasa todo entendimiento, cuidará sus corazones y sus pensamientos en Cristo Jesús.' },
+  { id: 4,   tema: 'Fortaleza',  ref: 'Filipenses 4:13',       texto: 'Todo lo puedo en Cristo que me fortalece.' },
+  { id: 5,   tema: 'Confianza',  ref: 'Proverbios 3:5–6',      texto: 'Confía en el Señor de todo corazón, y no en tu propia inteligencia. Reconócelo en todos tus caminos, y él allanará tus sendas.' },
+  { id: 6,   tema: 'Descanso',   ref: 'Salmos 23:1–3',         texto: 'El Señor es mi pastor, nada me falta; en verdes pastos me hace descansar. Junto a tranquilas aguas me conduce; me infunde nuevas fuerzas.' },
+  { id: 7,   tema: 'Valentía',   ref: 'Salmos 23:4',           texto: 'Aun si voy por valles tenebrosos, no temo peligro alguno porque tú estás a mi lado; tu vara de pastor me reconforta.' },
+  { id: 8,   tema: 'Descanso',   ref: 'Mateo 11:28–29',        texto: 'Vengan a mí todos ustedes que están cansados y agobiados, y yo les daré descanso. Carguen con mi yugo y aprendan de mí, pues yo soy apacible y humilde de corazón, y encontrarán descanso para su alma.' },
+  { id: 9,   tema: 'Fortaleza',  ref: 'Isaías 40:31',          texto: 'Pero los que confían en el Señor renovarán sus fuerzas; volarán como las águilas: correrán y no se fatigarán, caminarán y no se cansarán.' },
+  { id: 10,  tema: 'Propósito',  ref: 'Romanos 8:28',          texto: 'Ahora bien, sabemos que Dios dispone todas las cosas para el bien de quienes lo aman, los que han sido llamados de acuerdo con su propósito.' },
+  { id: 11,  tema: 'Valentía',   ref: 'Josué 1:9',             texto: '¡Sé fuerte y valiente! ¡No tengas miedo ni te desanimes! Porque el Señor tu Dios te acompañará dondequiera que vayas.' },
+  { id: 12,  tema: 'Refugio',    ref: 'Salmos 46:1',           texto: 'Dios es nuestro amparo y nuestra fortaleza, nuestra ayuda segura en momentos de angustia.' },
+  { id: 13,  tema: 'Paz',        ref: 'Juan 14:27',            texto: 'La paz les dejo; mi paz les doy. Yo no se la doy a ustedes como la da el mundo. No se angustien ni se acobarden.' },
+  { id: 14,  tema: 'Paz',        ref: '1 Pedro 5:7',           texto: 'Depositen en él toda ansiedad, porque él cuida de ustedes.' },
+  { id: 15,  tema: 'Amor',       ref: 'Sofonías 3:17',         texto: 'Porque el Señor tu Dios está en medio de ti como guerrero victorioso. Se deleitará en ti con gozo, te renovará con su amor, se alegrará por ti con cantos.' },
+  { id: 16,  tema: 'Fidelidad',  ref: 'Lamentaciones 3:22–23', texto: 'El gran amor del Señor nunca se acaba, y su compasión jamás se agota. Cada mañana se renuevan sus bondades; ¡muy grande es su fidelidad!' },
+  { id: 17,  tema: 'Consuelo',   ref: 'Salmos 34:18',          texto: 'El Señor está cerca de los quebrantados de corazón, y salva a los de espíritu abatido.' },
+  { id: 18,  tema: 'Presencia',  ref: 'Isaías 43:2',           texto: 'Cuando cruces las aguas, yo estaré contigo; cuando cruces los ríos, no te cubrirán sus aguas; cuando camines por el fuego, no te quemarás ni te abrasarán las llamas.' },
+  { id: 19,  tema: 'Confianza',  ref: 'Salmos 37:4–5',         texto: 'Deléitate en el Señor, y él te concederá los deseos de tu corazón. Encomienda al Señor tu camino; confía en él, y él actuará.' },
+  { id: 20,  tema: 'Gracia',     ref: '2 Corintios 12:9',      texto: 'Te basta con mi gracia, pues mi poder se perfecciona en la debilidad.' },
+  { id: 21,  tema: 'Amor',       ref: 'Romanos 8:38–39',       texto: 'Pues estoy convencido de que ni la muerte ni la vida, ni los ángeles ni los demonios, ni lo presente ni lo por venir, ni los poderes, ni lo alto ni lo profundo, ni cosa alguna en toda la creación podrá apartarnos del amor que Dios nos ha manifestado en Cristo Jesús nuestro Señor.' },
+  { id: 22,  tema: 'Ayuda',      ref: 'Salmos 121:1–2',        texto: 'A las montañas levanto mis ojos; ¿de dónde ha de venir mi ayuda? Mi ayuda proviene del Señor, creador del cielo y de la tierra.' },
+  { id: 23,  tema: 'Protección', ref: 'Salmos 121:7–8',        texto: 'El Señor te protegerá; de todo mal protegerá tu vida. El Señor te cuidará en el hogar y en el camino, desde ahora y para siempre.' },
+  { id: 24,  tema: 'Paz',        ref: 'Isaías 26:3',           texto: 'Al de firme propósito guardarás en perfecta paz, porque en ti confía.' },
+  { id: 25,  tema: 'Confianza',  ref: 'Salmos 55:22',          texto: 'Encomienda al Señor tus afanes, y él te sostendrá; no permitirá que el justo caiga y quede abatido para siempre.' },
+  { id: 26,  tema: 'Presencia',  ref: 'Deuteronomio 31:8',     texto: 'El Señor mismo marchará al frente de ti y estará contigo; nunca te dejará ni te abandonará. No temas ni te desanimes.' },
+  { id: 27,  tema: 'Presencia',  ref: 'Hebreos 13:5',          texto: 'Dios ha dicho: «Nunca te dejaré; jamás te abandonaré».' },
+  { id: 28,  tema: 'Confianza',  ref: 'Mateo 6:33–34',         texto: 'Más bien, busquen primeramente el reino de Dios y su justicia, y todas estas cosas les serán añadidas. Por lo tanto, no se angustien por el mañana, el cual tendrá sus propios afanes. Cada día tiene ya sus problemas.' },
+  { id: 29,  tema: 'Identidad',  ref: 'Salmos 139:13–14',      texto: 'Tú creaste mis entrañas; me formaste en el vientre de mi madre. ¡Te alabo porque soy una creación admirable! ¡Tus obras son maravillosas, y esto lo sé muy bien!' },
+  { id: 30,  tema: 'Propósito',  ref: 'Efesios 2:10',          texto: 'Porque somos hechura de Dios, creados en Cristo Jesús para buenas obras, las cuales Dios dispuso de antemano a fin de que las pongamos en práctica.' },
+  { id: 31,  tema: 'Nuevo comienzo', ref: '2 Corintios 5:17',  texto: 'Por lo tanto, si alguno está en Cristo, es una nueva creación. ¡Lo viejo ha pasado, ha llegado ya lo nuevo!' },
+  { id: 32,  tema: 'Nuevo comienzo', ref: 'Isaías 43:18–19',   texto: 'Olviden las cosas de antaño; ya no vivan en el pasado. ¡Voy a hacer algo nuevo! Ya está sucediendo, ¿no se dan cuenta? Estoy abriendo un camino en el desierto, y ríos en lugares desolados.' },
+  { id: 33,  tema: 'Perdón',     ref: '1 Juan 1:9',            texto: 'Si confesamos nuestros pecados, Dios, que es fiel y justo, nos los perdonará y nos limpiará de toda maldad.' },
+  { id: 34,  tema: 'Perdón',     ref: 'Salmos 103:12',         texto: 'Tan lejos de nosotros echó nuestras transgresiones como lejos del oriente está el occidente.' },
+  { id: 35,  tema: 'Gracia',     ref: 'Romanos 8:1',           texto: 'Por lo tanto, ya no hay ninguna condenación para los que están unidos a Cristo Jesús.' },
+  { id: 36,  tema: 'Perdón',     ref: 'Efesios 4:32',          texto: 'Más bien, sean bondadosos y compasivos unos con otros, y perdónense mutuamente, así como Dios los perdonó a ustedes en Cristo.' },
+  { id: 37,  tema: 'Amor',       ref: 'Colosenses 3:13–14',    texto: 'Así como el Señor los perdonó, perdonen también ustedes. Por encima de todo, vístanse de amor, que es el vínculo perfecto.' },
+  { id: 38,  tema: 'Amor',       ref: '1 Corintios 13:4–7',    texto: 'El amor es paciente, es bondadoso. El amor no es envidioso ni jactancioso ni orgulloso. No se comporta con rudeza, no es egoísta, no se enoja fácilmente, no guarda rencor. El amor no se deleita en la maldad, sino que se regocija con la verdad. Todo lo disculpa, todo lo cree, todo lo espera, todo lo soporta.' },
+  { id: 39,  tema: 'Amor',       ref: 'Juan 3:16',             texto: 'Porque tanto amó Dios al mundo que dio a su Hijo unigénito, para que todo el que cree en él no se pierda, sino que tenga vida eterna.' },
+  { id: 40,  tema: 'Amor',       ref: 'Romanos 5:8',           texto: 'Pero Dios demuestra su amor por nosotros en esto: en que cuando todavía éramos pecadores, Cristo murió por nosotros.' },
+  { id: 41,  tema: 'Amor',       ref: 'Jeremías 31:3',         texto: 'Con amor eterno te he amado; por eso te sigo con fidelidad.' },
+  { id: 42,  tema: 'Amor',       ref: 'Isaías 49:15–16',       texto: '¿Puede una madre olvidar a su niño de pecho, y dejar de amar al hijo que ha dado a luz? Aun cuando ella lo olvidara, ¡yo no te olvidaré! Grabada te llevo en las palmas de mis manos.' },
+  { id: 43,  tema: 'Fidelidad',  ref: 'Isaías 54:10',          texto: 'Aunque cambien de lugar las montañas y se tambaleen las colinas, no cambiará mi fiel amor por ti ni vacilará mi pacto de paz —dice el Señor, que de ti se compadece—.' },
+  { id: 44,  tema: 'Valentía',   ref: 'Salmos 27:1',           texto: 'El Señor es mi luz y mi salvación; ¿a quién temeré? El Señor es el baluarte de mi vida; ¿quién podrá amedrentarme?' },
+  { id: 45,  tema: 'Valentía',   ref: 'Salmos 56:3–4',         texto: 'Cuando siento miedo, pongo en ti mi confianza. Confío en Dios y alabo su palabra; confío en Dios y no siento miedo. ¿Qué puede hacerme un simple mortal?' },
+  { id: 46,  tema: 'Valentía',   ref: '2 Timoteo 1:7',         texto: 'Pues Dios no nos ha dado un espíritu de timidez, sino de poder, de amor y de dominio propio.' },
+  { id: 47,  tema: 'Refugio',    ref: 'Salmos 91:1–2',         texto: 'El que habita al abrigo del Altísimo se acoge a la sombra del Todopoderoso. Yo le digo al Señor: «Tú eres mi refugio, mi fortaleza, el Dios en quien confío».' },
+  { id: 48,  tema: 'Protección', ref: 'Salmos 91:11',          texto: 'Porque él ordenará que sus ángeles te cuiden en todos tus caminos.' },
+  { id: 49,  tema: 'Refugio',    ref: 'Proverbios 18:10',      texto: 'Torre inexpugnable es el nombre del Señor; a ella corren los justos y se ponen a salvo.' },
+  { id: 50,  tema: 'Refugio',    ref: 'Nahúm 1:7',             texto: 'Bueno es el Señor; es refugio en el día de la angustia, y protector de los que en él confían.' },
+  { id: 51,  tema: 'Descanso',   ref: 'Salmos 62:5–6',         texto: 'Solo en Dios halla descanso mi alma; de él viene mi esperanza. Solo él es mi roca y mi salvación; él es mi protector y no habré de caer.' },
+  { id: 52,  tema: 'Calma',      ref: 'Isaías 30:15',          texto: 'En el arrepentimiento y la calma está su salvación, en la serenidad y la confianza está su fuerza.' },
+  { id: 53,  tema: 'Confianza',  ref: 'Éxodo 14:14',           texto: 'Ustedes quédense quietos, que el Señor presentará batalla por ustedes.' },
+  { id: 54,  tema: 'Calma',      ref: 'Salmos 46:10',          texto: 'Quédense quietos, reconozcan que yo soy Dios.' },
+  { id: 55,  tema: 'Tiempos',    ref: 'Eclesiastés 3:1',       texto: 'Todo tiene su momento oportuno; hay un tiempo para todo lo que se hace bajo el cielo.' },
+  { id: 56,  tema: 'Tiempos',    ref: 'Habacuc 2:3',           texto: 'Pues la visión se realizará en el tiempo señalado; marcha hacia su cumplimiento, y no dejará de cumplirse. Aunque parezca tardar, espérala; porque sin falta vendrá.' },
+  { id: 57,  tema: 'Perseverancia', ref: 'Gálatas 6:9',        texto: 'No nos cansemos de hacer el bien, porque a su debido tiempo cosecharemos si no nos damos por vencidos.' },
+  { id: 58,  tema: 'Perseverancia', ref: 'Filipenses 1:6',     texto: 'Estoy convencido de esto: el que comenzó tan buena obra en ustedes la irá perfeccionando hasta el día de Cristo Jesús.' },
+  { id: 59,  tema: 'Sabiduría',  ref: 'Santiago 1:5',          texto: 'Si a alguno de ustedes le falta sabiduría, pídasela a Dios, y él se la dará, pues Dios da a todos generosamente sin menospreciar a nadie.' },
+  { id: 60,  tema: 'Guía',       ref: 'Salmos 32:8',           texto: 'Yo te instruiré, yo te mostraré el camino que debes seguir; yo te daré consejos y velaré por ti.' },
+  { id: 61,  tema: 'Guía',       ref: 'Isaías 30:21',          texto: 'Ya sea que te desvíes a la derecha o a la izquierda, tus oídos percibirán a tus espaldas una voz que te dirá: «Este es el camino; síguelo».' },
+  { id: 62,  tema: 'Guía',       ref: 'Salmos 119:105',        texto: 'Tu palabra es una lámpara a mis pies; es una luz en mi sendero.' },
+  { id: 63,  tema: 'Propósito',  ref: 'Proverbios 16:3',       texto: 'Pon en manos del Señor todas tus obras, y tus proyectos se cumplirán.' },
+  { id: 64,  tema: 'Guía',       ref: 'Proverbios 16:9',       texto: 'El corazón del hombre traza su rumbo, pero sus pasos los dirige el Señor.' },
+  { id: 65,  tema: 'Alegría',    ref: 'Salmos 16:11',          texto: 'Me darás a conocer la senda de la vida; me llenarás de alegría en tu presencia, y de dicha eterna a tu derecha.' },
+  { id: 66,  tema: 'Alegría',    ref: 'Nehemías 8:10',         texto: 'No estén tristes, pues el gozo del Señor es nuestra fortaleza.' },
+  { id: 67,  tema: 'Alegría',    ref: 'Salmos 118:24',         texto: 'Este es el día que hizo el Señor; nos gozaremos y alegraremos en él.' },
+  { id: 68,  tema: 'Esperanza',  ref: 'Romanos 15:13',         texto: 'Que el Dios de la esperanza los llene de toda alegría y paz a ustedes que creen en él, para que rebosen de esperanza por el poder del Espíritu Santo.' },
+  { id: 69,  tema: 'Esperanza',  ref: 'Salmos 30:5',           texto: 'Porque solo un instante dura su enojo, pero toda una vida su bondad. Si por la noche hay llanto, por la mañana habrá gritos de alegría.' },
+  { id: 70,  tema: 'Esperanza',  ref: 'Apocalipsis 21:4',      texto: 'Él les enjugará toda lágrima de los ojos. Ya no habrá muerte, ni llanto, ni lamento ni dolor, porque las primeras cosas han dejado de existir.' },
+  { id: 71,  tema: 'Sanidad',    ref: 'Salmos 147:3',          texto: 'Restaura a los de corazón quebrantado y cubre con vendas sus heridas.' },
+  { id: 72,  tema: 'Renovación', ref: '2 Corintios 4:16',      texto: 'Por tanto, no nos desanimamos. Al contrario, aunque por fuera nos vamos desgastando, por dentro nos vamos renovando día tras día.' },
+  { id: 73,  tema: 'Fortaleza',  ref: '2 Corintios 4:8–9',     texto: 'Nos vemos atribulados en todo, pero no abatidos; perplejos, pero no desesperados; perseguidos, pero no abandonados; derribados, pero no destruidos.' },
+  { id: 74,  tema: 'Renovación', ref: 'Romanos 12:2',          texto: 'No se amolden al mundo actual, sino sean transformados mediante la renovación de su mente. Así podrán comprobar cuál es la voluntad de Dios, buena, agradable y perfecta.' },
+  { id: 75,  tema: 'Perseverancia', ref: 'Romanos 12:12',      texto: 'Alégrense en la esperanza, muestren paciencia en el sufrimiento, perseveren en la oración.' },
+  { id: 76,  tema: 'Gratitud',   ref: '1 Tesalonicenses 5:16–18', texto: 'Estén siempre alegres, oren sin cesar, den gracias a Dios en toda situación, porque esta es su voluntad para ustedes en Cristo Jesús.' },
+  { id: 77,  tema: 'Gratitud',   ref: 'Salmos 100:4–5',        texto: 'Entren por sus puertas con acción de gracias; vengan a sus atrios con himnos de alabanza; denle gracias, alaben su nombre. Porque el Señor es bueno y su gran amor es eterno; su fidelidad permanece para siempre.' },
+  { id: 78,  tema: 'Gratitud',   ref: 'Salmos 103:2–4',        texto: 'Alaba, alma mía, al Señor, y no olvides ninguno de sus beneficios. Él perdona todos tus pecados y sana todas tus dolencias; él rescata tu vida del sepulcro y te cubre de amor y compasión.' },
+  { id: 79,  tema: 'Propósito',  ref: 'Colosenses 3:23',       texto: 'Hagan lo que hagan, trabajen de buena gana, como para el Señor y no como para nadie en este mundo.' },
+  { id: 80,  tema: 'Propósito',  ref: 'Miqueas 6:8',           texto: '¡Ya se te ha declarado lo que es bueno! Ya se te ha dicho lo que de ti espera el Señor: practicar la justicia, amar la misericordia, y humillarte ante tu Dios.' },
+  { id: 81,  tema: 'Propósito',  ref: 'Mateo 5:16',            texto: 'Hagan brillar su luz delante de todos, para que ellos puedan ver las buenas obras de ustedes y alaben al Padre que está en el cielo.' },
+  { id: 82,  tema: 'Permanecer', ref: 'Juan 15:5',             texto: 'Yo soy la vid y ustedes son las ramas. El que permanece en mí, como yo en él, dará mucho fruto; separados de mí no pueden ustedes hacer nada.' },
+  { id: 83,  tema: 'Luz',        ref: 'Juan 8:12',             texto: 'Yo soy la luz del mundo. El que me sigue no andará en tinieblas, sino que tendrá la luz de la vida.' },
+  { id: 84,  tema: 'Paz',        ref: 'Juan 16:33',            texto: 'Yo les he dicho estas cosas para que en mí hallen paz. En este mundo afrontarán aflicciones, pero ¡anímense! Yo he vencido al mundo.' },
+  { id: 85,  tema: 'Vida',       ref: 'Juan 10:10',            texto: 'Yo he venido para que tengan vida, y la tengan en abundancia.' },
+  { id: 86,  tema: 'Presencia',  ref: 'Mateo 28:20',           texto: 'Y les aseguro que estaré con ustedes siempre, hasta el fin del mundo.' },
+  { id: 87,  tema: 'Refugio',    ref: 'Salmos 18:2',           texto: 'El Señor es mi roca, mi amparo, mi libertador; es mi Dios, el peñasco en que me refugio. Es mi escudo, el poder que me salva, ¡mi más alto escondite!' },
+  { id: 88,  tema: 'Fortaleza',  ref: 'Salmos 28:7',           texto: 'El Señor es mi fuerza y mi escudo; mi corazón en él confía; de él recibo ayuda. Mi corazón salta de alegría, y con cánticos le daré gracias.' },
+  { id: 89,  tema: 'Fortaleza',  ref: 'Salmos 73:26',          texto: 'Podrán desfallecer mi cuerpo y mi espíritu, pero Dios fortalece mi corazón; él es mi herencia eterna.' },
+  { id: 90,  tema: 'Fortaleza',  ref: 'Isaías 40:29',          texto: 'Él fortalece al cansado y acrecienta las fuerzas del débil.' },
+  { id: 91,  tema: 'Esperanza',  ref: 'Salmos 42:11',          texto: '¿Por qué voy a inquietarme? ¿Por qué me voy a angustiar? En Dios pondré mi esperanza, y todavía lo alabaré. ¡Él es mi Salvador y mi Dios!' },
+  { id: 92,  tema: 'Descanso',   ref: 'Salmos 4:8',            texto: 'En paz me acuesto y me duermo, porque solo tú, Señor, me haces vivir confiado.' },
+  { id: 93,  tema: 'Corazón',    ref: 'Proverbios 4:23',       texto: 'Por sobre todas las cosas cuida tu corazón, porque de él mana la vida.' },
+  { id: 94,  tema: 'Pensamientos', ref: 'Filipenses 4:8',      texto: 'Consideren bien todo lo verdadero, todo lo respetable, todo lo justo, todo lo puro, todo lo amable, todo lo digno de admiración, en fin, todo lo que sea excelente o merezca elogio.' },
+  { id: 95,  tema: 'Alegría',    ref: 'Proverbios 17:22',      texto: 'Gran remedio es el corazón alegre, pero el ánimo decaído seca los huesos.' },
+  { id: 96,  tema: 'Carácter',   ref: 'Gálatas 5:22–23',       texto: 'En cambio, el fruto del Espíritu es amor, alegría, paz, paciencia, amabilidad, bondad, fidelidad, humildad y dominio propio. No hay ley que condene estas cosas.' },
+  { id: 97,  tema: 'Esperanza',  ref: 'Efesios 3:20',          texto: 'Y a Aquel que es poderoso para hacer todas las cosas mucho más abundantemente de lo que pedimos o entendemos, según el poder que actúa en nosotros.' },
+  { id: 98,  tema: 'Fe',         ref: 'Hebreos 11:1',          texto: 'Ahora bien, la fe es la garantía de lo que se espera, la certeza de lo que no se ve.' },
+  { id: 99,  tema: 'Fe',         ref: 'Marcos 9:23',           texto: 'Para el que cree, todo es posible.' },
+  { id: 100, tema: 'Oración',    ref: 'Mateo 7:7',             texto: 'Pidan, y se les dará; busquen, y encontrarán; llamen, y se les abrirá.' },
+  { id: 101, tema: 'Oración',    ref: 'Jeremías 33:3',         texto: 'Clama a mí y te responderé, y te daré a conocer cosas grandes y ocultas que tú no sabes.' },
+  { id: 102, tema: 'Oración',    ref: 'Salmos 145:18',         texto: 'El Señor está cerca de quienes lo invocan, de quienes lo invocan en verdad.' },
+  { id: 103, tema: 'Cercanía',   ref: 'Santiago 4:8',          texto: 'Acérquense a Dios, y él se acercará a ustedes.' },
+  { id: 104, tema: 'Ayuda',      ref: 'Isaías 41:13',          texto: 'Porque yo soy el Señor, tu Dios, que sostiene tu mano derecha; yo soy quien te dice: «No temas, yo te ayudaré».' },
+  { id: 105, tema: 'Guía',       ref: 'Salmos 37:23–24',       texto: 'El Señor afirma los pasos del hombre cuando le agrada su modo de vivir; podrá tropezar, pero no caerá, porque el Señor lo sostiene de la mano.' },
+  { id: 106, tema: 'Propósito',  ref: 'Salmos 138:8',          texto: 'El Señor cumplirá en mí su propósito. Tu gran amor, Señor, perdura para siempre; ¡no abandones la obra de tus manos!' },
+  { id: 107, tema: 'Amor',       ref: '1 Juan 4:18',           texto: 'En el amor no hay temor, sino que el amor perfecto echa fuera el temor.' },
+  { id: 108, tema: 'Identidad',  ref: '1 Juan 3:1',            texto: '¡Fíjense qué gran amor nos ha dado el Padre, que se nos llame hijos de Dios! ¡Y lo somos!' },
+  { id: 109, tema: 'Bendición',  ref: 'Números 6:24–26',       texto: 'El Señor te bendiga y te guarde; el Señor te mire con agrado y te extienda su amor; el Señor te muestre su favor y te conceda la paz.' },
+  { id: 110, tema: 'Renovación', ref: 'Salmos 51:10',          texto: 'Crea en mí, oh Dios, un corazón limpio, y renueva la firmeza de mi espíritu.' },
+  { id: 111, tema: 'Identidad',  ref: 'Proverbios 31:25',      texto: 'Se reviste de fuerza y dignidad, y afronta segura el porvenir.' },
+  { id: 112, tema: 'Fe',         ref: 'Lucas 1:45',            texto: '¡Dichosa tú que has creído, porque lo que el Señor te ha dicho se cumplirá!' },
+  { id: 113, tema: 'Fe',         ref: 'Lucas 1:37',            texto: 'Porque para Dios no hay nada imposible.' },
+  { id: 114, tema: 'Libertad',   ref: 'Salmos 34:4–5',         texto: 'Busqué al Señor, y él me respondió; me libró de todos mis temores. Radiantes están los que a él acuden; jamás su rostro se cubre de vergüenza.' },
+  { id: 115, tema: 'Bondad',     ref: 'Salmos 34:8',           texto: 'Prueben y vean que el Señor es bueno; dichosos los que en él se refugian.' },
+  { id: 116, tema: 'Provisión',  ref: 'Mateo 6:26',            texto: 'Fíjense en las aves del cielo: no siembran ni cosechan ni almacenan en graneros; sin embargo, el Padre celestial las alimenta. ¿No valen ustedes mucho más que ellas?' },
+  { id: 117, tema: 'Provisión',  ref: 'Filipenses 4:19',       texto: 'Así que mi Dios les proveerá de todo lo que necesiten, conforme a las gloriosas riquezas que tiene en Cristo Jesús.' },
+  { id: 118, tema: 'Esperanza',  ref: 'Salmos 27:14',          texto: 'Pon tu esperanza en el Señor; ten valor, cobra ánimo; ¡pon tu esperanza en el Señor!' },
+  { id: 119, tema: 'Amor',       ref: 'Juan 13:34',            texto: 'Este mandamiento nuevo les doy: que se amen los unos a los otros. Así como yo los he amado, también ustedes deben amarse los unos a los otros.' },
+  { id: 120, tema: 'Consuelo',   ref: 'Mateo 5:4',             texto: 'Dichosos los que lloran, porque serán consolados.' }
+];
+
+const TOTAL_DIAS = 40;
 
 function getState(){try{const s=localStorage.getItem('midiario_state');return s?JSON.parse(s):{completados:[],diarios:{}};}catch(e){return{completados:[],diarios:{}};}}
 function saveState(s){try{localStorage.setItem('midiario_state',JSON.stringify(s));}catch(e){}}
@@ -2215,17 +3277,20 @@ function saveState(s){try{localStorage.setItem('midiario_state',JSON.stringify(s
 let currentDay=1, isPlaying=false, playInterval, waveProgress=0;
 
 function showScreen(id){
+  if (typeof flushAutosave === 'function') flushAutosave();
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   window.scrollTo(0,0);
 }
 
 function showMenu(){
+  flushAutosave();
   updateProfileUI();
   showScreen('screen-menu');
 }
 
 function showDays(){
+  flushAutosave();
   updateDaysScreen();
   // Personal greeting on days screen
   const name = getName();
@@ -2233,8 +3298,15 @@ function showDays(){
   if (grEl && name) {
     const state = getState();
     const nextDay = state.completados.length > 0 ? Math.max(...state.completados) + 1 : 1;
-    const day = Math.min(nextDay, 30);
-    grEl.innerHTML = '<em>' + name + '</em>, continuemos con el día ' + day + ' 🌿';
+    grEl.innerHTML = nextDay > TOTAL_DIAS
+      ? '<em>' + name + '</em>, completaste los ' + TOTAL_DIAS + ' días 💗'
+      : '<em>' + name + '</em>, continuemos con el día ' + nextDay + ' 🌿';
+  }
+  const cb = document.getElementById('days-continuar');
+  if (cb) {
+    const n = siguienteDia();
+    cb.style.display = n ? '' : 'none';
+    cb.textContent = n && bloqueadoPorRitmo(n) ? 'Día ' + n + ' se abre mañana 🌙' : 'Continuar con el día ' + n + ' →';
   }
   showScreen('screen-days');
 }
@@ -2274,6 +3346,7 @@ function updateProfileUI() {
   // Welcome screen tagline
   const greetEl = document.getElementById('welcome-greeting');
   if (greetEl) greetEl.textContent = '"Hola ' + name + '. Aquí estoy Contigo. Siempre."';
+  actualizarContinuar();
 }
 
 function saveName() {
@@ -2326,6 +3399,10 @@ const bonosData = {
     titulo: 'Oraciones para Momentos Difíciles',
     url: 'https://saraaranda-crypto.github.io/Contigo/Oraciones%20para%20momentos%20dificiles.pdf'
   },
+  pdf3: {
+    titulo: 'Mi Diario Devocional',
+    url: 'https://saraaranda-crypto.github.io/Contigo/Mi%20diario%20devocional.pdf'
+  },
   fondos: {
     titulo: 'Fondos de Pantalla',
     total: 15,
@@ -2361,7 +3438,7 @@ function showBono(type) {
   document.getElementById('bono-nav-title').textContent = data.titulo;
   const container = document.getElementById('bono-content');
 
-  if (type === 'pdf1' || type === 'pdf2') {
+  if (type === 'pdf1' || type === 'pdf2' || type === 'pdf3') {
     window.open(data.url, '_blank');
     showBonos();
     return;
@@ -2514,7 +3591,7 @@ function updateDaysScreen(){
   document.getElementById('progress-fill').style.width=pct+'%';
   document.getElementById('progress-text').textContent=done+' de '+TOTAL_DIAS+' completados';
   document.getElementById('progress-pct').textContent=pct+'%';
-  const streak=calcStreak(state.completados);
+  const streak=calcRacha(state);
   document.getElementById('streak-badge').textContent='🔥 '+streak+(streak===1?' día':' días');
   const grid=document.getElementById('days-grid');
   grid.innerHTML='';
@@ -2526,6 +3603,8 @@ function updateDaysScreen(){
 
     if(state.completados.includes(d)){
       status='done'; progress=1;
+    } else if(d===maxAv && dayData && bloqueadoPorRitmo(d)){
+      status='locked manana'; progress=0;
     } else if(d===maxAv && dayData){
       status='today'; progress=getDayProgress(state,d);
     } else if(d<maxAv && dayData){
@@ -2535,7 +3614,9 @@ function updateDaysScreen(){
     }
 
     const pill = buildArcPill(d, progress, status);
-    if(status !== 'locked'){
+    if(status === 'locked manana'){
+      pill.onclick = () => showToast('Tu día ' + d + ' se abre mañana 🌙');
+    } else if(status !== 'locked'){
       pill.onclick = () => showDevotional(d);
     }
     grid.appendChild(pill);
@@ -2546,6 +3627,7 @@ function calcStreak(c){if(!c.length)return 0;const s=[...c].sort((a,b)=>b-a);let
 
 // ── DEVOCIONAL ──
 function showDevotional(dayNum){
+  flushAutosave();
   const data=dias.find(x=>x.dia===dayNum);
   if(!data){showToast('Este día aún no está disponible');return;}
   currentDay=dayNum;
@@ -2566,28 +3648,42 @@ function showDevotional(dayNum){
       <audio id="audio-el" src="${audios[dayNum]}" preload="none" style="display:none"></audio>
       <div class="audio-waveform" id="waveform"></div>
       <div class="audio-controls">
+        <button class="skip-btn" onclick="skipAudio(-15)" aria-label="Retroceder 15 segundos">↺ 15</button>
         <button class="play-btn" onclick="togglePlay()"><svg id="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+        <button class="skip-btn" onclick="skipAudio(15)" aria-label="Adelantar 15 segundos">15 ↻</button>
         <div class="audio-time" id="audio-time">0:00</div>
-        <div style="margin-left:auto;font-size:.6rem;color:rgba(255,255,255,.5);" id="audio-duration">--:--</div>
+        <button class="skip-btn speed-btn" id="speed-btn" onclick="cycleSpeed()" aria-label="Velocidad">1x</button>
+        <div style="font-size:.6rem;color:rgba(255,255,255,.5);" id="audio-duration">--:--</div>
       </div>
     </div>` : `
     <div class="audio-player">
       <div class="audio-top"><span class="audio-label-badge">Audio del día</span><span class="audio-title-text">${data.titulo}</span></div>
       <div style="text-align:center;padding:.75rem 0;font-size:.75rem;color:rgba(255,255,255,.4);font-style:italic;">Audio próximamente</div>
     </div>`}
-    <div class="dev-verse"><p>${data.versiculo}</p><cite>— ${data.referencia}</cite></div>
+    <div class="dev-verse">${favBtnHtml(dayNum,1)}<p>${data.versiculo}</p><cite>— ${data.referencia}</cite></div>
     <div class="share-verse-wrap">
       <button class="share-verse-btn story" onclick="generarTarjeta('story',${dayNum})">📱 Story</button>
       <button class="share-verse-btn post"  onclick="generarTarjeta('post',${dayNum})">🟥 Post</button>
     </div>
     <div class="dev-reflexion-label">Reflexión</div>
     <div class="dev-body">${parrafos}</div>
+    ${data.ejercicio ? `
+    <div class="dev-ejercicio">
+      <div class="dev-ejercicio-label">🕊️ Ejercicio espiritual</div>
+      <p>${data.ejercicio}</p>
+    </div>` : ''}
+    ${data.frase ? `
+    <div class="dev-frase">
+      <div class="dev-frase-label">🌸 Frase para el día</div>
+      <p>“${data.frase}”</p>
+    </div>` : ''}
     <div class="dev-verse-extra">
       <div class="dev-verse-extra-label">✦ También para meditar</div>
-      <p>${data.versiculo2}</p><cite>— ${data.referencia2}</cite>
+      <p>${data.versiculo2}</p><cite>— ${data.referencia2}</cite>${favBtnHtml(dayNum,2,'fav-mini')}
+      ${data.versiculo3 ? `<p style="margin-top:.9rem">${data.versiculo3}</p><cite>— ${data.referencia3}</cite>${favBtnHtml(dayNum,3,'fav-mini')}` : ''}
     </div>
     <div class="journal-section">
-      <div class="journal-header"><div class="journal-icon">✍️</div><div class="journal-label">Tu diario de hoy</div></div>
+      <div class="journal-header"><div class="journal-icon">✍️</div><div class="journal-label">Tu diario de hoy</div><div class="autosave-ind" id="autosave-ind">Se guarda solo</div></div>
       <div class="journal-field">
         <label>Pregunta de reflexión</label>
         <div style="font-family:'Playfair Display',serif;font-style:italic;color:var(--dark);font-size:.95rem;margin-bottom:.5rem;line-height:1.5;">${data.pregunta}</div>
@@ -2603,6 +3699,7 @@ function showDevotional(dayNum){
       ${isDone?'✓ Día completado — ¡Bien hecho!':'✓ Marcar día como completado'}
     </button>`;
   buildWaveform();
+  setupAudio(dayNum);
   showScreen('screen-devotional');
 }
 
@@ -2610,49 +3707,22 @@ function buildWaveform(){const wf=document.getElementById('waveform');if(!wf)ret
 
 function togglePlay() {
   const audio = document.getElementById('audio-el');
-  const icon  = document.getElementById('play-icon');
-  if (!audio || !icon) return;
-
-  if (isPlaying) {
-    audio.pause();
-    isPlaying = false;
-    icon.innerHTML = '<path d="M8 5v14l11-7z"/>';
-  } else {
+  if (!audio) return;
+  if (audio.paused) {
+    audio.playbackRate = getPrefs().velocidad || 1;
     audio.play().catch(() => showToast('No se pudo cargar el audio'));
-    isPlaying = true;
-    icon.innerHTML = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
-
-    audio.onloadedmetadata = () => {
-      const m = Math.floor(audio.duration / 60);
-      const s = Math.floor(audio.duration % 60);
-      const d = document.getElementById('audio-duration');
-      if (d) d.textContent = m + ':' + s.toString().padStart(2, '0');
-    };
-
-    audio.ontimeupdate = () => {
-      const pct = audio.duration ? (audio.currentTime / audio.duration) * 100 : 0;
-      const filled = Math.floor(pct * 0.4);
-      for (let i = 0; i < 40; i++) {
-        const b = document.getElementById('bar-' + i);
-        if (b) b.className = 'wave-bar' + (i < filled ? ' played' : '');
-      }
-      const m = Math.floor(audio.currentTime / 60);
-      const s = Math.floor(audio.currentTime % 60);
-      const t = document.getElementById('audio-time');
-      if (t) t.textContent = m + ':' + s.toString().padStart(2, '0');
-    };
-
-    audio.onended = () => {
-      isPlaying = false;
-      icon.innerHTML = '<path d="M8 5v14l11-7z"/>';
-    };
+  } else {
+    audio.pause();
   }
 }
 
-function saveJournal(){
+function saveJournal(silent){
+  if(!document.getElementById('j-reflexion')) return;
   const state=getState();
   state.diarios[currentDay]={reflexion:document.getElementById('j-reflexion')?.value||'',aprendido:document.getElementById('j-aprendido')?.value||'',oracion:document.getElementById('j-oracion')?.value||'',gratitud:document.getElementById('j-gratitud')?.value||'',peticiones:document.getElementById('j-peticiones')?.value||''};
+  if(Object.values(state.diarios[currentDay]).some(v=>v.trim())) marcarActividad(state);
   saveState(state);
+  if(silent===true) return;
   const btn=document.getElementById('journal-save-btn');
   if(btn){btn.textContent='✓ Reflexión guardada';btn.classList.add('saved');}
   showToast('Tu reflexión fue guardada 🌸');
@@ -2660,20 +3730,29 @@ function saveJournal(){
 }
 
 function completeDay(){
+  clearTimeout(_autoT); _autoT=null; saveJournal(true);
   const state=getState();
-  if(!state.completados.includes(currentDay)){state.completados.push(currentDay);saveState(state);}
+  if(!state.completados.includes(currentDay)){
+    state.completados.push(currentDay);
+    state.fechas=state.fechas||{}; state.fechas[currentDay]=hoyISO();
+    marcarActividad(state);
+    saveState(state);
+  }
   const btn=document.getElementById('complete-btn');
   if(btn){btn.textContent='✓ Día completado — ¡Bien hecho!';btn.classList.add('already-done');btn.onclick=null;}
   document.getElementById('dev-done-indicator').style.display='flex';
 
-  if(currentDay === 30){
-    // Show special day 30 screen
+  if(currentDay === TOTAL_DIAS){
+    // Pantalla especial del último día
     setTimeout(() => showDay30Screen(), 600);
   } else {
     launchConfetti();
     const data=dias.find(x=>x.dia===currentDay);
     document.getElementById('celeb-day-label').textContent='Día '+currentDay+' · '+data.titulo;
-    document.getElementById('celeb-verse').textContent=data.versiculo.replace(/"/g,'');
+    const hito=HITOS[currentDay];
+    document.getElementById('celeb-title').textContent=hito?hito.t:'¡Día completado!';
+    document.getElementById('celeb-verse').textContent=hito?hito.m:data.versiculo.replace(/"/g,'');
+    if(hito) setTimeout(launchConfetti,700);
     document.getElementById('celebration').classList.add('show');
   }
 }
@@ -2893,7 +3972,7 @@ function saveDay30Reflexion(){
 
 function shareDay30(){
   const name = getName();
-  const text = (name ? name + ' completó ' : 'Completé ') + '30 días de devocional. "30 días eligiendo aparecer. 30 encuentros con Dios. Un camino que cambió mi corazón." 💗 Mi Diario Devocional';
+  const text = (name ? name + ' completó ' : 'Completé ') + '40 días de devocional. "40 días eligiendo aparecer. 40 encuentros con Dios. Un camino que cambió mi corazón." 💗 Mi Diario Devocional';
   if(navigator.share){
     navigator.share({ text }).catch(()=>{});
   } else {
@@ -2923,6 +4002,7 @@ function launchDay30Confetti(){
 let _shareCanvas = null;
 let _pendingDay  = null;
 let _pendingTipo = null;
+let _pendingVerse = null;
 
 async function loadPlayfair() {
   try {
@@ -2972,6 +4052,7 @@ function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
 
 // ── STEP 1: show format selector ──
 function generarTarjeta(tipo, dayNum) {
+  _pendingVerse = null;
   _pendingDay  = dayNum;
   _pendingTipo = tipo;
   // Show format picker inside modal
@@ -2984,9 +4065,12 @@ function generarTarjeta(tipo, dayNum) {
 
 // ── STEP 2: draw tarjeta with Canvas-generated background ──
 async function buildTarjeta(fmt) {
-  const dayNum = _pendingDay;
-  const data   = dias.find(d => d.dia === dayNum);
-  if (!data) return;
+  let src = _pendingVerse;
+  if (!src) {
+    const data = dias.find(d => d.dia === _pendingDay);
+    if (!data) return;
+    src = { texto: data.versiculo, ref: data.referencia, eyebrow: 'DÍA ' + _pendingDay + '  ·  MI DIARIO DEVOCIONAL' };
+  }
 
   _pendingTipo = fmt;
   document.getElementById('canvas-format-pick').style.display  = 'none';
@@ -3057,11 +4141,36 @@ async function buildTarjeta(fmt) {
   ctx.fillStyle = 'rgba(0,0,0,0.50)';
   ctx.fillRect(0, 0, W, H);
 
-  // ── FROSTED CARD (centered) ──
-  const cardW  = W * 0.82;
-  const cardH  = isStory ? H * 0.52 : H * 0.70;
-  const cardX  = (W - cardW) / 2;
-  const cardY  = (H - cardH) / 2;
+  // ── LAYOUT ADAPTABLE (versículos cortos o largos) ──
+  const cx    = W / 2;
+  const cardW = W * 0.84;
+  const maxTW = cardW * 0.80;
+  const raw   = src.texto.replace(/[“”„‟"]/g, '').trim();
+  const S = v => isStory ? v[0] : v[1];
+  const padTop = S([90, 56]), heartR = S([52, 42]);
+  const fixedH = padTop + heartR * 2 + S([52, 38]) + S([46, 34]) + S([66, 48]) +
+                 S([28, 20]) + S([60, 45]) + S([42, 32]) + S([34, 26]) + S([70, 44]) + S([22, 16]);
+  const partir = (txt) => {
+    const out = []; let ln = '';
+    txt.split(' ').forEach(w => {
+      const t = ln ? ln + ' ' + w : w;
+      if (ctx.measureText(t).width > maxTW && ln) { out.push(ln); ln = w; } else ln = t;
+    });
+    if (ln) out.push(ln);
+    return out;
+  };
+  const maxCardH = S([H * 0.80, H * 0.92]);
+  let fsize = S([62, 46]), lns, lineH;
+  while (true) {
+    ctx.font = `italic ${fsize}px Georgia, serif`;
+    lns = partir(raw); lineH = fsize * 1.5;
+    if (fixedH + lns.length * lineH <= maxCardH || fsize <= S([36, 26])) break;
+    fsize -= 2;
+  }
+  const contentH = fixedH + lns.length * lineH;
+  const cardH = Math.max(S([H * 0.52, H * 0.70]), contentH);
+  const cardX = (W - cardW) / 2;
+  const cardY = (H - cardH) / 2;
   const radius = 48;
   ctx.save();
   ctx.beginPath();
@@ -3078,25 +4187,19 @@ async function buildTarjeta(fmt) {
   ctx.stroke();
   ctx.restore();
 
-  // ── LAYOUT: strictly top-to-bottom, y tracks current position ──
-  const cx = W / 2;
-  let   y  = cardY + (isStory ? 90 : 60);   // start inside card with padding
+  let y = cardY + padTop + (cardH - contentH) / 2;
 
-  // 1. HEART ICON (centered, drawn cleanly)
-  const heartR = isStory ? 52 : 42;          // radius of circle bg
-  const heartCY = y + heartR;                // center of heart circle
-
-  // Pink circle background
+  // 1. CORAZÓN
+  const heartCY = y + heartR;
   ctx.beginPath();
   ctx.arc(cx, heartCY, heartR, 0, Math.PI * 2);
   ctx.fillStyle = 'rgba(253,212,227,0.95)';
   ctx.fill();
-
-  // Heart shape — drawn relative to its own center
-  const hSize = heartR * 1.1;
+  const hSize = heartR * 0.8;
   ctx.save();
   ctx.translate(cx, heartCY);
   ctx.scale(hSize / 22, hSize / 22);
+  ctx.translate(0, -13);
   ctx.beginPath();
   ctx.moveTo(0, 8);
   ctx.bezierCurveTo(0, 4,   -4.5, 0, -9, 0);
@@ -3108,65 +4211,53 @@ async function buildTarjeta(fmt) {
   ctx.fillStyle = '#FE7AC6';
   ctx.fill();
   ctx.restore();
+  y = heartCY + heartR + S([52, 38]);
 
-  y = heartCY + heartR + (isStory ? 52 : 38);  // move y BELOW the heart circle
-
-  // 2. EYEBROW TEXT
+  // 2. TÍTULO PEQUEÑO
   ctx.textBaseline = 'alphabetic';
   ctx.textAlign    = 'center';
-  ctx.font         = `600 ${isStory ? 34 : 27}px Nunito, sans-serif`;
-  ctx.fillStyle    = 'rgba(255,255,255,0.78)';
-  ctx.fillText('DÍA ' + dayNum + '  ·  MI DIARIO DEVOCIONAL', cx, y);
-  y += isStory ? 46 : 34;
+  let eyeSize = S([34, 27]);
+  ctx.font = `600 ${eyeSize}px Nunito, sans-serif`;
+  while (ctx.measureText(src.eyebrow).width > cardW * 0.9 && eyeSize > 18) { eyeSize -= 1; ctx.font = `600 ${eyeSize}px Nunito, sans-serif`; }
+  ctx.fillStyle = 'rgba(255,255,255,0.78)';
+  ctx.fillText(src.eyebrow, cx, y);
+  y += S([46, 34]);
 
-  // 3. PINK DIVIDER
+  // 3. LÍNEA ROSADA
   ctx.strokeStyle = 'rgba(254,122,198,0.95)';
-  ctx.lineWidth   = isStory ? 3 : 2;
+  ctx.lineWidth   = S([3, 2]);
   ctx.beginPath();
   ctx.moveTo(cx - W * 0.14, y);
   ctx.lineTo(cx + W * 0.14, y);
   ctx.stroke();
-  y += isStory ? 66 : 48;
+  y += S([66, 48]) + fsize * 0.35;
 
-  // 4. VERSE TEXT (wrapped)
-  const fsize  = isStory ? 62 : 46;
-  const lineH  = fsize * 1.55;
-  const maxTW  = cardW * 0.82;
+  // 4. VERSÍCULO
   ctx.font        = `italic ${fsize}px Georgia, serif`;
   ctx.fillStyle   = '#ffffff';
   ctx.shadowColor = 'rgba(0,0,0,0.85)';
   ctx.shadowBlur  = 18;
-
-  const raw = data.versiculo.replace(/[“”„‟"""'']/g, '').trim();
-  const wds = raw.split(' ');
-  let ln = '', lns = [];
-  wds.forEach((w, i) => {
-    const t = ln + w + ' ';
-    if (ctx.measureText(t).width > maxTW && ln) { lns.push(ln.trim()); ln = w + ' '; }
-    else ln = t;
-    if (i === wds.length - 1) lns.push(ln.trim());
-  });
   lns.forEach(l => { ctx.fillText(l, cx, y); y += lineH; });
   ctx.shadowBlur = 0;
-  y += isStory ? 28 : 20;
+  y += S([28, 20]);
 
-  // 5. REFERENCE
-  ctx.font      = `700 ${isStory ? 38 : 29}px Nunito, sans-serif`;
+  // 5. CITA
+  ctx.font      = `700 ${S([38, 29])}px Nunito, sans-serif`;
   ctx.fillStyle = '#FDD4E3';
-  ctx.fillText('— ' + data.referencia, cx, y);
-  y += isStory ? 60 : 45;
+  ctx.fillText('— ' + src.ref, cx, y);
+  y += S([60, 45]);
 
-  // 6. BOTTOM RULE
+  // 6. LÍNEA INFERIOR
   ctx.strokeStyle = 'rgba(255,255,255,0.22)';
   ctx.lineWidth   = 1.5;
   ctx.beginPath();
   ctx.moveTo(cx - W * 0.2, y);
   ctx.lineTo(cx + W * 0.2, y);
   ctx.stroke();
-  y += isStory ? 42 : 32;
+  y += S([42, 32]);
 
-  // 7. FOOTER
-  ctx.font      = `italic ${isStory ? 32 : 25}px Georgia, serif`;
+  // 7. FIRMA
+  ctx.font      = `italic ${S([32, 25])}px Georgia, serif`;
   ctx.fillStyle = 'rgba(255,255,255,0.52)';
   ctx.fillText('Mi Diario Devocional  ♥', cx, y);
 
@@ -3224,6 +4315,534 @@ function closeCanvasModal() {
 function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2800);}
 
 updateDaysScreen();
+
+
+// ══════════════════════════════════════════════════════════
+//  MEJORAS v2 — continuar, lectura, audio, hitos, constancia,
+//  favoritos, diario completo, autoguardado, respaldo, app
+// ══════════════════════════════════════════════════════════
+
+function hoyISO(d){ d = d || new Date(); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
+function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function getPrefs(){ try{ return JSON.parse(localStorage.getItem('midiario_prefs')) || {}; }catch(e){ return {}; } }
+function savePrefs(p){ try{ localStorage.setItem('midiario_prefs', JSON.stringify(p)); }catch(e){} }
+function marcarActividad(state){
+  state.actividad = state.actividad || [];
+  const h = hoyISO();
+  if (!state.actividad.includes(h)) state.actividad.push(h);
+}
+function fechasActivas(state){
+  const set = new Set(state.actividad || []);
+  Object.values(state.fechas || {}).forEach(f => set.add(f));
+  return set;
+}
+
+// ── Siguiente día / Continuar ──
+function siguienteDia(){
+  const s = getState();
+  const n = s.completados.length ? Math.max(...s.completados) + 1 : 1;
+  return n > TOTAL_DIAS ? null : n;
+}
+function bloqueadoPorRitmo(d){
+  if (!getPrefs().ritmo || d <= 1) return false;
+  const s = getState();
+  return (s.fechas || {})[d-1] === hoyISO();
+}
+function continuarDia(){
+  const n = siguienteDia();
+  if (!n) { showMiDiario(); return; }
+  if (bloqueadoPorRitmo(n)) { showToast('Tu día ' + n + ' se abre mañana 🌙'); showDays(); return; }
+  showDevotional(n);
+}
+function actualizarContinuar(){
+  const t = document.getElementById('continuar-title');
+  if (!t) return;
+  const n = siguienteDia();
+  const e = document.getElementById('continuar-eyebrow');
+  const sub = document.getElementById('continuar-sub');
+  if (!n) {
+    e.textContent = 'Completaste los ' + TOTAL_DIAS + ' días 💗';
+    t.textContent = 'Revive tu camino';
+    sub.textContent = 'Ver mi diario completo →';
+    return;
+  }
+  const data = dias.find(x => x.dia === n);
+  e.textContent = n === 1 ? 'Comienza tu camino' : 'Tu encuentro de hoy';
+  t.textContent = 'Día ' + n + (data ? ' · ' + data.titulo : '');
+  sub.textContent = bloqueadoPorRitmo(n) ? 'Se abre mañana 🌙' : 'Toca para continuar →';
+}
+
+// ── Autoguardado del diario ──
+var _autoT = null;
+function flushAutosave(){
+  if (_autoT) { clearTimeout(_autoT); _autoT = null; saveJournal(true); }
+}
+document.addEventListener('input', function(e){
+  const el = e.target;
+  if (el.classList && el.classList.contains('journal-textarea')) {
+    const ind = document.getElementById('autosave-ind');
+    if (ind) ind.textContent = 'Guardando…';
+    clearTimeout(_autoT);
+    _autoT = setTimeout(function(){
+      _autoT = null;
+      saveJournal(true);
+      const i2 = document.getElementById('autosave-ind');
+      if (i2) i2.textContent = 'Guardado ✓';
+    }, 700);
+  } else if (el.id === 'day30-reflexion') {
+    clearTimeout(window._autoT40);
+    window._autoT40 = setTimeout(function(){
+      const st = getState(); st.day30reflexion = el.value; saveState(st);
+    }, 700);
+  }
+});
+document.addEventListener('visibilitychange', function(){ if (document.hidden) flushAutosave(); });
+
+// ── Preferencias de lectura ──
+function aplicarPrefs(){
+  const p = getPrefs();
+  document.body.classList.toggle('modo-noche', !!p.noche);
+  document.body.classList.remove('fs-1','fs-2');
+  if (p.fs) document.body.classList.add('fs-' + p.fs);
+  document.querySelectorAll('.fs-chip').forEach(b => b.classList.toggle('on', Number(b.dataset.fs) === (p.fs || 0)));
+  document.querySelectorAll('.sw-noche').forEach(i => i.checked = !!p.noche);
+  const r = document.getElementById('sw-ritmo'); if (r) r.checked = !!p.ritmo;
+  if (p.hora) { const h = document.getElementById('rec-hora'); if (h) h.value = p.hora; }
+  const meta = document.querySelector('meta[name="theme-color"]');
+  if (meta) meta.setAttribute('content', p.noche ? '#1d1a1c' : '#FE7AC6');
+}
+function setFs(n){ const p = getPrefs(); p.fs = n; savePrefs(p); aplicarPrefs(); }
+function setNoche(v){ const p = getPrefs(); p.noche = v; savePrefs(p); aplicarPrefs(); }
+function setRitmo(v){
+  const p = getPrefs(); p.ritmo = v; savePrefs(p);
+  showToast(v ? 'Un día nuevo cada día 🌿' : 'Ritmo libre activado');
+  actualizarContinuar();
+}
+function abrirLectura(){ aplicarPrefs(); document.getElementById('modal-lectura').classList.add('show'); }
+function abrirAjustes(){ aplicarPrefs(); actualizarInstallHelp(); document.getElementById('modal-ajustes').classList.add('show'); }
+function cerrarModal(e, id){
+  if (e && e.target !== document.getElementById(id)) return;
+  document.getElementById(id).classList.remove('show');
+}
+
+// ── Audio mejorado ──
+var VELOCIDADES = [1, 1.25, 1.5, 0.75];
+function fmtTiempo(s){ s = Math.max(0, Math.floor(s || 0)); return Math.floor(s/60) + ':' + String(s%60).padStart(2,'0'); }
+function setupAudio(dayNum){
+  const audio = document.getElementById('audio-el');
+  if (!audio) return;
+  const vel = getPrefs().velocidad || 1;
+  audio.playbackRate = vel;
+  const sb = document.getElementById('speed-btn'); if (sb) sb.textContent = vel + 'x';
+  const icon = document.getElementById('play-icon');
+  audio.onloadedmetadata = function(){
+    audio.playbackRate = getPrefs().velocidad || 1;
+    const d = document.getElementById('audio-duration'); if (d) d.textContent = fmtTiempo(audio.duration);
+  };
+  audio.ontimeupdate = function(){
+    const pct = audio.duration ? (audio.currentTime / audio.duration) * 100 : 0;
+    const filled = Math.floor(pct * 0.4);
+    for (let i = 0; i < 40; i++) { const b = document.getElementById('bar-' + i); if (b) b.className = 'wave-bar' + (i < filled ? ' played' : ''); }
+    const t = document.getElementById('audio-time'); if (t) t.textContent = fmtTiempo(audio.currentTime);
+  };
+  audio.onplay = function(){
+    isPlaying = true;
+    if (icon) icon.innerHTML = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
+    if ('mediaSession' in navigator) {
+      const data = dias.find(x => x.dia === dayNum) || {};
+      try {
+        navigator.mediaSession.metadata = new MediaMetadata({
+          title: 'Día ' + dayNum + ' · ' + (data.titulo || ''),
+          artist: 'Mi Diario Devocional',
+          artwork: [{ src: 'icon-512.png', sizes: '512x512', type: 'image/png' }]
+        });
+        navigator.mediaSession.setActionHandler('play', () => audio.play());
+        navigator.mediaSession.setActionHandler('pause', () => audio.pause());
+        navigator.mediaSession.setActionHandler('seekbackward', () => skipAudio(-15));
+        navigator.mediaSession.setActionHandler('seekforward', () => skipAudio(15));
+      } catch(e) {}
+    }
+  };
+  audio.onpause = function(){ isPlaying = false; if (icon) icon.innerHTML = '<path d="M8 5v14l11-7z"/>'; };
+  audio.onended = audio.onpause;
+  const wf = document.getElementById('waveform');
+  if (wf) wf.onclick = function(ev){
+    if (!audio.duration) return;
+    const r = wf.getBoundingClientRect();
+    audio.currentTime = Math.min(1, Math.max(0, (ev.clientX - r.left) / r.width)) * audio.duration;
+  };
+}
+function skipAudio(s){
+  const audio = document.getElementById('audio-el');
+  if (!audio) return;
+  const dur = audio.duration || Infinity;
+  audio.currentTime = Math.min(dur, Math.max(0, audio.currentTime + s));
+}
+function cycleSpeed(){
+  const p = getPrefs();
+  const i = VELOCIDADES.indexOf(p.velocidad || 1);
+  p.velocidad = VELOCIDADES[(i + 1) % VELOCIDADES.length];
+  savePrefs(p);
+  const audio = document.getElementById('audio-el'); if (audio) audio.playbackRate = p.velocidad;
+  const sb = document.getElementById('speed-btn'); if (sb) sb.textContent = p.velocidad + 'x';
+}
+
+// ── Hitos del camino ──
+var HITOS = {
+  7:  { t: '¡Una semana con Dios!',      m: 'Siete encuentros. Siete veces elegiste aparecer. Eso ya es un camino.' },
+  14: { t: '¡Dos semanas caminando!',    m: 'Catorce días de pausa, escucha y confianza. Dios está sembrando algo en ti.' },
+  21: { t: '¡21 días!',                  m: 'Lo que empezó como un propósito ya se está volviendo parte de tu vida.' },
+  30: { t: '¡30 días de encuentros!',    m: 'Llegaste más lejos de lo que imaginabas. Solo faltan 10 días para la meta.' }
+};
+
+// ── Racha por fechas reales ──
+function calcRacha(state){
+  const set = fechasActivas(state);
+  if (!set.size) return calcStreak(state.completados);
+  const d = new Date();
+  if (!set.has(hoyISO(d))) d.setDate(d.getDate() - 1);
+  let n = 0;
+  while (set.has(hoyISO(d))) { n++; d.setDate(d.getDate() - 1); }
+  return n;
+}
+function mejorRacha(state){
+  const arr = [...fechasActivas(state)].sort();
+  let best = 0, cur = 0, prev = null;
+  arr.forEach(f => {
+    const d = new Date(f + 'T12:00:00');
+    if (prev && Math.round((d - prev) / 86400000) === 1) cur++; else cur = 1;
+    best = Math.max(best, cur); prev = d;
+  });
+  return best;
+}
+
+// ── Mi constancia (calendario) ──
+var _calOffset = 0;
+var MESES = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+function showConstancia(){ flushAutosave(); _calOffset = 0; renderConstancia(); showScreen('screen-constancia'); }
+function moverMes(n){ _calOffset += n; renderConstancia(); }
+function renderConstancia(){
+  const state = getState();
+  document.getElementById('stats-row').innerHTML =
+    '<div class="stat-tile"><div class="stat-num">' + state.completados.length + '<span style="font-size:.8rem;color:var(--light)">/' + TOTAL_DIAS + '</span></div><div class="stat-lbl">Completados</div></div>' +
+    '<div class="stat-tile"><div class="stat-num">' + calcRacha(state) + '</div><div class="stat-lbl">Racha actual</div></div>' +
+    '<div class="stat-tile"><div class="stat-num">' + mejorRacha(state) + '</div><div class="stat-lbl">Mejor racha</div></div>';
+  const base = new Date(); base.setDate(1); base.setMonth(base.getMonth() + _calOffset);
+  const y = base.getFullYear(), m = base.getMonth();
+  document.getElementById('cal-mes').textContent = MESES[m] + ' ' + y;
+  const set = fechasActivas(state);
+  const hoy = hoyISO();
+  let html = ['L','M','M','J','V','S','D'].map(x => '<div class="cal-dow">' + x + '</div>').join('');
+  const primero = (new Date(y, m, 1).getDay() + 6) % 7;
+  for (let i = 0; i < primero; i++) html += '<div></div>';
+  const diasMes = new Date(y, m + 1, 0).getDate();
+  for (let d = 1; d <= diasMes; d++) {
+    const iso = hoyISO(new Date(y, m, d));
+    html += '<div class="cal-day' + (set.has(iso) ? ' on' : '') + (iso === hoy ? ' hoy' : '') + '">' + (set.has(iso) ? '♥' : d) + '</div>';
+  }
+  document.getElementById('cal-grid').innerHTML = html;
+}
+
+// ── Versículos favoritos ──
+function getFavs(){ try{ return JSON.parse(localStorage.getItem('midiario_favs')) || []; }catch(e){ return []; } }
+function saveFavs(f){ try{ localStorage.setItem('midiario_favs', JSON.stringify(f)); }catch(e){} }
+function esFav(d, i){ return getFavs().includes(d + '-' + i); }
+function favBtnHtml(d, i, cls){
+  return '<button class="' + (cls || 'fav-btn') + '" aria-label="Guardar versículo" onclick="toggleFav(' + d + ',' + i + ',this)">' + (esFav(d, i) ? '★' : '☆') + '</button>';
+}
+function toggleFav(d, i, btn){
+  const k = d + '-' + i;
+  let f = getFavs();
+  if (f.includes(k)) { f = f.filter(x => x !== k); if (btn) btn.textContent = '☆'; showToast('Quitado de tus versículos'); }
+  else { f.push(k); if (btn) btn.textContent = '★'; showToast('Guardado en Mis Versículos ★'); }
+  saveFavs(f);
+  if (document.getElementById('screen-favoritos').classList.contains('active')) renderFavoritos();
+}
+function versoDe(d, i){
+  const data = dias.find(x => x.dia === d);
+  if (!data) return null;
+  const sfx = i === 1 ? '' : String(i);
+  if (!data['versiculo' + sfx]) return null;
+  return { texto: data['versiculo' + sfx], ref: data['referencia' + sfx], titulo: data.titulo };
+}
+function showFavoritos(){ flushAutosave(); renderFavoritos(); showScreen('screen-favoritos'); }
+function renderFavoritos(){
+  const cont = document.getElementById('favoritos-list');
+  const favs = getFavs();
+  if (!favs.length) {
+    cont.innerHTML = '<div class="empty-state"><span class="big">☆</span>Aún no tienes versículos guardados.<br>Toca la estrella junto a cualquier versículo de tu devocional para guardarlo aquí.</div>';
+    return;
+  }
+  cont.innerHTML = favs.map(k => {
+    if (k.indexOf('v-') === 0) {
+      const v = versiculosVida.find(x => x.id === Number(k.slice(2)));
+      if (!v) return '';
+      return '<div class="fav-card"><button class="fav-btn" onclick="quitarFavKey(\'' + k + '\')">★</button><p>' + v.texto + '</p><cite>— ' + v.ref + '</cite>' +
+        '<button class="fav-dia" onclick="abrirPalabraFav(' + v.id + ')">🕊️ Dios me habla hoy · ' + v.tema + ' →</button></div>';
+    }
+    const [d, i] = k.split('-').map(Number);
+    const v = versoDe(d, i);
+    if (!v) return '';
+    return '<div class="fav-card">' + favBtnHtml(d, i) + '<p>' + v.texto + '</p><cite>— ' + v.ref + '</cite>' +
+      '<button class="fav-dia" onclick="showDevotional(' + d + ')">Día ' + d + ' · ' + v.titulo + ' →</button></div>';
+  }).join('');
+}
+
+// ── Mi diario completo ──
+var CAMPOS_DIARIO = [
+  ['reflexion', null],
+  ['aprendido', 'Lo que aprendí'],
+  ['oracion', 'Mi oración'],
+  ['gratitud', 'Agradecida por'],
+  ['peticiones', 'Mis peticiones a Dios']
+];
+function fechaLarga(iso){
+  if (!iso) return '';
+  const d = new Date(iso + 'T12:00:00');
+  return d.getDate() + ' de ' + MESES[d.getMonth()] + ' de ' + d.getFullYear();
+}
+function entradasDiario(){
+  const state = getState();
+  const out = [];
+  for (let d = 1; d <= TOTAL_DIAS; d++) {
+    const s = state.diarios[d];
+    if (!s) continue;
+    const data = dias.find(x => x.dia === d) || {};
+    const campos = CAMPOS_DIARIO
+      .filter(([k]) => s[k] && s[k].trim())
+      .map(([k, lbl]) => ({ lbl: lbl || data.pregunta || 'Reflexión', txt: s[k].trim() }));
+    if (campos.length) out.push({ dia: d, titulo: data.titulo || '', fecha: (state.fechas || {})[d], campos });
+  }
+  return { out, final: (state.day30reflexion || '').trim(), completo: state.completados.includes(TOTAL_DIAS) };
+}
+function showMiDiario(){ flushAutosave(); renderMiDiario(); showScreen('screen-mi-diario'); }
+function renderMiDiario(){
+  const { out, final, completo } = entradasDiario();
+  const name = getName();
+  document.getElementById('mi-diario-sub').textContent = (name ? 'El diario de ' + name : 'Todo lo que has escrito') + ' · ' + out.length + (out.length === 1 ? ' día escrito' : ' días escritos');
+  document.getElementById('btn-carta-final').style.display = completo ? 'inline-block' : 'none';
+  const cont = document.getElementById('mi-diario-list');
+  if (!out.length && !final) {
+    cont.innerHTML = '<div class="empty-state"><span class="big">✍️</span>Aquí aparecerá todo lo que escribas en tu diario de cada día.</div>';
+    return;
+  }
+  let html = out.map(e =>
+    '<div class="diario-dia"><h3>Día ' + e.dia + ' · ' + esc(e.titulo) + '</h3>' +
+    '<div class="diario-fecha">' + (e.fecha ? 'Completado el ' + fechaLarga(e.fecha) : '&nbsp;') + '</div>' +
+    e.campos.map(c => '<div class="diario-campo"><div class="lbl">' + esc(c.lbl) + '</div><div class="txt">' + esc(c.txt) + '</div></div>').join('') +
+    '</div>').join('');
+  if (final) html += '<div class="diario-dia" style="background:var(--pink);border-color:var(--pink)"><h3>Mi reflexión final</h3><div class="diario-fecha">&nbsp;</div><div class="diario-campo"><div class="txt">' + esc(final) + '</div></div></div>';
+  cont.innerHTML = html;
+}
+function imprimirDiario(){
+  showToast('Elige "Guardar como PDF" en la ventana de impresión');
+  setTimeout(() => window.print(), 400);
+}
+function descargarArchivo(nombre, contenido, tipo){
+  const blob = new Blob([contenido], { type: tipo });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = nombre;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+}
+function descargarDiarioTxt(){
+  const { out, final } = entradasDiario();
+  const name = getName();
+  let t = 'MI DIARIO DEVOCIONAL' + (name ? ' — ' + name : '') + '\n\n';
+  out.forEach(e => {
+    t += '──────────\nDÍA ' + e.dia + ' · ' + e.titulo + (e.fecha ? '  (' + fechaLarga(e.fecha) + ')' : '') + '\n\n';
+    e.campos.forEach(c => { t += c.lbl + '\n' + c.txt + '\n\n'; });
+  });
+  if (final) t += '──────────\nMI REFLEXIÓN FINAL\n\n' + final + '\n';
+  descargarArchivo('mi-diario-devocional.txt', t, 'text/plain;charset=utf-8');
+}
+
+// ── Recordatorio (.ics para el calendario) ──
+function esIOS(){ return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
+function descargarRecordatorio(){
+  const hora = (document.getElementById('rec-hora').value || '07:00');
+  const p = getPrefs(); p.hora = hora; savePrefs(p);
+  const [hh, mm] = hora.split(':').map(Number);
+  const inicio = new Date(); inicio.setHours(hh, mm, 0, 0);
+  if (inicio < new Date()) inicio.setDate(inicio.getDate() + 1);
+  const f = d => d.getFullYear() + String(d.getMonth()+1).padStart(2,'0') + String(d.getDate()).padStart(2,'0') + 'T' + String(d.getHours()).padStart(2,'0') + String(d.getMinutes()).padStart(2,'0') + '00';
+  const fin = new Date(inicio.getTime() + 15 * 60000);
+  const restantes = Math.max(1, TOTAL_DIAS - getState().completados.length);
+  const url = location.href.split('#')[0].split('?')[0];
+  const ics = [
+    'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Mi Diario Devocional//ES', 'CALSCALE:GREGORIAN',
+    'BEGIN:VEVENT',
+    'UID:midiario-' + Date.now() + '@devocional',
+    'DTSTAMP:' + new Date().toISOString().replace(/[-:]/g,'').split('.')[0] + 'Z',
+    'DTSTART:' + f(inicio), 'DTEND:' + f(fin),
+    'RRULE:FREQ=DAILY;COUNT=' + restantes,
+    'SUMMARY:🌸 Mi encuentro con Dios',
+    'DESCRIPTION:Tu devocional de hoy te espera: ' + url,
+    'URL:' + url,
+    'BEGIN:VALARM', 'TRIGGER:PT0M', 'ACTION:DISPLAY', 'DESCRIPTION:Tu encuentro con Dios te espera 🌸', 'END:VALARM',
+    'END:VEVENT', 'END:VCALENDAR'
+  ].join('\r\n');
+  if (esIOS()) window.location.href = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(ics);
+  else descargarArchivo('recordatorio-mi-diario.ics', ics, 'text/calendar;charset=utf-8');
+  showToast('Abre el archivo para agregarlo a tu calendario 📅');
+}
+
+// ── Copia de seguridad ──
+function descargarCopia(){
+  flushAutosave();
+  const data = { app: 'midiario', version: 2, fecha: new Date().toISOString(), datos: {} };
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    if (k && k.indexOf('midiario_') === 0) data.datos[k] = localStorage.getItem(k);
+  }
+  descargarArchivo('mi-diario-copia-' + hoyISO() + '.json', JSON.stringify(data), 'application/json');
+  showToast('Copia descargada 💗 Guárdala en un lugar seguro');
+}
+function restaurarCopia(input){
+  const file = input.files && input.files[0];
+  if (!file) return;
+  const r = new FileReader();
+  r.onload = function(){
+    try {
+      const data = JSON.parse(r.result);
+      if (!data || data.app !== 'midiario' || !data.datos) throw new Error('formato');
+      if (!confirm('Esto reemplazará el progreso de este celular por el de la copia. ¿Continuar?')) { input.value = ''; return; }
+      Object.keys(data.datos).forEach(k => { if (k.indexOf('midiario_') === 0) localStorage.setItem(k, data.datos[k]); });
+      showToast('¡Copia restaurada! 🌸');
+      setTimeout(() => location.reload(), 900);
+    } catch(e) {
+      showToast('Ese archivo no es una copia válida');
+    }
+    input.value = '';
+  };
+  r.readAsText(file);
+}
+
+// ── Instalar como app (PWA) ──
+var _installPrompt = null;
+window.addEventListener('beforeinstallprompt', function(e){ e.preventDefault(); _installPrompt = e; });
+function esStandalone(){ return window.matchMedia('(display-mode: standalone)').matches || navigator.standalone === true; }
+function actualizarInstallHelp(){
+  const h = document.getElementById('install-help');
+  if (!h) return;
+  if (esStandalone()) h.textContent = 'Ya estás usando la app instalada 💗';
+  else if (esIOS()) h.innerHTML = 'En iPhone: abre esta página en Safari, toca el botón <b>Compartir</b> (el cuadro con la flecha) y elige <b>“Agregar a inicio”</b>.';
+  else h.textContent = 'Se agregará un ícono en tu celular para abrir tu devocional como una app, incluso sin internet.';
+}
+function instalarApp(){
+  if (esStandalone()) { showToast('La app ya está instalada 💗'); return; }
+  if (_installPrompt) { _installPrompt.prompt(); _installPrompt = null; return; }
+  actualizarInstallHelp();
+  if (!esIOS()) document.getElementById('install-help').innerHTML = 'Abre el menú del navegador (los tres puntos ⋮) y elige <b>“Instalar app”</b> o <b>“Agregar a la pantalla principal”</b>.';
+}
+if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
+  window.addEventListener('load', function(){ navigator.serviceWorker.register('sw.js').catch(function(){}); });
+}
+
+
+// ══════════════════════════════════════════════════════════
+//  DIOS ME HABLA HOY
+// ══════════════════════════════════════════════════════════
+var _palabraActual = null;
+function getPalabraState(){ try{ return JSON.parse(localStorage.getItem('midiario_palabra')) || {}; }catch(e){ return {}; } }
+function savePalabraState(s){ try{ localStorage.setItem('midiario_palabra', JSON.stringify(s)); }catch(e){} }
+
+function showPalabra(){
+  flushAutosave();
+  const st = getPalabraState();
+  const v = st.fecha === hoyISO() ? versiculosVida.find(x => x.id === st.id) : null;
+  if (v) mostrarPalabra(v, false);
+  else {
+    _palabraActual = null;
+    document.getElementById('palabra-intro').style.display = 'block';
+    document.getElementById('palabra-revelada').style.display = 'none';
+  }
+  showScreen('screen-palabra');
+}
+
+function elegirVersiculo(){
+  const st = getPalabraState();
+  const vistos = st.vistos || [];
+  let opciones = versiculosVida.filter(v => !vistos.includes(v.id));
+  if (!opciones.length) opciones = versiculosVida.filter(v => v.id !== st.id);
+  return opciones[Math.floor(Math.random() * opciones.length)];
+}
+
+function recibirPalabra(){
+  const btn = document.getElementById('palabra-recibir');
+  if (btn) { btn.disabled = true; btn.innerHTML = '<span class="btn-heart">🕊️</span> Escuchando…'; }
+  setTimeout(() => {
+    const v = elegirVersiculo();
+    const st = getPalabraState();
+    let vistos = (st.vistos || []).concat(v.id);
+    if (vistos.length > 60) vistos = vistos.slice(-60);
+    savePalabraState({ fecha: hoyISO(), id: v.id, vistos });
+    const s = getState(); marcarActividad(s); saveState(s);
+    mostrarPalabra(v, true);
+    if (btn) { btn.disabled = false; btn.innerHTML = '<span class="btn-heart">💗</span> Recibir mi palabra'; }
+  }, 900);
+}
+
+function mostrarPalabra(v, animar){
+  _palabraActual = v;
+  document.getElementById('palabra-intro').style.display = 'none';
+  const box = document.getElementById('palabra-revelada');
+  box.style.display = 'block';
+  const name = getName();
+  document.getElementById('palabra-para').textContent = name ? 'Para ti, ' + name : 'Para ti, hoy';
+  document.getElementById('palabra-tema').textContent = v.tema;
+  document.getElementById('palabra-texto').textContent = '“' + v.texto + '”';
+  document.getElementById('palabra-ref').textContent = '— ' + v.ref;
+  document.getElementById('palabra-fav').textContent = esFavKey('v-' + v.id) ? '★ Guardado' : '☆ Guardar';
+  const card = document.getElementById('palabra-card');
+  card.classList.remove('revelar');
+  if (animar) { void card.offsetWidth; card.classList.add('revelar'); }
+  window.scrollTo(0, 0);
+}
+
+function otraPalabra(){
+  document.getElementById('palabra-revelada').style.display = 'none';
+  document.getElementById('palabra-intro').style.display = 'block';
+  recibirPalabra();
+}
+
+function favPalabra(){
+  if (!_palabraActual) return;
+  const k = 'v-' + _palabraActual.id;
+  let f = getFavs();
+  if (f.includes(k)) { f = f.filter(x => x !== k); showToast('Quitado de tus versículos'); }
+  else { f.push(k); showToast('Guardado en Mis Versículos ★'); }
+  saveFavs(f);
+  document.getElementById('palabra-fav').textContent = f.includes(k) ? '★ Guardado' : '☆ Guardar';
+}
+function esFavKey(k){ return getFavs().includes(k); }
+
+function compartirPalabraTexto(){
+  if (!_palabraActual) return;
+  const t = '“' + _palabraActual.texto + '” — ' + _palabraActual.ref + '\n\nMi Diario Devocional 💗';
+  if (navigator.share) navigator.share({ text: t }).catch(() => {});
+  else navigator.clipboard?.writeText(t).then(() => showToast('Versículo copiado 💗'));
+}
+
+function imagenPalabra(){
+  if (!_palabraActual) return;
+  _pendingVerse = { texto: _palabraActual.texto, ref: _palabraActual.ref, eyebrow: 'PALABRA PARA TI  ·  MI DIARIO DEVOCIONAL' };
+  _pendingDay = null;
+  const modal = document.getElementById('canvas-modal');
+  document.getElementById('canvas-preview-wrap').style.display = 'none';
+  document.getElementById('canvas-format-pick').style.display  = 'flex';
+  document.getElementById('canvas-loading').style.display      = 'none';
+  modal.classList.add('show');
+}
+
+function quitarFavKey(k){ saveFavs(getFavs().filter(x => x !== k)); showToast('Quitado de tus versículos'); renderFavoritos(); }
+function abrirPalabraFav(id){ const v = versiculosVida.find(x => x.id === id); if (!v) return; showScreen('screen-palabra'); mostrarPalabra(v, true); }
+
+// Aplicar preferencias al cargar
+aplicarPrefs();
+actualizarContinuar();
+
 </script>
 </body>
 </html>
