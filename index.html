@@ -1810,32 +1810,40 @@ body.modo-noche .day-pill.locked .day-num { color: #6f666b; }
 .palabra-invita-t { font-family: 'Playfair Display', serif; font-size: 1.35rem; line-height: 1.4; color: var(--dark); margin-bottom: .85rem; }
 .palabra-invita-s { font-size: .85rem; line-height: 1.75; color: var(--mid); }
 .palabra-invita-s em { font-family: 'Playfair Display', serif; color: var(--dark); }
-
-.palabra-card {
-  position: relative; overflow: hidden; text-align: center;
-  border-radius: 26px; padding: 2rem 1.5rem 1.6rem; margin-bottom: 1.1rem;
-  background: linear-gradient(155deg, #6fa59e 0%, #80B0AA 40%, #d98fb4 100%);
-  color: #fff; box-shadow: 0 10px 30px rgba(128,176,170,.35);
-}
-.palabra-card::before, .palabra-card::after {
-  content: ''; position: absolute; border-radius: 50%; background: rgba(255,255,255,.1);
-}
-.palabra-card::before { width: 180px; height: 180px; top: -60px; right: -60px; }
-.palabra-card::after  { width: 120px; height: 120px; bottom: -40px; left: -40px; }
-.palabra-card.revelar { animation: revelar .8s cubic-bezier(.2,.8,.2,1) both; }
-@keyframes revelar { from { opacity: 0; transform: translateY(24px) scale(.96); filter: blur(4px); } to { opacity: 1; transform: none; filter: none; } }
-.palabra-top { display: flex; flex-direction: column; align-items: center; gap: .45rem; margin-bottom: 1.25rem; position: relative; z-index: 1; }
-.palabra-para { font-size: .62rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; opacity: .9; }
-.palabra-tema { background: rgba(255,255,255,.22); border-radius: 50px; padding: .25rem .8rem; font-size: .62rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
-.palabra-texto { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.28rem; line-height: 1.6; position: relative; z-index: 1; text-shadow: 0 1px 8px rgba(0,0,0,.15); }
-.palabra-ref { margin-top: 1rem; font-weight: 700; font-size: .8rem; color: #FDD4E3; position: relative; z-index: 1; }
-.palabra-firma { margin-top: 1.25rem; font-family: 'Playfair Display', serif; font-style: italic; font-size: .72rem; opacity: .7; position: relative; z-index: 1; }
-.palabra-acciones { display: flex; gap: .6rem; justify-content: center; margin-bottom: .75rem; }
+.palabra-para-linea { text-align: center; font-size: .65rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--teal); margin: .25rem 0 .75rem; }
+.palabra-img-wrap { position: relative; border-radius: 22px; overflow: hidden; aspect-ratio: 1; background: linear-gradient(155deg, var(--mint), var(--pink)); margin-bottom: 1rem; box-shadow: 0 10px 30px rgba(0,0,0,.15); }
+.palabra-img-wrap canvas { width: 100%; height: 100%; display: block; }
+.palabra-img-wrap canvas.revelar { animation: revelar .8s cubic-bezier(.2,.8,.2,1) both; }
+@keyframes revelar { from { opacity: 0; transform: scale(1.04); filter: blur(6px); } to { opacity: 1; transform: none; filter: none; } }
+.palabra-cargando { position: absolute; inset: 0; display: none; flex-direction: column; align-items: center; justify-content: center; gap: .9rem; font-family: 'Playfair Display', serif; font-style: italic; color: var(--dark); font-size: .95rem; }
+.palabra-img-wrap.cargando .palabra-cargando { display: flex; }
+.palabra-img-wrap.cargando canvas { opacity: 0; }
+.palabra-spin { width: 42px; height: 42px; border: 3px solid rgba(255,255,255,.6); border-top-color: var(--fuchsia); border-radius: 50%; animation: spin 1s linear infinite; }
+.palabra-acciones { display: flex; gap: .5rem; justify-content: center; margin-bottom: .6rem; flex-wrap: wrap; }
 .palabra-acciones .share-verse-btn { flex: 1; }
-.palabra-nota { text-align: center; font-family: 'Playfair Display', serif; font-style: italic; font-size: .85rem; color: var(--mid); line-height: 1.6; margin-top: .75rem; }
-body.fs-1 .palabra-texto { font-size: 1.45rem; }
-body.fs-2 .palabra-texto { font-size: 1.65rem; }
-.menu-pill-btn.palabra-menu { background: linear-gradient(120deg, #FE7AC6, #80B0AA); color: #fff; }
+.palabra-nota { text-align: center; font-family: 'Playfair Display', serif; font-style: italic; font-size: .85rem; color: var(--mid); line-height: 1.6; margin-top: .5rem; }
+
+.oraciones-palabra { padding: 0 1rem; margin-bottom: 1.1rem; }
+.oraciones-palabra button {
+  width: 100%; border: none; cursor: pointer; border-radius: 20px; padding: 1rem 1.25rem;
+  background: linear-gradient(120deg, #FE7AC6, #80B0AA); color: #fff; text-align: left;
+  display: flex; align-items: center; gap: .9rem; box-shadow: 0 6px 20px rgba(254,122,198,.25);
+  font-family: 'Nunito', sans-serif;
+}
+.oraciones-palabra .ico { font-size: 1.8rem; }
+.oraciones-palabra .t { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.15rem; display: block; }
+.oraciones-palabra .s { font-size: .7rem; opacity: .9; }
+
+/* Continuar (compacto) */
+.continuar-mini {
+  display: inline-flex; align-items: center; gap: .45rem; max-width: 100%;
+  border: 1.5px solid var(--teal); background: var(--white); color: #2d7a74;
+  border-radius: 50px; padding: .5rem 1.1rem; margin: 0 auto 1.5rem;
+  font-family: 'Nunito', sans-serif; font-size: .75rem; font-weight: 700; cursor: pointer;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.continuar-mini:hover { background: var(--mint); }
+body.modo-noche .continuar-mini { color: #bfe6e2; }
 </style>
 </head>
 <body>
@@ -1900,11 +1908,7 @@ body.fs-2 .palabra-texto { font-size: 1.65rem; }
       <div class="menu-links-row"><div class="menu-edit-name" onclick="showEditName()">✏️ cambiar nombre</div><div class="menu-edit-name" onclick="abrirAjustes()">⚙️ ajustes</div></div>
     </div>
 
-    <button class="continuar-btn" onclick="continuarDia()">
-      <span class="continuar-eyebrow" id="continuar-eyebrow">Tu encuentro de hoy</span>
-      <span class="continuar-title" id="continuar-title">Día 1</span>
-      <span class="continuar-sub" id="continuar-sub">Toca para continuar →</span>
-    </button>
+    <div style="text-align:center"><button class="continuar-mini" id="continuar-mini" onclick="continuarDia()">▶ Continuar donde quedé</button></div>
 
     <div class="menu-section-label">Tu camino</div>
 
@@ -1917,14 +1921,7 @@ body.fs-2 .palabra-texto { font-size: 1.65rem; }
 
     <div class="menu-btn-row">
       <svg class="menu-heart" viewBox="0 0 40 40" fill="none">
-        <path d="M20 32C20 32 5 22 5 13C5 8.5 8.5 5 13 5C16 5 18.5 7 20 9.5C21.5 7 24 5 27 5C31.5 5 35 8.5 35 13C35 22 20 32 20 32Z" fill="#FE7AC6"/>
-      </svg>
-      <button class="menu-pill-btn palabra-menu" onclick="showPalabra()">🕊️ Dios me Habla Hoy</button>
-    </div>
-
-    <div class="menu-btn-row">
-      <svg class="menu-heart" viewBox="0 0 40 40" fill="none">
-        <path d="M20 32C20 32 5 22 5 13C5 8.5 8.5 5 13 5C16 5 18.5 7 20 9.5C21.5 7 24 5 27 5C31.5 5 35 8.5 35 13C35 22 20 32 20 32Z" fill="#FE7AC6"/>
+        <path d="M20 32C20 32 5 22 5 13C5 8.5 8.5 5 13 5C16 5 18.5 7 20 9.5C21.5 7 24 5 27 5C31.5 5 35 8.5 35 13C35 22 20 32 20 32Z" fill="#80B0AA"/>
       </svg>
       <button class="menu-pill-btn" style="background:#C8EDED;color:#2d7a74;" onclick="showMujeres()">Mujeres que Inspiran</button>
     </div>
@@ -1940,38 +1937,16 @@ body.fs-2 .palabra-texto { font-size: 1.65rem; }
       <svg class="menu-heart" viewBox="0 0 40 40" fill="none">
         <path d="M20 32C20 32 5 22 5 13C5 8.5 8.5 5 13 5C16 5 18.5 7 20 9.5C21.5 7 24 5 27 5C31.5 5 35 8.5 35 13C35 22 20 32 20 32Z" fill="#c0507a"/>
       </svg>
-      <button class="menu-pill-btn" style="background:#FE7AC6;color:#fff;" onclick="showBono('noche')">Escuchar a Dios en la Noche</button>
+      <button class="menu-pill-btn" style="background:#FE7AC6;color:#fff;" onclick="showBono('noche')">Descansar en Dios</button>
     </div>
 
     <div class="menu-btn-row">
       <svg class="menu-heart" viewBox="0 0 40 40" fill="none">
         <path d="M20 32C20 32 5 22 5 13C5 8.5 8.5 5 13 5C16 5 18.5 7 20 9.5C21.5 7 24 5 27 5C31.5 5 35 8.5 35 13C35 22 20 32 20 32Z" fill="#2d7a74"/>
       </svg>
-      <button class="menu-pill-btn" style="background:#C8EDED;color:#2d7a74;" onclick="showMaterial()">Material para Descargar</button>
+      <button class="menu-pill-btn" style="background:#C8EDED;color:#2d7a74;" onclick="showMiEspacio()">Mi Espacio</button>
     </div>
 
-    <div class="menu-section-label" style="margin-top:1.5rem">Mi espacio</div>
-
-    <div class="menu-btn-row">
-      <svg class="menu-heart" viewBox="0 0 40 40" fill="none">
-        <path d="M20 32C20 32 5 22 5 13C5 8.5 8.5 5 13 5C16 5 18.5 7 20 9.5C21.5 7 24 5 27 5C31.5 5 35 8.5 35 13C35 22 20 32 20 32Z" fill="#FE7AC6"/>
-      </svg>
-      <button class="menu-pill-btn" style="background:#FDD4E3;color:#c0507a;" onclick="showMiDiario()">Mi Diario Completo</button>
-    </div>
-
-    <div class="menu-btn-row">
-      <svg class="menu-heart" viewBox="0 0 40 40" fill="none">
-        <path d="M20 32C20 32 5 22 5 13C5 8.5 8.5 5 13 5C16 5 18.5 7 20 9.5C21.5 7 24 5 27 5C31.5 5 35 8.5 35 13C35 22 20 32 20 32Z" fill="#80B0AA"/>
-      </svg>
-      <button class="menu-pill-btn" style="background:#C8EDED;color:#2d7a74;" onclick="showFavoritos()">Mis Versículos Favoritos</button>
-    </div>
-
-    <div class="menu-btn-row">
-      <svg class="menu-heart" viewBox="0 0 40 40" fill="none">
-        <path d="M20 32C20 32 5 22 5 13C5 8.5 8.5 5 13 5C16 5 18.5 7 20 9.5C21.5 7 24 5 27 5C31.5 5 35 8.5 35 13C35 22 20 32 20 32Z" fill="#FE7AC6"/>
-      </svg>
-      <button class="menu-pill-btn" style="background:#FDD4E3;color:#c0507a;" onclick="showConstancia()">Mi Constancia</button>
-    </div>
 
     <div class="menu-divider"></div>
     <button class="pill-btn pill-btn-outline" onclick="showScreen('screen-welcome')">
@@ -1987,7 +1962,7 @@ body.fs-2 .palabra-texto { font-size: 1.65rem; }
   <div class="days-header">
     <div class="days-header-top">
       <div class="days-brand">Mi <em>Diario</em></div>
-      <div class="streak-badge" id="streak-badge" onclick="showConstancia()">🔥 0 días</div>
+      <div class="streak-badge" id="streak-badge" onclick="showConstancia()">💗 0 encuentros</div>
     </div>
     <div class="progress-bar-wrap">
       <div class="progress-bar-fill" id="progress-fill" style="width:0%"></div>
@@ -2232,6 +2207,9 @@ body.fs-2 .palabra-texto { font-size: 1.65rem; }
     <div class="bonos-title">Oraciones para <em>Momentos Difíciles</em></div>
     <div style="font-size:.75rem;color:var(--light);margin-bottom:1.5rem;">¿Cómo te sientes hoy?</div>
   </div>
+  <div class="oraciones-palabra" style="margin-top:1.25rem">
+    <button onclick="showPalabra()"><span class="ico">🕊️</span><span><span class="t">Dios me habla hoy</span><span class="s">Recibe una palabra de la Biblia para tu vida</span></span></button>
+  </div>
   <div class="oraciones-grid" id="oraciones-grid"></div>
 </div>
 
@@ -2252,7 +2230,7 @@ body.fs-2 .palabra-texto { font-size: 1.65rem; }
 <div id="screen-material" class="screen">
   <div class="bonos-header">
     <div class="back-to-menu-bar" style="padding:0 0 .75rem 0;">
-      <button class="pill-btn pill-btn-outline" style="width:auto;padding:.5rem 1.25rem;font-size:.7rem;" onclick="showMenu()">← Volver</button>
+      <button class="pill-btn pill-btn-outline" style="width:auto;padding:.5rem 1.25rem;font-size:.7rem;" onclick="showMiEspacio()">← Volver</button>
     </div>
     <div class="bonos-title">Material para <em>Descargar</em></div>
     <div style="font-size:.75rem;color:var(--light);margin-bottom:1.5rem;">Recursos especiales para ti</div>
@@ -2292,7 +2270,7 @@ body.fs-2 .palabra-texto { font-size: 1.65rem; }
 <div id="screen-constancia" class="screen">
   <div class="bonos-header">
     <div class="back-to-menu-bar" style="padding:0 0 .75rem 0;">
-      <button class="pill-btn pill-btn-outline" style="width:auto;padding:.5rem 1.25rem;font-size:.7rem;" onclick="showMenu()">← Volver</button>
+      <button class="pill-btn pill-btn-outline" style="width:auto;padding:.5rem 1.25rem;font-size:.7rem;" onclick="showMiEspacio()">← Volver</button>
     </div>
     <div class="bonos-title">Mi <em>Constancia</em></div>
     <div style="font-size:.75rem;color:var(--light);">Cada corazón es un día en que te encontraste con Dios</div>
@@ -2306,7 +2284,7 @@ body.fs-2 .palabra-texto { font-size: 1.65rem; }
         <button onclick="moverMes(1)" aria-label="Mes siguiente">›</button>
       </div>
       <div class="cal-grid" id="cal-grid"></div>
-      <div class="cal-leyenda">💗 Días con devocional o diario &nbsp;·&nbsp; ◯ Hoy</div>
+      <div class="cal-leyenda">♥ Días en que apartaste un momento para Dios &nbsp;·&nbsp; ◯ Hoy</div>
     </div>
     <button class="pill-btn pill-btn-fuchsia" style="margin-top:1.25rem" onclick="continuarDia()"><span class="btn-heart">💗</span> Continuar mi devocional</button>
   </div>
@@ -2318,7 +2296,7 @@ body.fs-2 .palabra-texto { font-size: 1.65rem; }
 <div id="screen-favoritos" class="screen">
   <div class="bonos-header">
     <div class="back-to-menu-bar" style="padding:0 0 .75rem 0;">
-      <button class="pill-btn pill-btn-outline" style="width:auto;padding:.5rem 1.25rem;font-size:.7rem;" onclick="showMenu()">← Volver</button>
+      <button class="pill-btn pill-btn-outline" style="width:auto;padding:.5rem 1.25rem;font-size:.7rem;" onclick="showMiEspacio()">← Volver</button>
     </div>
     <div class="bonos-title">Mis <em>Versículos</em></div>
     <div style="font-size:.75rem;color:var(--light);">Los versículos que marcaste con ★</div>
@@ -2332,7 +2310,7 @@ body.fs-2 .palabra-texto { font-size: 1.65rem; }
 <div id="screen-mi-diario" class="screen">
   <div class="bonos-header">
     <div class="back-to-menu-bar no-print" style="padding:0 0 .75rem 0;">
-      <button class="pill-btn pill-btn-outline" style="width:auto;padding:.5rem 1.25rem;font-size:.7rem;" onclick="showMenu()">← Volver</button>
+      <button class="pill-btn pill-btn-outline" style="width:auto;padding:.5rem 1.25rem;font-size:.7rem;" onclick="showMiEspacio()">← Volver</button>
     </div>
     <div class="bonos-title">Mi <em>Diario Completo</em></div>
     <div style="font-size:.75rem;color:var(--light);" id="mi-diario-sub">Todo lo que has escrito en este camino</div>
@@ -2428,7 +2406,7 @@ body.fs-2 .palabra-texto { font-size: 1.65rem; }
 <div id="screen-palabra" class="screen">
   <div class="bonos-header">
     <div class="back-to-menu-bar" style="padding:0 0 .75rem 0;">
-      <button class="pill-btn pill-btn-outline" style="width:auto;padding:.5rem 1.25rem;font-size:.7rem;" onclick="showMenu()">← Volver</button>
+      <button class="pill-btn pill-btn-outline" style="width:auto;padding:.5rem 1.25rem;font-size:.7rem;" onclick="showOraciones()">← Volver</button>
     </div>
     <div class="bonos-title">Dios me <em>Habla Hoy</em></div>
     <div style="font-size:.75rem;color:var(--light);">Una palabra de la Biblia para tu vida</div>
@@ -2441,32 +2419,70 @@ body.fs-2 .palabra-texto { font-size: 1.65rem; }
         <p class="palabra-invita-t">Hoy voy a dejar que Dios me hable a través de Su Palabra.</p>
         <p class="palabra-invita-s">Respira profundo. Aquieta tu corazón. Dile a Dios: <em>“Aquí estoy, Señor. Háblame.”</em> Cuando estés lista, toca el botón.</p>
       </div>
-      <button class="pill-btn pill-btn-fuchsia" id="palabra-recibir" onclick="recibirPalabra()"><span class="btn-heart">💗</span> Recibir mi palabra</button>
+      <button class="pill-btn pill-btn-fuchsia" onclick="recibirPalabra()"><span class="btn-heart">💗</span> Recibir mi palabra</button>
     </div>
 
     <div id="palabra-revelada" style="display:none">
-      <div class="palabra-card" id="palabra-card">
-        <div class="palabra-top">
-          <svg viewBox="0 0 80 80" width="46" height="46"><circle cx="40" cy="40" r="38" fill="#FDD4E3"/><path d="M40 57C40 57 18 43 18 29C18 22 23.5 17 30 17C34 17 37.5 19.5 40 23C42.5 19.5 46 17 50 17C56.5 17 62 22 62 29C62 43 40 57 40 57Z" fill="#FE7AC6"/></svg>
-          <div class="palabra-para" id="palabra-para">Para ti, hoy</div>
-          <div class="palabra-tema" id="palabra-tema">Paz</div>
+      <div class="palabra-para-linea"><span id="palabra-para">Para ti, hoy</span> · <span id="palabra-tema"></span></div>
+      <div class="palabra-img-wrap cargando" id="palabra-img-wrap">
+        <canvas id="palabra-canvas" width="1080" height="1080"></canvas>
+        <div class="palabra-cargando">
+          <div class="palabra-spin"></div>
+          <div>Buscando una foto hermosa…</div>
         </div>
-        <p class="palabra-texto" id="palabra-texto"></p>
-        <div class="palabra-ref" id="palabra-ref"></div>
-        <div class="palabra-firma">Mi Diario Devocional ♥</div>
-      </div>
-
-      <div class="palabra-acciones">
-        <button class="share-verse-btn story" onclick="imagenPalabra()">📸 Crear imagen</button>
-        <button class="share-verse-btn post" id="palabra-fav" onclick="favPalabra()">☆ Guardar</button>
       </div>
       <div class="palabra-acciones">
-        <button class="chip-btn" onclick="compartirPalabraTexto()">💬 Compartir texto</button>
-        <button class="chip-btn" onclick="otraPalabra()">🔄 Otra palabra</button>
+        <button class="share-verse-btn story" onclick="guardarImagenPalabra()">💗 Guardar imagen</button>
+        <button class="share-verse-btn post" onclick="storyPalabra()">📱 Versión Story</button>
       </div>
+      <div class="palabra-acciones">
+        <button class="chip-btn" onclick="otraFotoPalabra()">🖼️ Otra foto</button>
+        <button class="chip-btn" id="palabra-fav" onclick="favPalabra()">☆ Guardar</button>
+        <button class="chip-btn" onclick="compartirPalabraTexto()">💬 Texto</button>
+      </div>
+      <button class="pill-btn pill-btn-outline" style="margin-top:.5rem" onclick="otraPalabra()">🔄 Recibir otra palabra</button>
       <p class="palabra-nota">Lee el versículo despacio, dos o tres veces. ¿Qué palabra o frase toca tu corazón hoy?</p>
     </div>
 
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PANTALLA: MI ESPACIO
+══════════════════════════════════════ -->
+<div id="screen-mi-espacio" class="screen">
+  <div class="bonos-header">
+    <div class="back-to-menu-bar" style="padding:0 0 .75rem 0;">
+      <button class="pill-btn pill-btn-outline" style="width:auto;padding:.5rem 1.25rem;font-size:.7rem;" onclick="showMenu()">← Volver</button>
+    </div>
+    <div class="bonos-title">Mi <em>Espacio</em></div>
+    <div style="font-size:.75rem;color:var(--light);">Tus recursos, tu diario y tu camino</div>
+  </div>
+  <div class="bonos-section">
+    <div class="menu-btn-row">
+      <svg class="menu-heart" viewBox="0 0 40 40" fill="none">
+        <path d="M20 32C20 32 5 22 5 13C5 8.5 8.5 5 13 5C16 5 18.5 7 20 9.5C21.5 7 24 5 27 5C31.5 5 35 8.5 35 13C35 22 20 32 20 32Z" fill="#FE7AC6"/>
+      </svg>
+      <button class="menu-pill-btn" style="background:#FDD4E3;color:#c0507a;" onclick="showMaterial()">Material para Descargar</button>
+    </div>
+    <div class="menu-btn-row">
+      <svg class="menu-heart" viewBox="0 0 40 40" fill="none">
+        <path d="M20 32C20 32 5 22 5 13C5 8.5 8.5 5 13 5C16 5 18.5 7 20 9.5C21.5 7 24 5 27 5C31.5 5 35 8.5 35 13C35 22 20 32 20 32Z" fill="#80B0AA"/>
+      </svg>
+      <button class="menu-pill-btn" style="background:#C8EDED;color:#2d7a74;" onclick="showMiDiario()">Mi Diario Completo</button>
+    </div>
+    <div class="menu-btn-row">
+      <svg class="menu-heart" viewBox="0 0 40 40" fill="none">
+        <path d="M20 32C20 32 5 22 5 13C5 8.5 8.5 5 13 5C16 5 18.5 7 20 9.5C21.5 7 24 5 27 5C31.5 5 35 8.5 35 13C35 22 20 32 20 32Z" fill="#FE7AC6"/>
+      </svg>
+      <button class="menu-pill-btn" style="background:#FDD4E3;color:#c0507a;" onclick="showFavoritos()">Mis Versículos Favoritos</button>
+    </div>
+    <div class="menu-btn-row">
+      <svg class="menu-heart" viewBox="0 0 40 40" fill="none">
+        <path d="M20 32C20 32 5 22 5 13C5 8.5 8.5 5 13 5C16 5 18.5 7 20 9.5C21.5 7 24 5 27 5C31.5 5 35 8.5 35 13C35 22 20 32 20 32Z" fill="#80B0AA"/>
+      </svg>
+      <button class="menu-pill-btn" style="background:#C8EDED;color:#2d7a74;" onclick="showConstancia()">Mi Constancia</button>
+    </div>
   </div>
 </div>
 
@@ -3409,7 +3425,7 @@ const bonosData = {
     base: 'https://saraaranda-crypto.github.io/Contigo/Fondo'
   },
   noche: {
-    titulo: 'Audios para la Noche',
+    titulo: 'Descansar en Dios',
     audios: [
       { num: 1,  titulo: 'Descanso en Sus manos' },
       { num: 2,  titulo: 'Paz en la oscuridad' },
@@ -3591,8 +3607,8 @@ function updateDaysScreen(){
   document.getElementById('progress-fill').style.width=pct+'%';
   document.getElementById('progress-text').textContent=done+' de '+TOTAL_DIAS+' completados';
   document.getElementById('progress-pct').textContent=pct+'%';
-  const streak=calcRacha(state);
-  document.getElementById('streak-badge').textContent='🔥 '+streak+(streak===1?' día':' días');
+  const enc=fechasActivas(state).size||state.completados.length;
+  document.getElementById('streak-badge').textContent='💗 '+enc+(enc===1?' encuentro':' encuentros');
   const grid=document.getElementById('days-grid');
   grid.innerHTML='';
   const maxAv=state.completados.length>0?Math.max(...state.completados)+1:1;
@@ -4064,82 +4080,72 @@ function generarTarjeta(tipo, dayNum) {
 }
 
 // ── STEP 2: draw tarjeta with Canvas-generated background ──
-async function buildTarjeta(fmt) {
-  let src = _pendingVerse;
-  if (!src) {
-    const data = dias.find(d => d.dia === _pendingDay);
-    if (!data) return;
-    src = { texto: data.versiculo, ref: data.referencia, eyebrow: 'DÍA ' + _pendingDay + '  ·  MI DIARIO DEVOCIONAL' };
+// Fotos de naturaleza (cielo, mar, montañas, bosques, flores, campos) — ids de picsum.photos
+const FONDOS_NATURALEZA = [
+  10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 25, 27, 28, 29, 33, 37, 38, 46, 50, 53,
+  54, 55, 62, 65, 66, 70, 71, 74, 81, 82, 83, 87, 89, 92, 93, 94, 95, 98, 100, 106,
+  107, 109, 110, 112, 116, 118, 124, 125, 127, 128, 130, 131, 132, 135, 136, 140, 141, 147, 152, 159,
+  162, 165, 166, 168, 176, 177, 179, 184, 185, 187, 189, 190, 191, 196, 198, 206, 213, 215, 216, 218,
+  222, 227, 228, 229, 230, 231, 235, 236, 239, 243, 247, 251, 253, 256, 258, 260, 264, 266, 267, 269,
+  271, 272, 277, 278, 279, 280, 282, 287, 289, 291, 293, 294, 295, 296
+];
+function fondoAleatorio(excepto){
+  let id;
+  do { id = FONDOS_NATURALEZA[Math.floor(Math.random() * FONDOS_NATURALEZA.length)]; }
+  while (id === excepto && FONDOS_NATURALEZA.length > 1);
+  return id;
+}
+async function cargarFondo(photoId, W, H){
+  const base = `https://picsum.photos/id/${photoId}/${W}/${H}`;
+  const fuentes = [
+    base,
+    `https://corsproxy.io/?url=${base}`,
+    `https://api.allorigins.win/raw?url=${encodeURIComponent(base)}`
+  ];
+  for (const src of fuentes) {
+    try {
+      const resp = await fetch(src);
+      if (!resp.ok) continue;
+      const blob = await resp.blob();
+      const url  = URL.createObjectURL(blob);
+      const img  = await new Promise(res => {
+        const i = new Image();
+        i.onload  = () => { URL.revokeObjectURL(url); res(i); };
+        i.onerror = () => { URL.revokeObjectURL(url); res(null); };
+        i.src = url;
+      });
+      if (img) return img;
+    } catch(e) { continue; }
   }
+  return null;
+}
 
-  _pendingTipo = fmt;
-  document.getElementById('canvas-format-pick').style.display  = 'none';
-  document.getElementById('canvas-loading').style.display      = 'flex';
-  document.getElementById('canvas-preview-wrap').style.display = 'none';
-
-  await new Promise(r => setTimeout(r, 60));
-
+// Dibuja la tarjeta (versículo + foto + marca) en cualquier canvas
+async function dibujarTarjeta(canvas, src, fmt, photoId){
   const isStory = fmt === 'story';
   const W = 1080;
   const H = isStory ? 1920 : 1080;
-
-  const canvas = document.getElementById('share-canvas');
   canvas.width  = W;
   canvas.height = H;
   const ctx = canvas.getContext('2d');
 
-  // -- LOAD BACKGROUND -- usando proxy CORS para evitar canvas tainted --
-  const landscapeIds = [
-    10, 11, 15, 28, 29, 37, 39, 40, 41, 42,
-    43, 45, 64, 65, 68, 75, 76, 80, 82, 91,
-    110, 116, 119, 122, 137, 142, 143, 144, 145, 146
-  ];
-  const photoId = landscapeIds[Math.floor(Math.random() * landscapeIds.length)];
-
-  // Intentar cargar con varias estrategias en orden
-  const bg = await (async () => {
-    // Estrategia 1: corsproxy.io convierte la respuesta con headers CORS correctos
-    const proxies = [
-      `https://corsproxy.io/?url=https://picsum.photos/id/${photoId}/1080/1080`,
-      `https://api.allorigins.win/raw?url=${encodeURIComponent(`https://picsum.photos/id/${photoId}/1080/1080`)}`,
-      `https://picsum.photos/id/${photoId}/1080/1080`,
-    ];
-    for (const src of proxies) {
-      try {
-        const resp = await fetch(src);
-        if (!resp.ok) continue;
-        const blob = await resp.blob();
-        const url  = URL.createObjectURL(blob);
-        const img  = await new Promise((res) => {
-          const i = new Image();
-          i.onload  = () => { URL.revokeObjectURL(url); res(i); };
-          i.onerror = () => { URL.revokeObjectURL(url); res(null); };
-          i.src = url;
-        });
-        if (img) return img;
-      } catch(e) { continue; }
-    }
-    return null;
-  })();
-
+  const bg = await cargarFondo(photoId || fondoAleatorio(), W, H);
   if (bg && bg.naturalWidth > 0) {
     const scale = Math.max(W / bg.naturalWidth, H / bg.naturalHeight);
-    const dw = bg.naturalWidth  * scale;
-    const dh = bg.naturalHeight * scale;
+    const dw = bg.naturalWidth * scale, dh = bg.naturalHeight * scale;
     ctx.drawImage(bg, (W - dw) / 2, (H - dh) / 2, dw, dh);
   } else {
-    // Fallback: degradado suave si todo falla
     const grad = ctx.createLinearGradient(0, 0, W, H);
-    grad.addColorStop(0,   '#c8d8e8');
-    grad.addColorStop(0.5, '#e8d0d8');
-    grad.addColorStop(1,   '#d0e8e0');
-    ctx.fillStyle = grad;
-    ctx.fillRect(0, 0, W, H);
+    grad.addColorStop(0, '#80B0AA'); grad.addColorStop(0.55, '#c9a3bd'); grad.addColorStop(1, '#FE7AC6');
+    ctx.fillStyle = grad; ctx.fillRect(0, 0, W, H);
   }
 
-  // ── DARK OVERLAY ──
-  ctx.fillStyle = 'rgba(0,0,0,0.50)';
+  // Oscurecer suave para que el texto se lea (sin apagar los colores de la foto)
+  ctx.fillStyle = 'rgba(0,0,0,0.30)';
   ctx.fillRect(0, 0, W, H);
+  const vg = ctx.createRadialGradient(W/2, H/2, Math.min(W, H) * 0.25, W/2, H/2, Math.max(W, H) * 0.75);
+  vg.addColorStop(0, 'rgba(0,0,0,0.10)'); vg.addColorStop(1, 'rgba(0,0,0,0.45)');
+  ctx.fillStyle = vg; ctx.fillRect(0, 0, W, H);
 
   // ── LAYOUT ADAPTABLE (versículos cortos o largos) ──
   const cx    = W / 2;
@@ -4261,6 +4267,24 @@ async function buildTarjeta(fmt) {
   ctx.fillStyle = 'rgba(255,255,255,0.52)';
   ctx.fillText('Mi Diario Devocional  ♥', cx, y);
 
+}
+
+// Tarjeta desde el devocional o desde "Dios me habla hoy" (modal Story / Post)
+var _pendingPhoto = null;
+async function buildTarjeta(fmt, mismaFoto) {
+  let src = _pendingVerse;
+  if (!src) {
+    const data = dias.find(d => d.dia === _pendingDay);
+    if (!data) return;
+    src = { texto: data.versiculo, ref: data.referencia, eyebrow: 'DÍA ' + _pendingDay + '  ·  MI DIARIO DEVOCIONAL' };
+  }
+  _pendingTipo = fmt;
+  document.getElementById('canvas-format-pick').style.display  = 'none';
+  document.getElementById('canvas-loading').style.display      = 'flex';
+  document.getElementById('canvas-preview-wrap').style.display = 'none';
+  await new Promise(r => setTimeout(r, 60));
+  const canvas = document.getElementById('share-canvas');
+  await dibujarTarjeta(canvas, src, fmt, mismaFoto ? _pendingPhoto : null);
   _shareCanvas = canvas;
   document.getElementById('canvas-loading').style.display      = 'none';
   document.getElementById('canvas-preview-wrap').style.display = 'flex';
@@ -4355,21 +4379,12 @@ function continuarDia(){
   showDevotional(n);
 }
 function actualizarContinuar(){
-  const t = document.getElementById('continuar-title');
-  if (!t) return;
+  const el = document.getElementById('continuar-mini');
+  if (!el) return;
   const n = siguienteDia();
-  const e = document.getElementById('continuar-eyebrow');
-  const sub = document.getElementById('continuar-sub');
-  if (!n) {
-    e.textContent = 'Completaste los ' + TOTAL_DIAS + ' días 💗';
-    t.textContent = 'Revive tu camino';
-    sub.textContent = 'Ver mi diario completo →';
-    return;
-  }
-  const data = dias.find(x => x.dia === n);
-  e.textContent = n === 1 ? 'Comienza tu camino' : 'Tu encuentro de hoy';
-  t.textContent = 'Día ' + n + (data ? ' · ' + data.titulo : '');
-  sub.textContent = bloqueadoPorRitmo(n) ? 'Se abre mañana 🌙' : 'Toca para continuar →';
+  if (!n) { el.textContent = '💗 Ver mi diario completo'; return; }
+  if (n === 1) { el.textContent = '▶ Comenzar mi devocional'; return; }
+  el.textContent = bloqueadoPorRitmo(n) ? '🌙 Día ' + n + ' se abre mañana' : '▶ Continuar donde quedé · Día ' + n;
 }
 
 // ── Autoguardado del diario ──
@@ -4523,10 +4538,13 @@ function showConstancia(){ flushAutosave(); _calOffset = 0; renderConstancia(); 
 function moverMes(n){ _calOffset += n; renderConstancia(); }
 function renderConstancia(){
   const state = getState();
+  const activas = fechasActivas(state);
+  const mesISO = hoyISO().slice(0, 7);
+  const esteMes = [...activas].filter(f => f.slice(0, 7) === mesISO).length;
   document.getElementById('stats-row').innerHTML =
-    '<div class="stat-tile"><div class="stat-num">' + state.completados.length + '<span style="font-size:.8rem;color:var(--light)">/' + TOTAL_DIAS + '</span></div><div class="stat-lbl">Completados</div></div>' +
-    '<div class="stat-tile"><div class="stat-num">' + calcRacha(state) + '</div><div class="stat-lbl">Racha actual</div></div>' +
-    '<div class="stat-tile"><div class="stat-num">' + mejorRacha(state) + '</div><div class="stat-lbl">Mejor racha</div></div>';
+    '<div class="stat-tile"><div class="stat-num">' + state.completados.length + '<span style="font-size:.8rem;color:var(--light)"> de ' + TOTAL_DIAS + '</span></div><div class="stat-lbl">Días del devocional</div></div>' +
+    '<div class="stat-tile"><div class="stat-num">' + activas.size + '</div><div class="stat-lbl">Encuentros con Dios</div></div>' +
+    '<div class="stat-tile"><div class="stat-num">' + esteMes + '</div><div class="stat-lbl">Encuentros este mes</div></div>';
   const base = new Date(); base.setDate(1); base.setMonth(base.getMonth() + _calOffset);
   const y = base.getFullYear(), m = base.getMonth();
   document.getElementById('cal-mes').textContent = MESES[m] + ' ' + y;
@@ -4745,6 +4763,8 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
 //  DIOS ME HABLA HOY
 // ══════════════════════════════════════════════════════════
 var _palabraActual = null;
+var _palabraFoto = null;
+var _palabraToken = 0;
 function getPalabraState(){ try{ return JSON.parse(localStorage.getItem('midiario_palabra')) || {}; }catch(e){ return {}; } }
 function savePalabraState(s){ try{ localStorage.setItem('midiario_palabra', JSON.stringify(s)); }catch(e){} }
 
@@ -4752,13 +4772,13 @@ function showPalabra(){
   flushAutosave();
   const st = getPalabraState();
   const v = st.fecha === hoyISO() ? versiculosVida.find(x => x.id === st.id) : null;
-  if (v) mostrarPalabra(v, false);
+  showScreen('screen-palabra');
+  if (v) mostrarPalabra(v, st.foto);
   else {
     _palabraActual = null;
     document.getElementById('palabra-intro').style.display = 'block';
     document.getElementById('palabra-revelada').style.display = 'none';
   }
-  showScreen('screen-palabra');
 }
 
 function elegirVersiculo(){
@@ -4770,41 +4790,61 @@ function elegirVersiculo(){
 }
 
 function recibirPalabra(){
-  const btn = document.getElementById('palabra-recibir');
-  if (btn) { btn.disabled = true; btn.innerHTML = '<span class="btn-heart">🕊️</span> Escuchando…'; }
-  setTimeout(() => {
-    const v = elegirVersiculo();
-    const st = getPalabraState();
-    let vistos = (st.vistos || []).concat(v.id);
-    if (vistos.length > 60) vistos = vistos.slice(-60);
-    savePalabraState({ fecha: hoyISO(), id: v.id, vistos });
-    const s = getState(); marcarActividad(s); saveState(s);
-    mostrarPalabra(v, true);
-    if (btn) { btn.disabled = false; btn.innerHTML = '<span class="btn-heart">💗</span> Recibir mi palabra'; }
-  }, 900);
+  const v = elegirVersiculo();
+  const foto = fondoAleatorio();
+  const st = getPalabraState();
+  let vistos = (st.vistos || []).concat(v.id);
+  if (vistos.length > 60) vistos = vistos.slice(-60);
+  savePalabraState({ fecha: hoyISO(), id: v.id, foto, vistos });
+  const s = getState(); marcarActividad(s); saveState(s);
+  mostrarPalabra(v, foto);
 }
 
-function mostrarPalabra(v, animar){
+async function mostrarPalabra(v, foto){
   _palabraActual = v;
+  _palabraFoto = foto || fondoAleatorio();
+  const token = ++_palabraToken;
   document.getElementById('palabra-intro').style.display = 'none';
-  const box = document.getElementById('palabra-revelada');
-  box.style.display = 'block';
+  document.getElementById('palabra-revelada').style.display = 'block';
   const name = getName();
   document.getElementById('palabra-para').textContent = name ? 'Para ti, ' + name : 'Para ti, hoy';
   document.getElementById('palabra-tema').textContent = v.tema;
-  document.getElementById('palabra-texto').textContent = '“' + v.texto + '”';
-  document.getElementById('palabra-ref').textContent = '— ' + v.ref;
   document.getElementById('palabra-fav').textContent = esFavKey('v-' + v.id) ? '★ Guardado' : '☆ Guardar';
-  const card = document.getElementById('palabra-card');
-  card.classList.remove('revelar');
-  if (animar) { void card.offsetWidth; card.classList.add('revelar'); }
+  const wrap = document.getElementById('palabra-img-wrap');
+  wrap.classList.add('cargando');
   window.scrollTo(0, 0);
+  const tmp = document.createElement('canvas');
+  await dibujarTarjeta(tmp, { texto: v.texto, ref: v.ref, eyebrow: 'PALABRA PARA TI  ·  MI DIARIO DEVOCIONAL' }, 'post', _palabraFoto);
+  if (token !== _palabraToken) return;
+  const c = document.getElementById('palabra-canvas');
+  c.width = tmp.width; c.height = tmp.height;
+  c.getContext('2d').drawImage(tmp, 0, 0);
+  wrap.classList.remove('cargando');
+  c.classList.remove('revelar'); void c.offsetWidth; c.classList.add('revelar');
 }
 
-function otraPalabra(){
-  document.getElementById('palabra-revelada').style.display = 'none';
-  document.getElementById('palabra-intro').style.display = 'block';
-  recibirPalabra();
+function otraPalabra(){ recibirPalabra(); }
+
+function otraFotoPalabra(){
+  if (!_palabraActual) return;
+  const foto = fondoAleatorio(_palabraFoto);
+  const st = getPalabraState(); st.foto = foto; savePalabraState(st);
+  mostrarPalabra(_palabraActual, foto);
+}
+
+function guardarImagenPalabra(){
+  if (document.getElementById('palabra-img-wrap').classList.contains('cargando')) return;
+  _shareCanvas = document.getElementById('palabra-canvas');
+  downloadShareImage();
+}
+
+function storyPalabra(){
+  if (!_palabraActual) return;
+  _pendingVerse = { texto: _palabraActual.texto, ref: _palabraActual.ref, eyebrow: 'PALABRA PARA TI  ·  MI DIARIO DEVOCIONAL' };
+  _pendingPhoto = _palabraFoto;
+  _pendingDay = null;
+  document.getElementById('canvas-modal').classList.add('show');
+  buildTarjeta('story', true);
 }
 
 function favPalabra(){
@@ -4825,19 +4865,9 @@ function compartirPalabraTexto(){
   else navigator.clipboard?.writeText(t).then(() => showToast('Versículo copiado 💗'));
 }
 
-function imagenPalabra(){
-  if (!_palabraActual) return;
-  _pendingVerse = { texto: _palabraActual.texto, ref: _palabraActual.ref, eyebrow: 'PALABRA PARA TI  ·  MI DIARIO DEVOCIONAL' };
-  _pendingDay = null;
-  const modal = document.getElementById('canvas-modal');
-  document.getElementById('canvas-preview-wrap').style.display = 'none';
-  document.getElementById('canvas-format-pick').style.display  = 'flex';
-  document.getElementById('canvas-loading').style.display      = 'none';
-  modal.classList.add('show');
-}
-
 function quitarFavKey(k){ saveFavs(getFavs().filter(x => x !== k)); showToast('Quitado de tus versículos'); renderFavoritos(); }
-function abrirPalabraFav(id){ const v = versiculosVida.find(x => x.id === id); if (!v) return; showScreen('screen-palabra'); mostrarPalabra(v, true); }
+function abrirPalabraFav(id){ const v = versiculosVida.find(x => x.id === id); if (!v) return; showScreen('screen-palabra'); mostrarPalabra(v); }
+function showMiEspacio(){ flushAutosave(); showScreen('screen-mi-espacio'); }
 
 // Aplicar preferencias al cargar
 aplicarPrefs();
